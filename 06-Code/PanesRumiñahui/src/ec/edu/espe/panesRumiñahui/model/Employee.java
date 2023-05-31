@@ -1,33 +1,31 @@
-
-package ec.edu.espe.chickenfarm.model;
+package ec.edu.espe.panesrumiñahui.model;
 
 import java.util.Calendar;
 
 /**
  *
- * @author Techware, DCCO-ESPE
+ * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class Administrator {
-    
+
+public class Employee {
     private int id;
     private String name;
     private int age;
-    private Calendar bornOnDate;
     private String adress;
+    private Calendar startWork;
     private String contactNumber;
+    
 
     @Override
     public String toString() {
-        return "Administrator{" + "id=" + id + ", name=" 
-                + name + ", age=" + age + ", bornOnDate=" + bornOnDate 
-                + ", adress=" + adress + ", contactNumber=" + contactNumber + '}';
+        return "Employed{" + "id=" + id + ", name=" + name + ", age=" + age  + ", adress=" + adress + ", startWork=" + startWork + ", contactNumber=" + contactNumber + '}';
     }
 
-    public Administrator(int id, String name, Calendar bornOnDate, String adress, String contactNumber) {
+    public Employee(int id, String name, Calendar bornOnDate, String adress, Calendar startWork, String contactNumber) {
         this.id = id;
         this.name = name;
-        this.bornOnDate = bornOnDate;
         this.adress = adress;
+        this.startWork = startWork;
         this.contactNumber = contactNumber;
     }
 
@@ -55,20 +53,20 @@ public class Administrator {
         this.age = age;
     }
 
-    public Calendar getBornOnDate() {
-        return bornOnDate;
-    }
-
-    public void setBornOnDate(Calendar bornOnDate) {
-        this.bornOnDate = bornOnDate;
-    }
-
     public String getAdress() {
         return adress;
     }
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public Calendar getStartWork() {
+        return startWork;
+    }
+    
+    public void setStartWork(Calendar startWork) {
+        this.startWork = startWork;
     }
 
     public String getContactNumber() {
@@ -78,9 +76,5 @@ public class Administrator {
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
-    
-    
-    
-    
-    
+  
 }

@@ -1,18 +1,15 @@
-package ec.edu.espe.chickenfarm.view;
+package ec.edu.espe.panesrumiñahui.view;
 
-import ec.edu.espe.chickenfarm.controller.JsonGenerator;
-import ec.edu.espe.chickenfarm.model.Administrator;
-import ec.edu.espe.chickenfarm.model.Chicken;
-import ec.edu.espe.chickenfarm.model.Employee;
-
+import ec.edu.espe.panesrumiñahui.model.Administrator;
+import ec.edu.espe.panesrumiñahui.model.AdministratorMenu;
+import ec.edu.espe.panesrumiñahui.model.Employee;
+import ec.edu.espe.panesrumiñahui.model.EmployeeMenu;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 /**
  *
- * @author Techware, DCCO-ESPE
+ * @author Diego Casignia, Techware, DCCO-ESPE
  */
 
 public class Menu {
@@ -23,13 +20,14 @@ public class Menu {
         employee = new ArrayList<>();
         administrator = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("------ Wlcome to Panes de la Rumiñahui ------");
-        
-        System.out.println("--- System by Techware ---");
-
+        AdministratorMenu administratorMenu = new AdministratorMenu();
+        EmployeeMenu employeeMenu = new EmployeeMenu();
         int option;
         int choise;
+
+        System.out.println("------ Welcome to Panes de la Rumiñahui ------");
+        System.out.println("--- System by Techware ---");
+
         do {
             System.out.println("\nMenu:");
             System.out.println("1. Administrator");
@@ -40,12 +38,11 @@ public class Menu {
 
             switch (option) {
                 case 1:
-                    
+                    administratorMenu.administratorMenu();
                     break;
                 case 2:
-                    
+                    employeeMenu.employeeMenu();
                     break;
-
                 default:
                     System.out.println("Invalid option, enter again: ");
             }

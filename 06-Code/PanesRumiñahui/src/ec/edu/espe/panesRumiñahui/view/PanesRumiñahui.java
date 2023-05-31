@@ -1,14 +1,13 @@
-package ec.edu.espe.chickenfarm.view;
+package ec.edu.espe.panesrumiñahui.view;
 
 /**
  *
- * @author Alison Miranda, Bug Busters, DCCO-ESPE
+ * @author Diego Casignia, Techware, DCCO-ESPE
  */
 
-public class ChickenFarm {
+public class PanesRumiñahui {
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.showMenu();
     }
 }
-

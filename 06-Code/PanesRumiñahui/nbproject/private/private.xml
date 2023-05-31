@@ -2,6 +2,29 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/controller/EditAdministratorData.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/ExpenseReport.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Sale.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/view/Menu.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Employee.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/view/PanesRumiñahui.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Administrator.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/controller/EditEmployeeData.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Inventory.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/EmployeeMenu.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Product.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/ModifyEmployee.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/controller/EditSaleData.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/WorkHoursReport.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/controller/EditInventoryData.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Contact.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/Login.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/OrderOnline.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/AdministratorMenu.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/RawMaterial.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/DailyReport.java</file>
+            <file>file:/D:/DIEGO/Documents/SOFTWARE/POO/PROYECTO/code/PanesRumiñahui/src/ec/edu/espe/panesrumiñahui/model/ModifyEmployeeMenu.java</file>
+        </group>
     </open-files>
 </project-private>
