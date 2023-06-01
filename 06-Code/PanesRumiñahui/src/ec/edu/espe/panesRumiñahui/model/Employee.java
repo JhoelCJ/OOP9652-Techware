@@ -16,7 +16,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employed{" + "id=" + id + ", name=" + name + ", age=" + age  + ", startWork=" + startWork + ", contactNumber=" + contactNumber + '}';
+        return "Employed{" + "id=" + id + ", nombre=" + name + ", edad=" + age  + ", empiezaTrabajar=" + startWork + ", numeroContacto=" + contactNumber + '}';
     }
 
     public Employee(int id, String name, Calendar startWork, String contactNumber) {

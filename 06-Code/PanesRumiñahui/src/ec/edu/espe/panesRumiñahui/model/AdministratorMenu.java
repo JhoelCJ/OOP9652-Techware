@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- *
+ *@author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 
@@ -20,14 +20,14 @@ public class AdministratorMenu {
             ModifyEmployeeMenu modifyEmployeeMenu = new ModifyEmployeeMenu();
             Inventory inventory = new Inventory();
             
-            System.out.println ("1. View employee");
-            System.out.println ("2. Modify employee");
-            System.out.println ("3. View inventory");
-            System.out.println ("4. Modify inventory");
-            System.out.println ("5. Add Administrator");
-            System.out.println ("6. View Administrator");
-            System.out.println ("7. Exit");
-            System.out.print("Enter the option: ");
+            System.out.println ("1. Ver empleado: ");
+            System.out.println ("2. Modificar empleado: ");
+            System.out.println ("3. Ver inventario: ");
+            System.out.println ("4. Modificar inventario: ");
+            System.out.println ("5. Añadir administrador: ");
+            System.out.println ("6. Ver administrador: ");
+            System.out.println ("7. Salir");
+            System.out.print("Ingrese una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {
@@ -54,7 +54,7 @@ public class AdministratorMenu {
             
                     break;
                 default:
-                    System.out.println("Invalid Option, please select number again between 1 and 7");
+                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 7");
             }
         }while(option< 1 || option >7);
     }

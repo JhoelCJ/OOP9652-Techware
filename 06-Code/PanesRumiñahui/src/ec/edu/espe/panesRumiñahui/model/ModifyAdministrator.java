@@ -24,11 +24,11 @@ public class ModifyAdministrator {
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
-        System.out.print("Name: ");
+        System.out.print("Nombre: ");
         String name = readData.next();
-        System.out.print("Age: ");
+        System.out.print("Edad: ");
         int age = readData.nextInt();
-        System.out.print("Phone Number: ");
+        System.out.print("Numero telefonico: ");
         String contactNumber = readData.next();
         administrator = new Administrator(id, name, age,  contactNumber);
         administrator1.add(administrator);

@@ -3,7 +3,7 @@ package ec.edu.espe.panesrumiñahui.model;
 import java.util.Scanner;
 
 /**
- *
+ *@author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 
@@ -16,11 +16,11 @@ public class ModifyEmployeeMenu {
             
             ModifyEmployee modifyEmployee = new ModifyEmployee();
             
-            System.out.println ("1. Add employee");
-            System.out.println ("2. Edit employee");
-            System.out.println ("3. Delete employee");
-            System.out.println ("4. Exit");
-            System.out.print("Enter the option: ");
+            System.out.println ("1. Agregar Empleado");
+            System.out.println ("2. Editar Empleado");
+            System.out.println ("3. Elimiar ");
+            System.out.println ("4. Saalir");
+            System.out.print("Ingrece una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {
@@ -35,7 +35,7 @@ public class ModifyEmployeeMenu {
                     modifyEmployee.deleteEmployee();
                     break;
                 default:
-                    System.out.println("Invalid Option, please select number again between 1 and 4");
+                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 4");
             }
         }while(option< 1 || option >3);
     }
