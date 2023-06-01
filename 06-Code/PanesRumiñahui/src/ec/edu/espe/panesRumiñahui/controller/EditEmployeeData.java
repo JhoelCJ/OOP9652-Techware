@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Gabriel Calvache, Techware, DCCO-ESPE
  */
 public class EditEmployeeData {
     
@@ -25,6 +26,25 @@ public class EditEmployeeData {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-    
-    
+    public void readEmployeeData() throws FileNotFoundException{
+        FileReader reader = new FileReader("employee.json");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try (BufferedReader bufferedReader = new BufferedReader(reader)) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String jsonString = stringBuilder.toString();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        Employee employee = gson.fromJson(jsonString, Employee.class);
+        System.out.println(employee.toString());
+    }
+       
 }

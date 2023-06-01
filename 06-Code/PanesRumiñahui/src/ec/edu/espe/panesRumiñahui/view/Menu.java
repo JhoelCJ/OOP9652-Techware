@@ -4,6 +4,7 @@ import ec.edu.espe.panesrumiñahui.model.Administrator;
 import ec.edu.espe.panesrumiñahui.model.AdministratorMenu;
 import ec.edu.espe.panesrumiñahui.model.Employee;
 import ec.edu.espe.panesrumiñahui.model.EmployeeMenu;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Menu {
     private ArrayList<Employee> employee;
     private ArrayList<Administrator> administrator;
 
-    public void showMenu() {
+    public void showMenu() throws FileNotFoundException {
         employee = new ArrayList<>();
         administrator = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
