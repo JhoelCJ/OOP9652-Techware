@@ -1,6 +1,5 @@
 package ec.edu.espe.panesrumiñahui.model;
 
-import java.util.Calendar;
 
 /**
  *
@@ -11,22 +10,18 @@ public class Administrator {
     private int id;
     private String name;
     private int age;
-    private Calendar bornOnDate;
-    private String adress;
     private String contactNumber;
 
     @Override
     public String toString() {
         return "Administrator{" + "id=" + id + ", name=" 
-                + name + ", age=" + age + ", bornOnDate=" + bornOnDate 
-                + ", adress=" + adress + ", contactNumber=" + contactNumber + '}';
+                + name + ", age=" + age + ", contactNumber=" + contactNumber + '}';
     }
 
-    public Administrator(int id, String name, Calendar bornOnDate, String adress, String contactNumber) {
+    public Administrator(int id, String name, int age, String contactNumber) {
         this.id = id;
         this.name = name;
-        this.bornOnDate = bornOnDate;
-        this.adress = adress;
+        this.age = age;
         this.contactNumber = contactNumber;
     }
 
@@ -52,22 +47,6 @@ public class Administrator {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Calendar getBornOnDate() {
-        return bornOnDate;
-    }
-
-    public void setBornOnDate(Calendar bornOnDate) {
-        this.bornOnDate = bornOnDate;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
     }
 
     public String getContactNumber() {

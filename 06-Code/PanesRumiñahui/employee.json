@@ -1,0 +1,14 @@
+{
+  "id": 12,
+  "name": "gorge",
+  "age": 0,
+  "startWork": {
+    "year": 2023,
+    "month": 3,
+    "dayOfMonth": 2,
+    "hourOfDay": 0,
+    "minute": 0,
+    "second": 0
+  },
+  "contactNumber": "0987654321"
+}

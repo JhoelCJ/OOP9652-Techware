@@ -11,20 +11,17 @@ public class Employee {
     private int id;
     private String name;
     private int age;
-    private String adress;
     private Calendar startWork;
     private String contactNumber;
-    
 
     @Override
     public String toString() {
-        return "Employed{" + "id=" + id + ", name=" + name + ", age=" + age  + ", adress=" + adress + ", startWork=" + startWork + ", contactNumber=" + contactNumber + '}';
+        return "Employed{" + "id=" + id + ", name=" + name + ", age=" + age  + ", startWork=" + startWork + ", contactNumber=" + contactNumber + '}';
     }
 
-    public Employee(int id, String name, Calendar bornOnDate, String adress, Calendar startWork, String contactNumber) {
+    public Employee(int id, String name, Calendar startWork, String contactNumber) {
         this.id = id;
         this.name = name;
-        this.adress = adress;
         this.startWork = startWork;
         this.contactNumber = contactNumber;
     }
@@ -51,14 +48,6 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
     }
 
     public Calendar getStartWork() {

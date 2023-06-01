@@ -1,5 +1,6 @@
 package ec.edu.espe.panesrumiñahui.model;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Scanner;
 
 public class AdministratorMenu {
     
-    public void administratorMenu(){
+    public void administratorMenu() throws FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
         int option;
             
@@ -23,8 +24,8 @@ public class AdministratorMenu {
             System.out.println ("2. Modify employee");
             System.out.println ("3. View inventory");
             System.out.println ("4. Modify inventory");
-            System.out.println ("5. View Sales");
-            System.out.println ("6. View Daily Report");
+            System.out.println ("5. Add Administrator");
+            System.out.println ("6. View Administrator");
             System.out.println ("7. Exit");
             System.out.print("Enter the option: ");
             option = scanner.nextInt();
