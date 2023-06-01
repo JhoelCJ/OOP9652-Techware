@@ -43,7 +43,8 @@ public class AdministratorMenu {
                     inventory.readInventory();
                     break;
                 case 4:
-                    //inventory.writeInventory();
+                    inventory.writeInventoryProduct();
+                    inventory.writeInventoryRawMaterial();
                     break;
                 case 5:
                     modifyAdministrator.createAdministrator();

@@ -1,5 +1,6 @@
 package ec.edu.espe.panesrumiñahui.model;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -10,8 +11,8 @@ import java.util.Scanner;
 
 public class EmployeeMenu {
     
-    public void employeeMenu(){
-        
+    public void employeeMenu() throws FileNotFoundException{
+        Inventory inventory = new Inventory();
         Scanner scanner = new Scanner(System.in);
         int option;
           
@@ -31,10 +32,11 @@ public class EmployeeMenu {
             
                     break;
                 case 2:
-            
+                    inventory.readInventory();
                     break;
                 case 3:
-            
+                    inventory.writeInventoryProduct();
+                    inventory.writeInventoryRawMaterial();
                     break;
                 case 4:
             
