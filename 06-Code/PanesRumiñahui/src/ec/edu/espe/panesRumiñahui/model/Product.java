@@ -3,6 +3,7 @@ package ec.edu.espe.panesrumiñahui.model;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 
 public class Product {
@@ -11,7 +12,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", nombreProducto=" + nameProduct + '}';
+        return "Product{" + "id=" + id + ", nameProduct=" + nameProduct + '}';
     }
 
     public Product(int id, String nameProduct) {

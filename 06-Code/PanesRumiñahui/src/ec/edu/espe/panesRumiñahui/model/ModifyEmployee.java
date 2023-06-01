@@ -9,6 +9,7 @@ import java.util.Scanner;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Calderón Jilmar, Techware, DCCO-ESPE
  */
 
 public class ModifyEmployee {
@@ -16,30 +17,27 @@ public class ModifyEmployee {
     public void readEmployee() throws FileNotFoundException{
         EditEmployeeData editEmployeeData = new EditEmployeeData();
         editEmployeeData.readEmployeeData();
-        
     }
     
-    public void createEmployee(){
+    public void createEmployee() throws FileNotFoundException{
         EditEmployeeData editEmployeeData = new EditEmployeeData();
         Employee employee;
-        ArrayList<Employee> employee1 = new ArrayList<>();
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
-        System.out.print("Nombre: ");
+        System.out.print("Name: ");
         String name = readData.next();
-        System.out.print("Edad: ");
+        System.out.print("Age: ");
         int age = readData.nextInt();
-        System.out.print("Anio que empezo atrabajar: ");
+        System.out.print("Year start work: ");
         int year = readData.nextInt();
-        System.out.print("Mes que empezo atrabajar: ");
+        System.out.print("Month start work: ");
         int month = readData.nextInt();
-        System.out.print("Dia que empezo atrabajar: ");
+        System.out.print("Day start work: ");
         int day = readData.nextInt();
-        System.out.print("Numero telefonico: ");
+        System.out.print("Phone Number: ");
         String contactNumber = readData.next();
-        employee = new Employee(id, name, new GregorianCalendar(year,month,day),  contactNumber);
-        employee1.add(employee);
+        employee = new Employee(id, name, age, new GregorianCalendar(year,month,day),  contactNumber);
         editEmployeeData.writeEmployeeData(employee);
     }
     

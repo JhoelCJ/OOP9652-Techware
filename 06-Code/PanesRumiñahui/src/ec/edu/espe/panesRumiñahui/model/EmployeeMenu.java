@@ -3,8 +3,9 @@ package ec.edu.espe.panesrumiñahui.model;
 import java.util.Scanner;
 
 /**
- *@author Jilmar Calderon, Techware, DCCO-ESPE
+ *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Calderón Jilmar, Techware, DCCO-ESPE
  */
 
 public class EmployeeMenu {
@@ -15,14 +16,13 @@ public class EmployeeMenu {
         int option;
           
         do {
-            
-            System.out.println("1. Ingrese la hora de entrada: ");
-            System.out.println("2. Ver inventario: ");
-            System.out.println("3. Modificar inventario: ");
-            System.out.println("4. Registrar ventas: ");
-            System.out.println("5. Ingrese la hora de salida: ");
-            System.out.println("6. Salir: ");
-            System.out.print("Ingrese una opcion: ");
+            System.out.println("1. Enter entry time");
+            System.out.println("2. View inventory");
+            System.out.println("3. Modify inventory");
+            System.out.println("4. Register Sales");
+            System.out.println("5. Enter Extit time");
+            System.out.println("6. Exit");
+            System.out.print("Enter the option: ");
             option = scanner.nextInt();
             
             switch (option) {
@@ -46,7 +46,7 @@ public class EmployeeMenu {
             
                     break;
                 default:
-                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 6");
+                    System.out.println("Invalid Option, please select number again between 1 and 6");
             }
         }while(option< 1 || option >6);
     }

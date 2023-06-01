@@ -5,6 +5,7 @@ import java.util.Calendar;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 
 public class Employee {
@@ -16,12 +17,13 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employed{" + "id=" + id + ", nombre=" + name + ", edad=" + age  + ", empiezaTrabajar=" + startWork + ", numeroContacto=" + contactNumber + '}';
+        return "Employed{" + "id=" + id + ", name=" + name + ", age=" + age  + ", startWork=" + startWork + ", contactNumber=" + contactNumber + '}';
     }
 
-    public Employee(int id, String name, Calendar startWork, String contactNumber) {
+    public Employee(int id, String name,int age, Calendar startWork, String contactNumber) {
         this.id = id;
         this.name = name;
+        this.age = age;
         this.startWork = startWork;
         this.contactNumber = contactNumber;
     }

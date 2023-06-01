@@ -3,6 +3,7 @@ package ec.edu.espe.panesrumiñahui.model;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
+ * @author Baez Gabriel, Techware, DCCO-ESPE
  */
 
 public class WorkHoursReport {
