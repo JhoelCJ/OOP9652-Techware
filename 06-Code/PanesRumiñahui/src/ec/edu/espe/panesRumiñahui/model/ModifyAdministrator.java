@@ -8,12 +8,13 @@ import java.util.Scanner;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
- * @author Calvache Gabriel, Techware, DCCO-ESPE
+ * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class ModifyAdministrator {
     public void readAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
         editAdministratorData.readAdministratorData();
+        
     }
     
     public void createAdministrator(){
@@ -23,14 +24,14 @@ public class ModifyAdministrator {
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
-        System.out.print("Name: ");
+        System.out.print("Nombre: ");
         String name = readData.next();
-        System.out.print("Age: ");
+        System.out.print("Edad: ");
         int age = readData.nextInt();
-        System.out.print("Phone Number: ");
+        System.out.print("Numero telefonico: ");
         String contactNumber = readData.next();
         administrator = new Administrator(id, name, age,  contactNumber);
         administrator1.add(administrator);
         editAdministratorData.writeAdministratorData(administrator);
-    }
+}
 }

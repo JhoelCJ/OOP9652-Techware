@@ -1,18 +1,15 @@
-package ec.edu.espe.panesrumiñahui.view;
+package ec.edu.espe.view.panesRumiñahui;
 
 import java.io.FileNotFoundException;
 
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
- * @author Baez Gabriel, Techware, DCCO-ESPE
- * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 
 public class PanesRumiñahui {
     public static void main(String[] args) throws FileNotFoundException {
         Menu menu = new Menu();
         menu.showMenu();
-                
     }
 }

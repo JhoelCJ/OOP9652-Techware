@@ -1,28 +1,7 @@
 {
-  "id": 23,
-  "name": "zxc",
-  "age": 17,
-  "startWork": {
-    "year": 2004,
-    "month": 5,
-    "dayOfMonth": 4,
-    "hourOfDay": 0,
-    "minute": 0,
-    "second": 0
-  },
-  "contactNumber": "1234567890"
-}
-{
-  "id": 12,
-  "name": "asd",
-  "age": 12,
-  "startWork": {
-    "year": 2003,
-    "month": 3,
-    "dayOfMonth": 23,
-    "hourOfDay": 0,
-    "minute": 0,
-    "second": 0
-  },
-  "contactNumber": "1234"
+  "id": 2,
+  "name": "Pepe",
+  "age": 34,
+  "startWork": "Apr 21, 3921, 12:00:00 AM",
+  "contactNumber": "0984635272"
 }

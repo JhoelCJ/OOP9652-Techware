@@ -1,4 +1,4 @@
-package ec.edu.espe.panesrumiñahui.view;
+package ec.edu.espe.view.panesRumiñahui;
 
 import ec.edu.espe.panesrumiñahui.model.Administrator;
 import ec.edu.espe.panesrumiñahui.model.AdministratorMenu;
@@ -9,11 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * @author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
- * @author Calderón Jilmar, Techware, DCCO-ESPE
- * @author Baez Gabriel, Techware, DCCO-ESPE
- * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 
 public class Menu {
@@ -29,15 +26,16 @@ public class Menu {
         int option;
         int choise;
 
-        System.out.println("------ Welcome to Panes de la Rumiñahui ------");
+        System.out.println("------ Bienvenido a Panes de la Rumiñahui ------");
         System.out.println("--- System by Techware ---");
 
         do {
             System.out.println("\nMenu:");
-            System.out.println("1. Administrator");
-            System.out.println("2. Employee ");
-            System.out.println("3. Exit");
-            System.out.print("Enter the option: ");
+            System.out.println("1. Administrador");
+            System.out.println("2. Empleado ");
+            System.out.println("3. Presupuesto ");
+            System.out.println("4. Salir");
+            System.out.print("Ingrese una opcion: ");
             option = scanner.nextInt();
 
             switch (option) {
@@ -47,9 +45,15 @@ public class Menu {
                 case 2:
                     employeeMenu.employeeMenu();
                     break;
-                default:
-                    System.out.println("Invalid option, enter again: ");
-            }
-        } while (option != 3);
+                case 3:
+                    employeeMenu.employeeMenu();
+                    break;
+                 case 4:
+                     System.out.println("Gracias por usar el programa");
+                    break;   
+                /*default:
+                    System.out.println("Opcion invalida, intente de nuevo: ");
+            */}
+        } while (option != 4);
     }
 }

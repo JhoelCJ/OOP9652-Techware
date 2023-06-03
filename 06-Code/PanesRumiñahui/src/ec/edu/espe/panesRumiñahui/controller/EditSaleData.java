@@ -10,7 +10,6 @@ import java.util.List;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
- * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 public class EditSaleData {
     public void writeSaleData(List<Sale> sale) {

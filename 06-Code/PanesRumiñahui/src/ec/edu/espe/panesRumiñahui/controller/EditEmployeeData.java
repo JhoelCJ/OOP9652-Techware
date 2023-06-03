@@ -12,31 +12,27 @@ import java.io.IOException;
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
- * @author Calderón Jilmar, Techware, DCCO-ESPE
- * @author Baez Gabriel, Techware, DCCO-ESPE
- * @author Calvache Gabriel, Techware, DCCO-ESPE
+ * @author Gabriel Calvache, Techware, DCCO-ESPE
  */
 public class EditEmployeeData {
     
-    public void writeEmployeeData(Employee employees) {
+    public void writeEmployeeData(Employee employee) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(employees);
+        String json = gson.toJson(employee);
 
         try (FileWriter writer = new FileWriter("employee.json")) {
             writer.write(json);
         } catch (IOException e) {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
-        
     }
-    
     public void readEmployeeData() throws FileNotFoundException{
         FileReader reader = new FileReader("employee.json");
         StringBuilder stringBuilder = new StringBuilder();
 
         try (BufferedReader bufferedReader = new BufferedReader(reader)) {
             String line;
-            while ((line = bufferedReader.readLine()) != null){
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
         } catch (IOException e) {
@@ -49,6 +45,6 @@ public class EditEmployeeData {
         Gson gson = gsonBuilder.create();
         Employee employee = gson.fromJson(jsonString, Employee.class);
         System.out.println(employee.toString());
-        
     }
+       
 }

@@ -6,6 +6,7 @@ package ec.edu.espe.panesrumiñahui.model;
  */
 
 public class Sale {
+    //
     public void sale(){
         
     }
