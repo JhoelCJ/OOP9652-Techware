@@ -33,8 +33,8 @@ public class Menu {
         //int option;
         int choise;
 
-        System.out.println("------ Bienvenido a Panes de la Rumiñahui ------");
-        System.out.println("--- System by Techware ---");
+        System.out.println("\n\t------------- Bienvenido a Panes de la Rumiñahui ------------");
+        System.out.println("\n\t\t\t--- System by Techware ---");
 
         do {
             System.out.println("\nMenu:");
@@ -42,7 +42,7 @@ public class Menu {
             System.out.println("2. Empleado ");
             System.out.println("3. Presupuesto ");
             System.out.println("4. Salir");
-            System.out.print("Ingrese una opcion: ");
+            System.out.print("\n\tIngrese una opcion: ");
             choise = scanner.nextInt();
 
             switch (choise) {

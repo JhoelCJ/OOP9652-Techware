@@ -14,10 +14,13 @@ public class Employee {
     private int age;
     private Date startWork;
     private String contactNumber;
+    
 
     @Override
     public String toString() {
-        return "\t\t\t\tEmployed List" + "\n\t\t id: " + id + "\n\t\t nombre: " + name + "\n\t\t Edad: " + age  + "\n\t\t Empieza a Trabajar: " + startWork + "\n\t\t Numero de Contacto: " + contactNumber ;
+        return "\t\t\t\tEmployed List" + "\n\t\t id: " + id + "\n\t\t Nombre: " 
+                + name + "\n\t\t Edad: " + age  + "\n\t\t Empieza a Trabajar: " 
+                + computeAge() + "\n\t\t Numero de Contacto: " + contactNumber ;
     }
 
     public Employee(int id, String name, int age, Date startWork, String contactNumber) {
@@ -26,6 +29,16 @@ public class Employee {
         this.age = age;
         this.startWork = startWork;
         this.contactNumber = contactNumber;
+    }
+    
+    public Date computeAge(){
+    
+        int year = startWork.getYear() - 1900;
+        int month = startWork.getMonth() - 1;
+        int day = startWork.getDay();
+        
+        return new Date(year,month,day);
+    
     }
 
     public int getId() {
