@@ -52,9 +52,9 @@ public class WorkHoursReport {
                     break;
                     
                 case 3:
-                    System.out.println("Exiting program...");
-                    scanner.close();
-                    System.exit(0);
+                    /*System.out.println("Exiting program...");
+                    //scanner.close();
+                    System.exit(0);*/
                     
                 default:
                     System.out.println("Invalid choice. Please try again.");

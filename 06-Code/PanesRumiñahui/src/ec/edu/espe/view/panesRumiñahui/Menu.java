@@ -1,5 +1,6 @@
 package ec.edu.espe.view.panesRumiñahui;
 
+import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
 import ec.edu.espe.panesrumiñahui.model.Administrator;
 import ec.edu.espe.panesrumiñahui.model.AdministratorMenu;
 import ec.edu.espe.panesrumiñahui.model.Employee;
@@ -27,6 +28,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         AdministratorMenu administratorMenu = new AdministratorMenu();
         EmployeeMenu employeeMenu = new EmployeeMenu();
+        BudgetMenu budgetMenu= new BudgetMenu();
         
         //int option;
         int choise;
@@ -58,7 +60,7 @@ public class Menu {
                     employeeMenu.employeeMenu();
                     break;
                 case 3:
-                    employeeMenu.employeeMenu();
+                    budgetMenu.budgetMenu();
                     break;
                  case 4:
                      System.out.println("Gracias por usar el programa");
