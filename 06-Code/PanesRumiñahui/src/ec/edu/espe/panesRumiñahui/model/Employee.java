@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
+ * @author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 

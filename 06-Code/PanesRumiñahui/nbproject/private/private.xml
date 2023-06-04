@@ -2,6 +2,28 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditSaleData.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ModifyEmployee.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/EmployeeMenu.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Budget.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/AdministratorMenu.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Administrator.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Contact.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/WorkHoursReport.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditEmployeeData.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Employee.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/BudgetMenu.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/view/panesRumiñahui/Menu.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/view/panesRumiñahui/PanesRumiñahui.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Report.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ExpenseReport.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Profit.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Sale.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Purchase.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditInventoryData.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Inventory.java</file>
+            <file>file:/D:/BORRARRR/Programacio/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/RawMaterial.java</file>
+        </group>
     </open-files>
 </project-private>

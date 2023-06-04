@@ -1,17 +1,20 @@
-package ec.edu.espe.Sales.model;
+package ec.edu.espe.panesrumiñahui.model;
 
+import ec.edu.espe.panesrumiñahui.controller.EditInventoryData;
+import ec.edu.espe.panesrumiñahui.controller.EditSaleData;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  *
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class Sale {
-    public static void main(String[] args) {
+    public void sale(){
         
         Scanner scanner = new Scanner(System.in);
 
         double totalSales = 0;
-        int sale;
+        float sale;
         
         System.out.print("Ingrese el número de ventas realizadas: ");
         sale = scanner.nextInt();
@@ -24,6 +27,6 @@ public class Sale {
         
         System.out.println("El total de ventas realizadas es: " + totalSales);
        
-        scanner.close();
-    }
+    }   // scanner.close();
+
 }

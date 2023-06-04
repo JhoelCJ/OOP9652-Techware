@@ -7,6 +7,8 @@ import ec.edu.espe.panesrumiñahui.model.EmployeeMenu;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Jilmar Calderon, Techware, DCCO-ESPE
@@ -17,13 +19,16 @@ public class Menu {
     private ArrayList<Employee> employee;
     private ArrayList<Administrator> administrator;
 
-    public void showMenu() throws FileNotFoundException {
+    public void showMenu(){ /*throws FileNotFoundException*/ 
+        
         employee = new ArrayList<>();
         administrator = new ArrayList<>();
+        
         Scanner scanner = new Scanner(System.in);
         AdministratorMenu administratorMenu = new AdministratorMenu();
         EmployeeMenu employeeMenu = new EmployeeMenu();
-        int option;
+        
+        //int option;
         int choise;
 
         System.out.println("------ Bienvenido a Panes de la Rumiñahui ------");
@@ -36,12 +41,19 @@ public class Menu {
             System.out.println("3. Presupuesto ");
             System.out.println("4. Salir");
             System.out.print("Ingrese una opcion: ");
-            option = scanner.nextInt();
+            choise = scanner.nextInt();
 
-            switch (option) {
+            switch (choise) {
                 case 1:
-                    administratorMenu.administratorMenu();
+                {
+                    try {
+                        administratorMenu.administratorMenu();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     break;
+
                 case 2:
                     employeeMenu.employeeMenu();
                     break;
@@ -54,6 +66,6 @@ public class Menu {
                 /*default:
                     System.out.println("Opcion invalida, intente de nuevo: ");
             */}
-        } while (option != 4);
+        } while (choise != 4);
     }
 }

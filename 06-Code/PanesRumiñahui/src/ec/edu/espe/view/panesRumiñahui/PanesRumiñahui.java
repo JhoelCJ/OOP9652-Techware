@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
  */
 
 public class PanesRumiñahui {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args){ /*throws FileNotFoundException {*/
         Menu menu = new Menu();
         menu.showMenu();
     }

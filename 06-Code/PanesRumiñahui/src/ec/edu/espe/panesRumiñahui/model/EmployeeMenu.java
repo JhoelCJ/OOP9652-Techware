@@ -13,6 +13,8 @@ public class EmployeeMenu {
         
         Scanner scanner = new Scanner(System.in);
         Inventory inventory = new Inventory();
+        Sale sale = new Sale();
+        WorkHoursReport workHoursReport = new WorkHoursReport();
         int option;
           
         do {
@@ -21,14 +23,15 @@ public class EmployeeMenu {
             System.out.println("2. Ver inventario: ");
             System.out.println("3. Modificar inventario: ");
             System.out.println("4. Registrar ventas: ");
-            System.out.println("5. Salir: ");
+            System.out.println("5. Mostrar Ventas: ");
+            System.out.println("6. Salir: ");
             System.out.print("Ingrese una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {
         
                 case 1:
-                //llamar  a la clase que regstra horas
+                    workHoursReport.workHour();
                     break;
                 case 2:
                     inventory.readInventory();//Llamar al inventario
@@ -37,9 +40,12 @@ public class EmployeeMenu {
                     inventory.writeInventory();//Modificar el inventario
                     break;
                 case 4:
-                //LLmar a la clase que registre las ventas realizadas en el dia
+                    sale.sale();//LLmar a la clase que registre las ventas realizadas en el dia
                     break;
                 case 5:
+                    //sale.readSale();
+                    break;
+                case 6:
             
                     break;
                 default:
