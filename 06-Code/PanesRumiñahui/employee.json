@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "id": 1,
@@ -14,3 +15,12 @@
     "contactNumber": "0987654322"
   }
 ]
+=======
+{
+  "id": 2,
+  "name": "Pepep",
+  "age": 50,
+  "startWork": "May 23, 3921, 12:00:00 AM",
+  "contactNumber": "0937484"
+}
+>>>>>>> 770c7486dffc334bd94fedfe0cc19e76733a0931

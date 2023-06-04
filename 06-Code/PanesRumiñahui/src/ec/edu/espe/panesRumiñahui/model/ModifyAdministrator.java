@@ -35,7 +35,7 @@ public class ModifyAdministrator {
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
-        System.out.print("Nombre: ");
+        System.out.print("\nNombre: ");
         String name = readData.next();
         System.out.print("Edad: ");
         int age = readData.nextInt();

@@ -21,15 +21,20 @@ public class AdministratorMenu {
             Inventory inventory = new Inventory();
             ModifyAdministrator modifyAdministrator = new ModifyAdministrator();
             
-            System.out.println ("1. Ver empleado: ");
+            System.out.println ("\n1. Ver empleado: ");
             System.out.println ("2. Modificar empleado: ");
             System.out.println ("3. Ver inventario: ");
             System.out.println ("4. Modificar inventario: ");
             System.out.println ("5. Ver administrador: ");
             System.out.println ("6. Añadir administrador: ");
             System.out.println ("7. Salir");
+<<<<<<< HEAD
             System.out.print("Ingrese una opcion: ");
             int option = scanner.nextInt();
+=======
+            System.out.print("\n\tIngrese una opcion: ");
+            option = scanner.nextInt();
+>>>>>>> 770c7486dffc334bd94fedfe0cc19e76733a0931
             
             switch (option) {
                 case 1:

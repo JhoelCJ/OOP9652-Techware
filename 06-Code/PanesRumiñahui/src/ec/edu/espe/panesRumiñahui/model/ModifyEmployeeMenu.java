@@ -17,11 +17,11 @@ public class ModifyEmployeeMenu {
             
             ModifyEmployee modifyEmployee = new ModifyEmployee();
             
-            System.out.println ("1. Agregar Empleado");
+            System.out.println ("\n1. Agregar Empleado");
             System.out.println ("2. Editar Empleado");
             System.out.println ("3. Elimiar ");
             System.out.println ("4. Saalir");
-            System.out.print("Ingrece una opcion: ");
+            System.out.print("\n\tIngrece una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {

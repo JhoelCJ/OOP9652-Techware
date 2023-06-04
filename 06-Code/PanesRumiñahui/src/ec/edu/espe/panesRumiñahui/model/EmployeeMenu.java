@@ -19,13 +19,13 @@ public class EmployeeMenu {
           
         do {
             
-            System.out.println("1. Ingrese la hora de entrada/salida: ");
+            System.out.println("\n1. Ingrese la hora de entrada/salida: ");
             System.out.println("2. Ver inventario: ");
             System.out.println("3. Modificar inventario: ");
             System.out.println("4. Registrar ventas: ");
             System.out.println("5. Mostrar Ventas: ");
             System.out.println("6. Salir: ");
-            System.out.print("Ingrese una opcion: ");
+            System.out.print("\n\tIngrese una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {
