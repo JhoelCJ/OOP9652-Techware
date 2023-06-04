@@ -1,10 +1,10 @@
 package ec.edu.espe.panesrumiñahui.model;
 
 import ec.edu.espe.panesrumiñahui.controller.EditEmployeeData;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
@@ -16,14 +16,24 @@ public class ModifyEmployee {
     
     public void readEmployee() throws FileNotFoundException{
         EditEmployeeData editEmployeeData = new EditEmployeeData();
-        editEmployeeData.readEmployeeData();
+        File archivo = new File("employee.json");
+        ArrayList<Employee> listEmployees = new ArrayList();
+        System.out.println("\t\t\t\tEmployed List");
         
+        if (archivo.exists() && archivo.length() == 0) {
+            System.out.println("No hay empleados\n\n");
+        } else {
+            listEmployees = editEmployeeData.readEmployeeData();
+            for(Employee employee : listEmployees){
+                System.out.println(employee.toString());
+            }
+        }
     }
     
-    public void createEmployee(){
+    public void createEmployee() throws FileNotFoundException{
         EditEmployeeData editEmployeeData = new EditEmployeeData();
+        ArrayList<Employee> listEmployees = new ArrayList();
         Employee employee;
-        ArrayList<Employee> employee1 = new ArrayList<>();
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
@@ -40,8 +50,16 @@ public class ModifyEmployee {
         System.out.print("Numero telefonico: ");
         String contactNumber = readData.next();
         employee = new Employee(id, name, age, new Date(year,month,day),  contactNumber);
-        employee1.add(employee);
-        editEmployeeData.writeEmployeeData(employee);
+        
+        File archivo = new File("employee.json");
+        if (archivo.exists() && archivo.length() == 0) {
+            listEmployees = new ArrayList<>();
+        } else {
+            listEmployees = editEmployeeData.readEmployeeData();
+        }
+        
+        listEmployees.add(employee);
+        editEmployeeData.writeEmployeeData(listEmployees);
     }
     
     public void editEmployee(){

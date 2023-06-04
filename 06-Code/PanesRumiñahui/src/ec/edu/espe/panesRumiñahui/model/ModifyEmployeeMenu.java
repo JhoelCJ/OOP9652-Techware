@@ -1,5 +1,6 @@
 package ec.edu.espe.panesrumiñahui.model;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Scanner;
  */
 
 public class ModifyEmployeeMenu {
-    public void modifyEmployeeMenu(){
+    public void modifyEmployeeMenu() throws FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
         int option;
             

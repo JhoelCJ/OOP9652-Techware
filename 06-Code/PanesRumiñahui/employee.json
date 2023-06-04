@@ -1,7 +1,16 @@
-{
-  "id": 2,
-  "name": "Pepe",
-  "age": 34,
-  "startWork": "Apr 21, 3921, 12:00:00 AM",
-  "contactNumber": "0984635272"
-}
+[
+  {
+    "id": 1,
+    "name": "Jorge",
+    "age": 23,
+    "startWork": "Apr 23, 3923, 12:00:00 AM",
+    "contactNumber": "0987654321"
+  },
+  {
+    "id": 2,
+    "name": "Pepe",
+    "age": 54,
+    "startWork": "May 12, 3920, 12:00:00 AM",
+    "contactNumber": "0987654322"
+  }
+]

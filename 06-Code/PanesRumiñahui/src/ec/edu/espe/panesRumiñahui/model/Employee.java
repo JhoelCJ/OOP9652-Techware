@@ -17,7 +17,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\t\t\t\tEmployed List" + "\n\t\t id: " + id + "\n\t\t nombre: " + name + "\n\t\t Edad: " + age  + "\n\t\t Empieza a Trabajar: " + startWork + "\n\t\t Numero de Contacto: " + contactNumber ;
+        return "\n\t\t id: " + id + "\n\t\t nombre: " + name + "\n\t\t Edad: " + age  + "\n\t\t Empieza a Trabajar: " + startWork + "\n\t\t Numero de Contacto: " + contactNumber ;
     }
 
     public Employee(int id, String name, int age, Date startWork, String contactNumber) {

@@ -1,4 +1,4 @@
-package ec.edu.espe.view.panesRumiñahui;
+package ec.edu.espe.panesrumiñahui.view;
 
 import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
 import ec.edu.espe.panesrumiñahui.model.Administrator;
@@ -20,7 +20,7 @@ public class Menu {
     private ArrayList<Employee> employee;
     private ArrayList<Administrator> administrator;
 
-    public void showMenu(){ /*throws FileNotFoundException*/ 
+    public void showMenu()throws FileNotFoundException{
         
         employee = new ArrayList<>();
         administrator = new ArrayList<>();

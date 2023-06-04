@@ -15,9 +15,9 @@ public class Inventory {
     }
     
     public void readInventory(){
-        EditInventoryData editInventoryData = new EditInventoryData();
+        /*EditInventoryData editInventoryData = new EditInventoryData();
         Inventory inventory = editInventoryData.readInventoryData();
-        System.out.println(inventory);
+        System.out.println(inventory);*/
     }
     
     public void writeInventory(){
