@@ -1,5 +1,6 @@
 package ec.edu.espe.panesrumiñahui.model;
 
+import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -15,11 +16,12 @@ public class AdministratorMenu {
         boolean continueMenu = true;
         
         while(continueMenu){
-            
+            InventoryMenu inventoryMenu = new InventoryMenu();
             ModifyEmployee modifyEmployee = new ModifyEmployee();
+            BudgetMenu budgetMenu= new BudgetMenu();
             ModifyEmployeeMenu modifyEmployeeMenu = new ModifyEmployeeMenu();
-            Inventory inventory = new Inventory();
             ModifyAdministrator modifyAdministrator = new ModifyAdministrator();
+            ModifyInventoryMenu modifyInventoryMenu = new ModifyInventoryMenu();
             
             System.out.println ("1. Ver empleado: ");
             System.out.println ("2. Modificar empleado: ");
@@ -27,7 +29,8 @@ public class AdministratorMenu {
             System.out.println ("4. Modificar inventario: ");
             System.out.println ("5. Ver administrador: ");
             System.out.println ("6. Añadir administrador: ");
-            System.out.println ("7. Salir");
+            System.out.println ("7. Presupuesto");
+            System.out.println ("8. Salir");
             System.out.print("Ingrese una opcion: ");
             int option = scanner.nextInt();
             
@@ -39,10 +42,10 @@ public class AdministratorMenu {
                     modifyEmployeeMenu.modifyEmployeeMenu();
                     break;
                 case 3:
-                    inventory.readInventory();
+                    inventoryMenu.inventoryMenu();
                     break;
                 case 4:
-                    inventory.writeInventory();
+                    modifyInventoryMenu.modifyInventoryMenu();
                     break;
                 case 5:
                     modifyAdministrator.readAdministrator();
@@ -51,10 +54,13 @@ public class AdministratorMenu {
                     modifyAdministrator.createAdministrator();
                     break;
                 case 7:
+                    budgetMenu.budgetMenu();
+                    break;
+                case 8:
                     continueMenu = false;
                     break;
                 default:
-                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 7");
+                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 8");
             }
         }
     }

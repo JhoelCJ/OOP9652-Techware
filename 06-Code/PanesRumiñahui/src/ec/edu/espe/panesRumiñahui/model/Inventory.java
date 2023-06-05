@@ -1,8 +1,7 @@
 package ec.edu.espe.panesrumiñahui.model;
 
 import ec.edu.espe.panesrumiñahui.controller.EditInventoryData;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -10,19 +9,24 @@ import java.util.List;
  */
 
 public class Inventory {
-    public void inventory(){
-        
+    
+    public void dailySale() throws FileNotFoundException{
+        SaleOperation saleOperation = new SaleOperation();
+        saleOperation.readSale();
     }
     
-    public void readInventory(){
-        /*EditInventoryData editInventoryData = new EditInventoryData();
-        Inventory inventory = editInventoryData.readInventoryData();
-        System.out.println(inventory);*/
+    public void totalDailySale() throws FileNotFoundException{
+        SaleOperation saleOperation = new SaleOperation();
+        saleOperation.totalDialySale();
     }
     
-    public void writeInventory(){
-        ArrayList<Inventory> inventory = new ArrayList<>();
-        EditInventoryData editInventoryData = new EditInventoryData();
-        editInventoryData.witeInventoryData(inventory);
+    public void productStock() throws FileNotFoundException{
+        ModifyProduct modifyProduct = new ModifyProduct();
+        modifyProduct.readProduct();
+    }
+    
+    public void rawMaterialStock() throws FileNotFoundException{
+        ModifyRawMaterial modifyRawMaterial = new ModifyRawMaterial();
+        modifyRawMaterial.readRawMaterial();
     }
 }

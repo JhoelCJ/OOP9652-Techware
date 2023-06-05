@@ -1,0 +1,14 @@
+[
+  {
+    "id": 0,
+    "nameProduct": "Pan15Centavos",
+    "budgetProduct": 0.15,
+    "stock": 100
+  },
+  {
+    "id": 1,
+    "nameProduct": "Pan17Centavos",
+    "budgetProduct": 0.17,
+    "stock": 98
+  }
+]

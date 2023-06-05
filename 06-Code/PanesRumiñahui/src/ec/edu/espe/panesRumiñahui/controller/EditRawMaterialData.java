@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import ec.edu.espe.panesrumiñahui.model.Sale;
+import ec.edu.espe.panesrumiñahui.model.RawMaterial;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,29 +18,29 @@ import java.util.List;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class EditSaleData {
-    
-    public void writeSaleData(List<Sale> sale) {
+public class EditRawMaterialData {
+    public void writeRawMaterialData(List<RawMaterial> inventory) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(sale);
+        String json = gson.toJson(inventory);
 
-        try (FileWriter writer = new FileWriter("sale.json")) {
+        try (FileWriter writer = new FileWriter("rawMaterial.json")) {
             writer.write(json);
         } catch (IOException e) {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
     
-    public  ArrayList<Sale> readSaleData() throws FileNotFoundException{
-        ArrayList<Sale> listSale= new ArrayList();
+    public  ArrayList<RawMaterial> readRawMaterialData() throws FileNotFoundException{
+        ArrayList<RawMaterial> listRawMaterial = new ArrayList();
         
-        try (FileReader reader = new FileReader("sale.json")) {
+        try (FileReader reader = new FileReader("rawMaterial.json")) {
             Gson gson = new Gson();
-            Type arrayListSale= new TypeToken<ArrayList<Sale>>(){}.getType();
-            listSale = gson.fromJson(reader, arrayListSale);
+            Type arrayListRawMaterial = new TypeToken<ArrayList<RawMaterial>>(){}.getType();
+            listRawMaterial = gson.fromJson(reader, arrayListRawMaterial);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-        return listSale;
+        
+        return listRawMaterial;
     }
 }

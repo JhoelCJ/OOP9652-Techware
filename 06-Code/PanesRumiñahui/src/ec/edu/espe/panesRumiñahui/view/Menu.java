@@ -1,4 +1,4 @@
-package ec.edu.espe.view.panesRumiñahui;
+package ec.edu.espe.panesrumiñahui.view;
 
 import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
 import ec.edu.espe.panesrumiñahui.model.Administrator;
@@ -17,20 +17,11 @@ import java.util.logging.Logger;
  */
 
 public class Menu {
-    private ArrayList<Employee> employee;
-    private ArrayList<Administrator> administrator;
-
     public void showMenu()throws FileNotFoundException{
-        
-        employee = new ArrayList<>();
-        administrator = new ArrayList<>();
-        
         Scanner scanner = new Scanner(System.in);
         AdministratorMenu administratorMenu = new AdministratorMenu();
         EmployeeMenu employeeMenu = new EmployeeMenu();
-        BudgetMenu budgetMenu= new BudgetMenu();
         
-        //int option;
         int choise;
 
         System.out.println("------ Bienvenido a Panes de la Rumiñahui ------");
@@ -40,8 +31,7 @@ public class Menu {
             System.out.println("\nMenu:");
             System.out.println("1. Administrador");
             System.out.println("2. Empleado ");
-            System.out.println("3. Presupuesto ");
-            System.out.println("4. Salir");
+            System.out.println("3. Salir");
             System.out.print("Ingrese una opcion: ");
             choise = scanner.nextInt();
 
@@ -60,14 +50,11 @@ public class Menu {
                     employeeMenu.employeeMenu();
                     break;
                 case 3:
-                    budgetMenu.budgetMenu();
-                    break;
-                 case 4:
                      System.out.println("Gracias por usar el programa");
                     break;   
-                /*default:
+                default:
                     System.out.println("Opcion invalida, intente de nuevo: ");
-            */}
-        } while (choise != 4);
+            }
+        } while (choise != 3);
     }
 }

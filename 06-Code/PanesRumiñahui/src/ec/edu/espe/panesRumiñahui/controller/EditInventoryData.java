@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class EditInventoryData {
     
-    public void witeInventoryData(List<Inventory> inventory) {
+    public void writeInventoryData(List<Inventory> inventory) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(inventory);
 

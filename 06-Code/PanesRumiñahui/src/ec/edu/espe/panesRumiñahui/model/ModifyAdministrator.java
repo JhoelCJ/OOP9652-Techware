@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class ModifyAdministrator {
-        public void readAdministrator() throws FileNotFoundException{
+    public void readAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
         File archivo = new File("administrator.json");
         ArrayList<Administrator> listAdministrator = new ArrayList();
@@ -39,8 +39,19 @@ public class ModifyAdministrator {
         String name = readData.next();
         System.out.print("Edad: ");
         int age = readData.nextInt();
-        System.out.print("Numero telefonico: ");
-        String contactNumber = readData.next();
+        String contactNumber;
+        boolean validContactNumber = false;
+        do {
+            System.out.print("Numero telefonico: ");
+            contactNumber = readData.next();
+            String patronNumerico = "^[0-9]+$";
+            if (!contactNumber.matches(patronNumerico)) {
+                System.out.println("El número de contacto solo debe contener dígitos numéricos.");
+            } else {
+                validContactNumber = true;
+            }
+        } while (!validContactNumber);
+        
         administrator = new Administrator(id, name, age, contactNumber);
         
         File archivo = new File("administrator.json");

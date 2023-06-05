@@ -1,8 +1,7 @@
 package ec.edu.espe.panesrumiñahui.model;
 
-import java.util.Scanner;
-import ec.edu.espe.panesRumiñahui.model.SaleOperation;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  *@author Jilmar Calderon, Techware, DCCO-ESPE
@@ -12,19 +11,18 @@ import java.io.FileNotFoundException;
 public class EmployeeMenu {
     
     public void employeeMenu() throws FileNotFoundException{
-        
         Scanner scanner = new Scanner(System.in);
-        Inventory inventory = new Inventory();
         SaleOperation saleOperation = new SaleOperation();
-        WorkHourReport workHoursReport = new WorkHourReport();
+        InventoryMenu inventoryMenu = new InventoryMenu();
+        WorkHoursReport workHoursReport = new WorkHoursReport();
+        ModifyInventoryMenu modifyInventoryMenu = new ModifyInventoryMenu();
         int option;
           
         do {
-            
             System.out.println("1. Ingrese la hora de entrada/salida: ");
             System.out.println("2. Ver inventario: ");
             System.out.println("3. Modificar inventario: ");
-            System.out.println("4. Registrar ventas: ");
+            System.out.println("4. Registrar venta: ");
             System.out.println("5. Mostrar Ventas: ");
             System.out.println("6. Salir: ");
             System.out.print("Ingrese una opcion: ");
@@ -36,26 +34,22 @@ public class EmployeeMenu {
                     workHoursReport.workHour();
                     break;
                 case 2:
-                    inventory.readInventory();//Llamar al inventario
+                    inventoryMenu.inventoryMenu();
                     break;
                 case 3:
-                    inventory.writeInventory();//Modificar el inventario
+                    modifyInventoryMenu.modifyInventoryMenu();
                     break;
                 case 4:
-                    saleOperation.saleWriter();//LLmar a la clase que registre las ventas realizadas en el dia
+                    saleOperation.saleWriter();
                     break;
                 case 5:
                     saleOperation.readSale();
                     break;
                 case 6:
-            
                     break;
                 default:
                     System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 6");
             }
-        }while(option< 1 || option >6);
-                
-                
-    }
-    
+        }while(option< 1 || option >6);     
+    }    
 }

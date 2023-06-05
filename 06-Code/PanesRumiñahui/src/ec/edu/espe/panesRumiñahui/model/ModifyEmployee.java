@@ -17,7 +17,7 @@ public class ModifyEmployee {
     public void readEmployee() throws FileNotFoundException{
         EditEmployeeData editEmployeeData = new EditEmployeeData();
         File archivo = new File("employee.json");
-        ArrayList<Employee> listEmployees = new ArrayList();
+        ArrayList<Employee> listEmployees = new ArrayList<>();
         System.out.println("\t\t\t\tEmployed List");
         
         if (archivo.exists() && archivo.length() == 0) {
@@ -35,7 +35,6 @@ public class ModifyEmployee {
         ArrayList<Employee> listEmployees = new ArrayList();
         Employee employee;
         Scanner readData = new Scanner(System.in);
-        
         System.out.print("Id: ");
         int id = readData.nextInt();
         System.out.print("Nombre: ");
@@ -48,8 +47,19 @@ public class ModifyEmployee {
         int month = readData.nextInt();
         System.out.print("Dia que empezo atrabajar: ");
         int day = readData.nextInt();
-        System.out.print("Numero telefonico: ");
-        String contactNumber = readData.next();
+        String contactNumber;
+        boolean validContactNumber = false;
+        do {
+            System.out.print("Numero telefonico: ");
+            contactNumber = readData.next();
+            String patronNumerico = "^[0-9]+$";
+            if (!contactNumber.matches(patronNumerico)) {
+                System.out.println("El número de contacto solo debe contener dígitos numéricos.");
+            } else {
+                validContactNumber = true;
+            }
+        } while (!validContactNumber);
+        
         employee = new Employee(id, name, age, new Date(year,month,day),  contactNumber);
         
         File archivo = new File("employee.json");
@@ -63,12 +73,28 @@ public class ModifyEmployee {
         editEmployeeData.writeEmployeeData(listEmployees);
     }
     
-    public void editEmployee(){
+    public void deleteEmployee() throws FileNotFoundException{
+        EditEmployeeData editEmployeeData = new EditEmployeeData();
+        File archivo = new File("employee.json");
+        ArrayList<Employee> listEmployees = new ArrayList();
         
+        if (archivo.exists() && archivo.length() == 0) {
+            System.out.println("No hay empleados\n\n");
+        } else {
+            listEmployees = editEmployeeData.readEmployeeData();
+            Scanner readData = new Scanner(System.in);
+            
+            System.out.print("Nombre del empleado a eliminar: ");
+            String name = readData.next();
+            
+            for (int i = 0; i < listEmployees.size(); i++) {
+                Employee employee = listEmployees.get(i);
+                if (employee.getName().equals(name)) {
+                    listEmployees.remove(i);
+                    editEmployeeData.writeEmployeeData(listEmployees);
+                    break;
+                }
+            }
+        }
     }
-    
-    public void deleteEmployee(){
-        
-    }
-    
 }

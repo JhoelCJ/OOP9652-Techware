@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import ec.edu.espe.panesrumiñahui.model.Sale;
+import ec.edu.espe.panesrumiñahui.model.Product;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,29 +18,29 @@ import java.util.List;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class EditSaleData {
-    
-    public void writeSaleData(List<Sale> sale) {
+public class EditProductData {
+    public void writeProductData(List<Product> product) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(sale);
+        String json = gson.toJson(product);
 
-        try (FileWriter writer = new FileWriter("sale.json")) {
+        try (FileWriter writer = new FileWriter("product.json")) {
             writer.write(json);
         } catch (IOException e) {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
     
-    public  ArrayList<Sale> readSaleData() throws FileNotFoundException{
-        ArrayList<Sale> listSale= new ArrayList();
+    public  ArrayList<Product> readProductData() throws FileNotFoundException{
+        ArrayList<Product> listProduct = new ArrayList();
         
-        try (FileReader reader = new FileReader("sale.json")) {
+        try (FileReader reader = new FileReader("product.json")) {
             Gson gson = new Gson();
-            Type arrayListSale= new TypeToken<ArrayList<Sale>>(){}.getType();
-            listSale = gson.fromJson(reader, arrayListSale);
+            Type arrayListProduct = new TypeToken<ArrayList<Product>>(){}.getType();
+            listProduct = gson.fromJson(reader, arrayListProduct);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-        return listSale;
+        
+        return listProduct;
     }
 }
