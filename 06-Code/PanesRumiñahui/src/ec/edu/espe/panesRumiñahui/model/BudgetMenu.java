@@ -18,13 +18,13 @@ public class BudgetMenu {
 
         do {
 
-            System.out.println("\n1. Presupuesto del Mes ");
+            System.out.println("1. Presupuesto del Mes ");
             System.out.println("2. Ver dinero disponible ");
             System.out.println("3. Pago a los empleados ");
             System.out.println("4. Gastos de compras: ");
             System.out.println("5. IVA ");
             System.out.println("6. Salir ");
-            System.out.print("\n\tIngrese una opcion: ");
+            System.out.print("Ingrese una opcion: ");
             option = scanner.nextInt();
 
             switch (option) {

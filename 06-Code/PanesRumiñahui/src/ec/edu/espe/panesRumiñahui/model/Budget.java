@@ -17,7 +17,7 @@ public class Budget {
     public void budget() {
         
         do {
-            System.out.println("\nIngrese el Presupuesto Mensual: ");
+            System.out.println("Ingrese el Presupuesto Mensual: ");
 
             budgetGeneral = scanner.nextDouble();
             if (budgetGeneral < 0) {
@@ -29,10 +29,10 @@ public class Budget {
 
     public double salary() {
 
-        budgetSalary = 500;//budgetGeneral * 0.2;
+        budgetSalary = budgetGeneral * 0.2;
         budgetGeneral = budgetGeneral - budgetSalary;
       
-        System.out.println("\nEl pago a los empleados es de: " + budgetSalary);
+        System.out.println("El pago a los empleados es de: " + budgetSalary);
         return budgetSalary;
     }
 
@@ -45,7 +45,7 @@ public class Budget {
         budgetBuy = budgetGeneral * 0.36;
         budgetGeneral = budgetGeneral - budgetBuy;
         
-        System.out.println("\nIngrese el precio del producto: ");
+        System.out.println("Ingrese el precio del producto: ");
         productPrice= scanner.nextDouble();
         
         totalBuy= budgetBuy-productPrice;
@@ -57,9 +57,7 @@ public class Budget {
     
     public double taxes() {
         
-        double printTaxes= 12;
-        double taxes = 0.12;
-        System.out.println("\nEl iva es de: "+printTaxes+"%");
+        double taxes= 0.12;
         return taxes;
     }
 }

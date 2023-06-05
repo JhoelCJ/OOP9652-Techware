@@ -16,16 +16,16 @@ public class Sale {
         double totalSales = 0;
         float sale;
         
-        System.out.print("\nIngrese el número de ventas realizadas: ");
+        System.out.print("Ingrese el número de ventas realizadas: ");
         sale = scanner.nextInt();
 
         for (int i = 1; i <= sale; i++) {
-            System.out.print("\nIngrese el monto de la venta " + i + ": ");
+            System.out.print("Ingrese el monto de la venta " + i + ": ");
             double montoVenta = scanner.nextDouble();
             totalSales += montoVenta;
         }
         
-        System.out.println("\nEl total de ventas realizadas es: " + totalSales);
+        System.out.println("El total de ventas realizadas es: " + totalSales);
        
     }   // scanner.close();
 

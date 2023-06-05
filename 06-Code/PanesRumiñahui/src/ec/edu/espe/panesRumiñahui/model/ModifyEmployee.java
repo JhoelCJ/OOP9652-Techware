@@ -37,7 +37,7 @@ public class ModifyEmployee {
         Scanner readData = new Scanner(System.in);
         System.out.print("Id: ");
         int id = readData.nextInt();
-        System.out.print("\nNombre: ");
+        System.out.print("Nombre: ");
         String name = readData.next();
         System.out.print("Edad: ");
         int age = readData.nextInt();
