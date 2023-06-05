@@ -1,4 +1,4 @@
-package ec.edu.espe.panesrumiñahui.view;
+package ec.edu.espe.view.panesRumiñahui;
 
 import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
 import ec.edu.espe.panesrumiñahui.model.Administrator;

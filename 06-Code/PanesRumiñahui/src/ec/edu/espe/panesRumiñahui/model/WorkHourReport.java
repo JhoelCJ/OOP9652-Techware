@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 
-public class WorkHoursReport {
+public class WorkHourReport {
     
     public void workHour(){
     

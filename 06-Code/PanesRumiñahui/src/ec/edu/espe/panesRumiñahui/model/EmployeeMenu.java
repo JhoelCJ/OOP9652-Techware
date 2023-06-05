@@ -1,6 +1,8 @@
 package ec.edu.espe.panesrumiñahui.model;
 
 import java.util.Scanner;
+import ec.edu.espe.panesRumiñahui.model.SaleOperation;
+import java.io.FileNotFoundException;
 
 /**
  *@author Jilmar Calderon, Techware, DCCO-ESPE
@@ -9,12 +11,12 @@ import java.util.Scanner;
 
 public class EmployeeMenu {
     
-    public void employeeMenu(){
+    public void employeeMenu() throws FileNotFoundException{
         
         Scanner scanner = new Scanner(System.in);
         Inventory inventory = new Inventory();
-        Sale sale = new Sale();
-        WorkHoursReport workHoursReport = new WorkHoursReport();
+        SaleOperation saleOperation = new SaleOperation();
+        WorkHourReport workHoursReport = new WorkHourReport();
         int option;
           
         do {
@@ -40,10 +42,10 @@ public class EmployeeMenu {
                     inventory.writeInventory();//Modificar el inventario
                     break;
                 case 4:
-                    sale.sale();//LLmar a la clase que registre las ventas realizadas en el dia
+                    saleOperation.saleWriter();//LLmar a la clase que registre las ventas realizadas en el dia
                     break;
                 case 5:
-                    //sale.readSale();
+                    saleOperation.readSale();
                     break;
                 case 6:
             
@@ -52,6 +54,8 @@ public class EmployeeMenu {
                     System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 6");
             }
         }while(option< 1 || option >6);
+                
+                
     }
     
 }

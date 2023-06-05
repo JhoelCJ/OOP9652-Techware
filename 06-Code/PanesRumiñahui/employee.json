@@ -12,5 +12,12 @@
     "age": 54,
     "startWork": "May 12, 3920, 12:00:00 AM",
     "contactNumber": "0987654322"
+  },
+  {
+    "id": 3,
+    "name": "Juancito",
+    "age": 37,
+    "startWork": "May 18, 3917, 12:00:00 AM",
+    "contactNumber": "0987654"
   }
 ]

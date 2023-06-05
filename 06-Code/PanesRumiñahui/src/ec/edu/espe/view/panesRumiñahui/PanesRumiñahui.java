@@ -1,4 +1,4 @@
-package ec.edu.espe.panesrumiñahui.view;
+package ec.edu.espe.view.panesRumiñahui;
 
 import java.io.FileNotFoundException;
 
