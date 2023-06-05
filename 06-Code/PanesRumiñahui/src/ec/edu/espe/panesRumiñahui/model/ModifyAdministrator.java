@@ -33,7 +33,7 @@ public class ModifyAdministrator {
         ArrayList<Administrator> listAdministrator = new ArrayList();
         Administrator administrator;
         Scanner readData = new Scanner(System.in);
-        System.out.print("Id: ");
+        System.out.print("\nId: ");
         int id = readData.nextInt();
         System.out.print("Nombre: ");
         String name = readData.next();

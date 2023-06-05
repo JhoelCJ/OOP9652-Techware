@@ -20,10 +20,10 @@ public class WorkHoursReport {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         
         while (true) {
-            System.out.println("1. Register entry work hour");
+            System.out.println("\n1. Register entry work hour");
             System.out.println("2. Register exit work hour");
             System.out.println("3. Quit");
-            System.out.print("Enter your choice: ");
+            System.out.print("\n\tEnter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
             

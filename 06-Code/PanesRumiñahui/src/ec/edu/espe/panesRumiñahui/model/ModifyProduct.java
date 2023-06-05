@@ -58,7 +58,7 @@ public class ModifyProduct {
         Product product;
         Scanner readData = new Scanner(System.in);
         
-        System.out.print("Id: ");
+        System.out.print("\nId: ");
         int id = readData.nextInt();
         System.out.print("Nombre del producto: ");
         String name = readData.next();

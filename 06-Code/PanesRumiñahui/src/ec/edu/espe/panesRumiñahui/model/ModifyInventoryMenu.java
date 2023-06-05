@@ -16,12 +16,12 @@ public class ModifyInventoryMenu {
             ModifyProduct modifyProduct = new ModifyProduct();
             ModifyRawMaterial modifyRawMaterial = new ModifyRawMaterial();
             
-            System.out.println ("1. Agregar Nuevo Producto");
+            System.out.println ("\n1. Agregar Nuevo Producto");
             System.out.println ("2. Agregar Productos en stock");
             System.out.println ("3. Agregar Nueva materia prima");
             System.out.println ("4. Agregar Materia prima en stock");
             System.out.println ("5. Salir");
-            System.out.print("Ingrece una opcion: ");
+            System.out.print("\n\tIngrece una opcion: ");
             option = scanner.nextInt();
             
             switch (option) {

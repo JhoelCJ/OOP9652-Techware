@@ -14,8 +14,8 @@ public class Administrator {
 
     @Override
     public String toString() {
-        return "Administrator{" + "id=" + id + ", name=" 
-                + name + ", age=" + age + ", contactNumber=" + contactNumber + '}';
+        return "\n\t\tAdministrador" + "\n\tid: " + id + "\n\tNombre: " 
+                + name + "\n\tEdad: " + age + "\n\tNumero de contacto: " + contactNumber + "\n";
     }
 
     public Administrator(int id, String name, int age, String contactNumber) {

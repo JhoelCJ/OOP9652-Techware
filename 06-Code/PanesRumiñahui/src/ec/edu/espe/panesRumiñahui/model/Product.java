@@ -13,7 +13,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\n\tProducto" + "\n\t\tid: " + id + "\n\t\tNombre del Producto: " 
+        return "\n\tProducto" + "\n\t\tId: " + id + "\n\t\tNombre del Producto: " 
                 + nameProduct + "\n\t\tPrescio producto: " + budgetProduct
                 + "\n\t\tStock: " + stock;
     }

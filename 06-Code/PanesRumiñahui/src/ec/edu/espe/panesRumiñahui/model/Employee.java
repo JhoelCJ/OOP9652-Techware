@@ -17,7 +17,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\n\t\t id: " + id + "\n\t\t nombre: " + name + "\n\t\t Edad: " + age  + "\n\t\t Empieza a Trabajar: " + startWork + "\n\t\t Numero de Contacto: " + contactNumber ;
+        return "\n\t\tid: " + id + "\n\tNombre: " + name + "\n\tEdad: " +
+                age  + "\n\tEmpieza a Trabajar: " + startWork +
+                "\n\tNumero de Contacto: " + contactNumber + "\n";
     }
 
     public Employee(int id, String name, int age, Date startWork, String contactNumber) {
@@ -67,5 +69,4 @@ public class Employee {
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
-  
 }

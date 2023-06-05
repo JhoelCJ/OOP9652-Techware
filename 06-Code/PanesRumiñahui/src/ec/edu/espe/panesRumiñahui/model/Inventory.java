@@ -1,6 +1,5 @@
 package ec.edu.espe.panesrumiñahui.model;
 
-import ec.edu.espe.panesrumiñahui.controller.EditInventoryData;
 import java.io.FileNotFoundException;
 
 /**

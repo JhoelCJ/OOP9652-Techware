@@ -35,7 +35,7 @@ public class ModifyEmployee {
         ArrayList<Employee> listEmployees = new ArrayList();
         Employee employee;
         Scanner readData = new Scanner(System.in);
-        System.out.print("Id: ");
+        System.out.print("\nId: ");
         int id = readData.nextInt();
         System.out.print("Nombre: ");
         String name = readData.next();
@@ -60,7 +60,7 @@ public class ModifyEmployee {
             }
         } while (!validContactNumber);
         
-        employee = new Employee(id, name, age, new Date(year,month,day),  contactNumber);
+        employee = new Employee(id, name, age, new Date(year-1900,month-1,day),  contactNumber);
         
         File archivo = new File("employee.json");
         if (archivo.exists() && archivo.length() == 0) {

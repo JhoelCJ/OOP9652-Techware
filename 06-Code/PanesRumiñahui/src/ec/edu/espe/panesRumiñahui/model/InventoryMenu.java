@@ -15,12 +15,12 @@ public class InventoryMenu {
         while(continueMenu){
             Inventory inventory = new Inventory();
             
-            System.out.println ("1. Ventas del dia: ");
+            System.out.println ("\n1. Ventas del dia: ");
             System.out.println ("2. Total de ventas Diaria: ");
             System.out.println ("3. Productos en stock: ");
             System.out.println ("4. Materia prima en stock: ");
             System.out.println ("5. Salir");
-            System.out.print("Ingrese una opcion: ");
+            System.out.print("\n\tIngrese una opcion: ");
             int option = scanner.nextInt();
             
             switch (option) {

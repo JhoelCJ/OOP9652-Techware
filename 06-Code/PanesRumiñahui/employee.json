@@ -1,16 +1,9 @@
 [
   {
-    "id": 1,
-    "name": "Jorge",
-    "age": 23,
-    "startWork": "Apr 23, 3923, 12:00:00 AM",
+    "id": 2,
+    "name": "Julio",
+    "age": 54,
+    "startWork": "May 23, 2020, 12:00:00 AM",
     "contactNumber": "0987654321"
-  },
-  {
-    "id": 3,
-    "name": "Raul",
-    "age": 45,
-    "startWork": "Apr 2, 3915, 12:00:00 AM",
-    "contactNumber": "123456"
   }
 ]

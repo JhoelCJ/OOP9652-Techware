@@ -25,11 +25,11 @@ public class BudgetMenu {
         int option;
 
         do {
-            System.out.println("1. Gastos ");
+            System.out.println("\n1. Gastos ");
             System.out.println("2. Ingresos ");
             System.out.println("3. Ingreso Neto ");
             System.out.println("4. Salir ");
-            System.out.print("Ingrese una opcion: ");
+            System.out.print("\n\tIngrese una opcion: ");
             option = scanner.nextInt();
 
             switch (option) {
