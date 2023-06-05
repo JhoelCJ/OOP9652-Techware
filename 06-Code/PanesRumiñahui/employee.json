@@ -5,5 +5,12 @@
     "age": 54,
     "startWork": "May 23, 2020, 12:00:00 AM",
     "contactNumber": "0987654321"
+  },
+  {
+    "id": 6,
+    "name": "Marco",
+    "age": 31,
+    "startWork": "Aug 13, 2018, 12:00:00 AM",
+    "contactNumber": "09876567"
   }
 ]
