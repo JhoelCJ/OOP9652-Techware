@@ -1,12 +1,8 @@
 package ec.edu.espe.panesRumiñahui.model;
 
-import ec.edu.espe.panesrumiñahui.controller.EditSaleData;
 import ec.edu.espe.panesrumiñahui.model.ModifyExpense;
 import ec.edu.espe.panesrumiñahui.model.Inventory;
-import ec.edu.espe.panesrumiñahui.model.Sale;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -35,28 +31,19 @@ public class BudgetMenu {
             switch (option) {
 
                 case 1:
-                    modifyExpense.salary();
+                    modifyExpense.readDirectExpense();
+                    modifyExpense.readFixedExpense();
+                    System.out.println("\nTotal Gastos: " + budget.CalculateExpense() + "\n");
                     break;
                 case 2:
-                    inventory.totalDailySale();
+                    inventory.dailySale();
+                    System.out.println("\n\nTotal Ingresos: " + inventory.totalDailySale() + "\n");
                     break;
                 case 3:
-                    EditSaleData editSaleData = new EditSaleData();
-                    File archivo = new File("sale.json");
-                    ArrayList<Sale> listSale = new ArrayList<>();
-                    System.out.println("\t\t\t\tVenta del dia");
-
-                    if (archivo.exists() && archivo.length() == 0) {
-                        System.out.println("No hay ventas\n\n");
-                    } else {
-                        listSale = editSaleData.readSaleData();
-                        float totalSale = 0;
-                        for (Sale sale : listSale) {
-                            totalSale = totalSale + sale.getTotalSales();
-                        }
-                        totalSale = totalSale - 500;
-                        System.out.println("Total: " + totalSale + "\n");
-                    }
+                    System.out.println("\n\t\tIngreso Neto\n");
+                    System.out.println("Total Gastos: " + budget.CalculateExpense() + "\n");
+                    System.out.println("Total Ingresos: " + inventory.totalDailySale() + "\n");
+                    System.out.println("\nTotal Ingreso Neto: " + (inventory.totalDailySale()-budget.CalculateExpense()) + "\n");
                     break;
                 case 4:
                     break;

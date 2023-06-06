@@ -1,6 +1,14 @@
 package ec.edu.espe.panesRumiñahui.model;
 
-import java.util.Scanner;
+import ec.edu.espe.panesrumiñahui.controller.EditDirectExpenseData;
+import ec.edu.espe.panesrumiñahui.controller.EditFixedExpenseData;
+import ec.edu.espe.panesrumiñahui.controller.EditSaleData;
+import ec.edu.espe.panesrumiñahui.model.Sale;
+import ec.edu.espe.panesrumiñahui.model.FixedExpense;
+import ec.edu.espe.panesrumiñahui.model.DirectExpense;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
  * @author Gabriel Calvache
@@ -9,55 +17,49 @@ import java.util.Scanner;
  */
 public class Budget {
 
-    private double budgetGeneral;
-    private double budgetSalary;
-    private double budgetBuy;
-    Scanner scanner = new Scanner(System.in);
+    public float CalculateExpense() throws FileNotFoundException{
+        EditFixedExpenseData editFixedExpenseData = new EditFixedExpenseData();
+        EditDirectExpenseData editDirectExpenseData = new EditDirectExpenseData();
+        File fileFixedExpense = new File("data\\fixedExpense.json");
+        File fileDirectExpense = new File("data\\directExpense.json");
+        ArrayList<FixedExpense> listFixedExpense = new ArrayList();
+        ArrayList<DirectExpense> listDirectExpense = new ArrayList();
+        float totalFixedExpense = 0;
+        float totalDirectExpense = 0;
 
-    public void budget() {
-
-        do {
-            System.out.println("Ingrese el Presupuesto Mensual: ");
-
-            budgetGeneral = scanner.nextDouble();
-            if (budgetGeneral < 0) {
-                System.out.println("Ese valor de Presupuesto no es valido");
+        if (fileFixedExpense.exists() && fileFixedExpense.length() == 0) {
+            System.out.println("\n\n");
+        } else {
+            listFixedExpense = editFixedExpenseData.readFixedExpenseData();
+            for (FixedExpense fixedExpense : listFixedExpense) {
+                totalFixedExpense = totalFixedExpense + fixedExpense.getAmount();
             }
-        } while (budgetGeneral < 0);
-
+        }
+        if (fileDirectExpense.exists() && fileDirectExpense.length() == 0) {
+            System.out.println("\n\n");
+        } else {
+            listDirectExpense = editDirectExpenseData.readDirectExpenseData();
+            for (DirectExpense directExpense : listDirectExpense) {
+                totalDirectExpense = totalDirectExpense + directExpense.getPrice();
+            }
+        }
+        return totalFixedExpense + totalDirectExpense;
     }
+    
+    public float CalculateIncome() throws FileNotFoundException{
+        EditSaleData editSaleData = new EditSaleData();
+        File file = new File("data\\sale.json");
+        ArrayList<Sale> listSale = new ArrayList();
+        float totalSale = 0;
 
-    public double salary() {
-
-        budgetSalary = budgetGeneral * 0.2;
-        budgetGeneral = budgetGeneral - budgetSalary;
-
-        System.out.println("El pago a los empleados es de: " + budgetSalary);
-        return budgetSalary;
-    }
-
-    public void buy() {
-
-        String product;
-        double productPrice;
-        double totalBuy;
-
-        budgetBuy = budgetGeneral * 0.36;
-        budgetGeneral = budgetGeneral - budgetBuy;
-
-        System.out.println("Ingrese el precio del producto: ");
-        productPrice = scanner.nextDouble();
-
-        totalBuy = budgetBuy - productPrice;
-        totalBuy = totalBuy * taxes();
-
-        budgetBuy = budgetBuy - totalBuy;
-
-    }
-
-    public double taxes() {
-
-        double taxes = 0.12;
-        return taxes;
+        if (file.exists() && file.length() == 0) {
+            System.out.println("No hay ventas\n\n");
+        } else {
+            listSale = editSaleData.readSaleData();
+            for (Sale sale : listSale) {
+                totalSale = totalSale + sale.getTotalSales();
+            }
+        }
+        return totalSale;
     }
 }

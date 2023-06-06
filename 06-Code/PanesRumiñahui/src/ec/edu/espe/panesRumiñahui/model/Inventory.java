@@ -6,24 +6,26 @@ import java.io.FileNotFoundException;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class Inventory {
 
-    public void dailySale() throws FileNotFoundException {
+public class Inventory {
+    
+    public void dailySale() throws FileNotFoundException{
         SaleOperation saleOperation = new SaleOperation();
         saleOperation.readSale();
     }
-
-    public void totalDailySale() throws FileNotFoundException {
+    
+    public float totalDailySale() throws FileNotFoundException{
         SaleOperation saleOperation = new SaleOperation();
-        saleOperation.totalDialySale();
+        float totalDialy = saleOperation.totalDialySale();
+        return totalDialy;
     }
-
-    public void productStock() throws FileNotFoundException {
+    
+    public void productStock() throws FileNotFoundException{
         ModifyProduct modifyProduct = new ModifyProduct();
         modifyProduct.readProduct();
     }
-
-    public void rawMaterialStock() throws FileNotFoundException {
+    
+    public void rawMaterialStock() throws FileNotFoundException{
         ModifyRawMaterial modifyRawMaterial = new ModifyRawMaterial();
         modifyRawMaterial.readRawMaterial();
     }

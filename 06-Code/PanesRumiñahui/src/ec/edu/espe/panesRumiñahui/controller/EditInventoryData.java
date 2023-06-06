@@ -19,32 +19,30 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditInventoryData {
-
+    
     public void writeInventoryData(List<Inventory> inventory) {
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(inventory);
 
-        try (FileWriter writer = new FileWriter("inventory.json")) {
+        try (FileWriter writer = new FileWriter("data\\inventory.json")) {
             writer.write(json);
+            System.out.println("JSON file generated");
         } catch (IOException e) {
-            System.out.println("Error al generar JSON file: " + e.getMessage());
+            System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-
-    public ArrayList<Inventory> readInventoryData() throws FileNotFoundException {
-
+    
+    public  ArrayList<Inventory> readInventoryData() throws FileNotFoundException{
         ArrayList<Inventory> listInventory = new ArrayList();
-
-        try (FileReader reader = new FileReader("inventory.json")) {
+        
+        try (FileReader reader = new FileReader("data\\inventory.json")) {
             Gson gson = new Gson();
-            Type arrayListInventory = new TypeToken<ArrayList<Inventory>>() {
-            }.getType();
+            Type arrayListInventory = new TypeToken<ArrayList<Inventory>>(){}.getType();
             listInventory = gson.fromJson(reader, arrayListInventory);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-
+        
         return listInventory;
     }
 }

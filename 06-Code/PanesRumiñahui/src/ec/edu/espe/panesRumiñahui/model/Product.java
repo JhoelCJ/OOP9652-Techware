@@ -4,8 +4,8 @@ package ec.edu.espe.panesrumiñahui.model;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class Product {
 
+public class Product {
     private int id;
     private String nameProduct;
     private float budgetProduct;
@@ -13,8 +13,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\n\tProducto" + "\n\t\tId: " + id + "\n\t\tNombre del Producto: "
-                + nameProduct + "\n\t\tPrecio del producto: " + budgetProduct
+        return "\n\tProducto" + "\n\t\tId: " + id + "\n\t\tNombre del Producto: " 
+                + nameProduct + "\n\t\tPrescio producto: " + budgetProduct
                 + "\n\t\tStock: " + stock;
     }
 
@@ -48,7 +48,7 @@ public class Product {
     public void setBudgetProduct(float budgetProduct) {
         this.budgetProduct = budgetProduct;
     }
-
+    
     public int getStock() {
         return stock;
     }

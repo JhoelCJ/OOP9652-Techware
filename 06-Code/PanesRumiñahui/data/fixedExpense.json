@@ -1,0 +1,14 @@
+[
+  {
+    "argument": "Salario",
+    "amount": 500.0
+  },
+  {
+    "argument": "Luz",
+    "amount": 110.0
+  },
+  {
+    "argument": "Agua",
+    "amount": 15.0
+  }
+]

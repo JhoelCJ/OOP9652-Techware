@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "nameProduct": "Pan15Centavos",
+    "budgetProduct": 0.15,
+    "stock": 100
+  },
+  {
+    "id": 1,
+    "nameProduct": "Pan17Centavos",
+    "budgetProduct": 0.17,
+    "stock": 93
+  },
+  {
+    "id": 2,
+    "nameProduct": "Pan20Centavos",
+    "budgetProduct": 0.2,
+    "stock": 100
+  },
+  {
+    "id": 3,
+    "nameProduct": "Pan30Centavos",
+    "budgetProduct": 0.3,
+    "stock": 100
+  },
+  {
+    "id": 4,
+    "nameProduct": "Leche",
+    "budgetProduct": 0.9,
+    "stock": 0
+  },
+  {
+    "id": 5,
+    "nameProduct": "Queso",
+    "budgetProduct": 2.0,
+    "stock": 5
+  },
+  {
+    "id": 6,
+    "nameProduct": "Cola",
+    "budgetProduct": 1.5,
+    "stock": 5
+  }
+]

@@ -15,26 +15,25 @@ import java.util.ArrayList;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class EditAdministratorData {
 
+public class EditAdministratorData {
     public void writeEmployeeData(ArrayList<Administrator> administrator) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(administrator);
 
-        try (FileWriter writer = new FileWriter("administrator.json")) {
+        try (FileWriter writer = new FileWriter("data\\administrator.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Error al generar JSON file: " + e.getMessage());
+            System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-
-    public ArrayList<Administrator> readAdministratorData() throws FileNotFoundException {
+    
+    public ArrayList<Administrator> readAdministratorData() throws FileNotFoundException{
         ArrayList<Administrator> listAdministrator = new ArrayList();
-
-        try (FileReader reader = new FileReader("administrator.json")) {
+        
+        try (FileReader reader = new FileReader("data\\administrator.json")) {
             Gson gson = new Gson();
-            Type arrayListAdministrator = new TypeToken<ArrayList<Administrator>>() {
-            }.getType();
+            Type arrayListAdministrator = new TypeToken<ArrayList<Administrator>>(){}.getType();
             listAdministrator = gson.fromJson(reader, arrayListAdministrator);
         } catch (IOException e) {
             e.printStackTrace();

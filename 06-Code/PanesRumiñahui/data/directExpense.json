@@ -1,0 +1,26 @@
+[
+  {
+    "invoiceNumber": "098",
+    "name": "Leche",
+    "amount": 10,
+    "price": 8.0
+  },
+  {
+    "invoiceNumber": "456",
+    "name": "Queso",
+    "amount": 5,
+    "price": 8.75
+  },
+  {
+    "invoiceNumber": "1213",
+    "name": "Harina",
+    "amount": 1,
+    "price": 39.0
+  },
+  {
+    "invoiceNumber": "123",
+    "name": "Cola",
+    "amount": 5,
+    "price": 5.0
+  }
+]

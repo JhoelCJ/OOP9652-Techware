@@ -12,26 +12,23 @@ import java.util.Scanner;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class ModifyAdministrator {
-
-    public void readAdministrator() throws FileNotFoundException {
-
+    public void readAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
-        File archivo = new File("administrator.json");
+        File archivo = new File("data\\administrator.json");
         ArrayList<Administrator> listAdministrator = new ArrayList();
-        System.out.println("\t\t\t\tLista Administrador");
-
+        System.out.println("\t\t\t\tAdministrator List");
+        
         if (archivo.exists() && archivo.length() == 0) {
             System.out.println("No hay Administradores\n\n");
         } else {
             listAdministrator = editAdministratorData.readAdministratorData();
-            for (Administrator administrator : listAdministrator) {
+            for(Administrator administrator : listAdministrator){
                 System.out.println(administrator.toString());
             }
         }
     }
-
-    public void createAdministrator() throws FileNotFoundException {
-
+    
+    public void createAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
         ArrayList<Administrator> listAdministrator = new ArrayList();
         Administrator administrator;
@@ -49,21 +46,21 @@ public class ModifyAdministrator {
             contactNumber = readData.next();
             String patronNumerico = "^[0-9]+$";
             if (!contactNumber.matches(patronNumerico)) {
-                System.out.println("El numero de contacto solo debe contener digitos numericos.");
+                System.out.println("El número de contacto solo debe contener dígitos numéricos.");
             } else {
                 validContactNumber = true;
             }
         } while (!validContactNumber);
-
+        
         administrator = new Administrator(id, name, age, contactNumber);
-
-        File archivo = new File("administrator.json");
+        
+        File archivo = new File("data\\administrator.json");
         if (archivo.exists() && archivo.length() == 0) {
             listAdministrator = new ArrayList<>();
         } else {
             listAdministrator = editAdministratorData.readAdministratorData();
         }
-
+        
         listAdministrator.add(administrator);
         editAdministratorData.writeEmployeeData(listAdministrator);
     }

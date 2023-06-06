@@ -5,8 +5,8 @@ package ec.edu.espe.panesrumiñahui.model;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class Sale {
-
     private float totalSales;
+    
 
     public Sale(float totalSales) {
         this.totalSales = totalSales;
@@ -22,7 +22,7 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "\n\tGanancias Diarias: " + "\n\t\tGanancia del Dia: " + getTotalSales();
+        return "\n\tGanancias Diarias:" + "\n\t\tGanancia del Dia=" + getTotalSales();
     }
 
 }

@@ -18,7 +18,8 @@ public class AdministratorMenu {
         while(continueMenu){
             InventoryMenu inventoryMenu = new InventoryMenu();
             ModifyEmployee modifyEmployee = new ModifyEmployee();
-            BudgetMenu budgetMenu= new BudgetMenu();
+            BudgetMenu budgetMenu = new BudgetMenu();
+            ExpenseReport expenseReport = new ExpenseReport();
             ModifyEmployeeMenu modifyEmployeeMenu = new ModifyEmployeeMenu();
             ModifyAdministrator modifyAdministrator = new ModifyAdministrator();
             ModifyInventoryMenu modifyInventoryMenu = new ModifyInventoryMenu();
@@ -28,9 +29,10 @@ public class AdministratorMenu {
             System.out.println ("3. Ver inventario: ");
             System.out.println ("4. Modificar inventario: ");
             System.out.println ("5. Ver administrador: ");
-            System.out.println ("6. Anadir administrador: ");
-            System.out.println ("7. Presupuesto");
-            System.out.println ("8. Salir");
+            System.out.println ("6. Agregar administrador: ");
+            System.out.println ("7. Reporte y Presupuesto");
+            System.out.println ("8. Agregar Gasto Fijo");
+            System.out.println ("9. Salir");
             System.out.print("\n\tIngrese una opcion: ");
             int option = scanner.nextInt();
             
@@ -57,6 +59,9 @@ public class AdministratorMenu {
                     budgetMenu.budgetMenu();
                     break;
                 case 8:
+                    expenseReport.addFixedExpense();
+                    break;
+                case 9:
                     continueMenu = false;
                     break;
                 default:
