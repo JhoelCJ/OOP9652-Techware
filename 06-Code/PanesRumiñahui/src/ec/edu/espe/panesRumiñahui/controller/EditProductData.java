@@ -19,28 +19,32 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditProductData {
+
     public void writeProductData(List<Product> product) {
+        
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(product);
 
         try (FileWriter writer = new FileWriter("product.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Error generating JSON file: " + e.getMessage());
+            System.out.println("Error al generar JSON file: " + e.getMessage());
         }
     }
-    
-    public  ArrayList<Product> readProductData() throws FileNotFoundException{
-        ArrayList<Product> listProduct = new ArrayList();
+
+    public ArrayList<Product> readProductData() throws FileNotFoundException {
         
+        ArrayList<Product> listProduct = new ArrayList();
+
         try (FileReader reader = new FileReader("product.json")) {
             Gson gson = new Gson();
-            Type arrayListProduct = new TypeToken<ArrayList<Product>>(){}.getType();
+            Type arrayListProduct = new TypeToken<ArrayList<Product>>() {
+            }.getType();
             listProduct = gson.fromJson(reader, arrayListProduct);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-        
+
         return listProduct;
     }
 }

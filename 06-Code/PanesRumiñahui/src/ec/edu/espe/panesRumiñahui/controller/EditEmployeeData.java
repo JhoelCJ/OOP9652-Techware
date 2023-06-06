@@ -20,29 +20,32 @@ import java.lang.reflect.Type;
  * @author Gabriel Calvache, Techware, DCCO-ESPE
  */
 public class EditEmployeeData {
-    
+
     public void writeEmployeeData(ArrayList<Employee> employee) {
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(employee);
 
         try (FileWriter writer = new FileWriter("employee.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Error generating JSON file: " + e.getMessage());
+            System.out.println("Error al generar JSON file: " + e.getMessage());
         }
     }
-    
-    public ArrayList<Employee> readEmployeeData() throws FileNotFoundException{
+
+    public ArrayList<Employee> readEmployeeData() throws FileNotFoundException {
+
         ArrayList<Employee> listEmployees = new ArrayList();
-        
+
         try (FileReader reader = new FileReader("employee.json")) {
             Gson gson = new Gson();
-            Type arrayListEmployee = new TypeToken<ArrayList<Employee>>(){}.getType();
+            Type arrayListEmployee = new TypeToken<ArrayList<Employee>>() {
+            }.getType();
             listEmployees = gson.fromJson(reader, arrayListEmployee);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return listEmployees;
     }
-       
+
 }

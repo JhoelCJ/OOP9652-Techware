@@ -19,30 +19,33 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditBudgetData {
+
     public void writeBudgetData(List<Budget> budget) {
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(budget);
 
         try (FileWriter writer = new FileWriter("budget.json")) {
             writer.write(json);
-            //System.out.println("JSON file generated");
         } catch (IOException e) {
-            System.out.println("Error generating JSON file: " + e.getMessage());
+            System.out.println("Error al generar JSON file: " + e.getMessage());
         }
-        
+
     }
-    
-    public  ArrayList<Budget> readBudgetData () throws FileNotFoundException{
-        ArrayList<Budget> listBudget= new ArrayList<>();
-        
+
+    public ArrayList<Budget> readBudgetData() throws FileNotFoundException {
+
+        ArrayList<Budget> listBudget = new ArrayList<>();
+
         try (FileReader reader = new FileReader("budget.json")) {
             Gson gson = new Gson();
-            Type arrayListBudget = new TypeToken<ArrayList<Budget>>(){}.getType();
+            Type arrayListBudget = new TypeToken<ArrayList<Budget>>() {
+            }.getType();
             listBudget = gson.fromJson(reader, arrayListBudget);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-        
+
         return listBudget;
     }
 }

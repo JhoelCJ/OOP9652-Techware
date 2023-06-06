@@ -19,28 +19,32 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditRawMaterialData {
+
     public void writeRawMaterialData(List<RawMaterial> inventory) {
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(inventory);
 
         try (FileWriter writer = new FileWriter("rawMaterial.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Error generating JSON file: " + e.getMessage());
+            System.out.println("Error al generar JSON file: " + e.getMessage());
         }
     }
-    
-    public  ArrayList<RawMaterial> readRawMaterialData() throws FileNotFoundException{
+
+    public ArrayList<RawMaterial> readRawMaterialData() throws FileNotFoundException {
+
         ArrayList<RawMaterial> listRawMaterial = new ArrayList();
-        
+
         try (FileReader reader = new FileReader("rawMaterial.json")) {
             Gson gson = new Gson();
-            Type arrayListRawMaterial = new TypeToken<ArrayList<RawMaterial>>(){}.getType();
+            Type arrayListRawMaterial = new TypeToken<ArrayList<RawMaterial>>() {
+            }.getType();
             listRawMaterial = gson.fromJson(reader, arrayListRawMaterial);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-        
+
         return listRawMaterial;
     }
 }

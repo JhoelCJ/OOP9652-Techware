@@ -4,9 +4,8 @@ package ec.edu.espe.panesrumiñahui.model;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-
 public class RawMaterial {
-    
+
     private int id;
     private String nameMaterial;
     private float priceProduct;
@@ -14,7 +13,7 @@ public class RawMaterial {
 
     @Override
     public String toString() {
-        return "\n\tRawMaterial" + "\n\t\tid: " + id + "\n\t\tNombre: " 
+        return "\n\tMateria Prima" + "\n\t\tid: " + id + "\n\t\tNombre: "
                 + nameMaterial + "\n\t\tPrecio: " + priceProduct
                 + "\n\t\tStock: " + stock;
     }
@@ -49,7 +48,7 @@ public class RawMaterial {
     public void setPriceProduct(float priceProduct) {
         this.priceProduct = priceProduct;
     }
-    
+
     public int getStock() {
         return stock;
     }

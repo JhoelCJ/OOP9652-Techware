@@ -1,8 +1,8 @@
 package ec.edu.espe.panesrumiñahui.model;
 
 /**
- * 
- * 
+ *
+ *
  * @author Calvache Gabriel, Techware, DCCO-ESPE
  */
 public class ValidationUtil {
@@ -24,4 +24,3 @@ public class ValidationUtil {
         return input.matches("^[a-zA-Z]+$");
     }
 }
-

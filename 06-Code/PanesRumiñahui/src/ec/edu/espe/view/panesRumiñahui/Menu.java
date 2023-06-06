@@ -15,17 +15,18 @@ import java.util.logging.Logger;
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-
 public class Menu {
-    public void showMenu()throws FileNotFoundException{
+
+    public void showMenu() throws FileNotFoundException {
+
         Scanner scanner = new Scanner(System.in);
         AdministratorMenu administratorMenu = new AdministratorMenu();
         EmployeeMenu employeeMenu = new EmployeeMenu();
-        
+
         int choise;
 
-        System.out.println("\n\t\t------ Bienvenido a Panes de la Rumiñahui ------");
-        System.out.println("\n\t\t\t--- System by Techware ---");
+        System.out.println("\n\t\t----------- Bienvenido a Panes de la Ruminiahui -----------");
+        System.out.println("\n\t\t\t-------- System by Techware -------");
 
         do {
             System.out.println("\nMenu:");
@@ -36,22 +37,21 @@ public class Menu {
             choise = scanner.nextInt();
 
             switch (choise) {
-                case 1:
-                {
+                case 1: {
                     try {
                         administratorMenu.administratorMenu();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                    break;
+                break;
 
                 case 2:
                     employeeMenu.employeeMenu();
                     break;
                 case 3:
-                     System.out.println("Gracias por usar el programa");
-                    break;   
+                    System.out.println("Gracias por usar el programa");
+                    break;
                 default:
                     System.out.println("Opcion invalida, intente de nuevo: ");
             }

@@ -21,17 +21,19 @@ import java.util.List;
 public class EditSaleData {
     
     public void writeSaleData(List<Sale> sale) {
+        
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(sale);
 
         try (FileWriter writer = new FileWriter("sale.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Error generating JSON file: " + e.getMessage());
+            System.out.println("Error al generar JSON file: " + e.getMessage());
         }
     }
     
     public  ArrayList<Sale> readSaleData() throws FileNotFoundException{
+        
         ArrayList<Sale> listSale= new ArrayList();
         
         try (FileReader reader = new FileReader("sale.json")) {

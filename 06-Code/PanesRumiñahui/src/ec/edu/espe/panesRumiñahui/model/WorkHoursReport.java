@@ -10,58 +10,54 @@ import java.util.Scanner;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-
 public class WorkHoursReport {
-    
-    public void workHour(){
-    
+
+    public void workHour() {
+
         Map<String, LocalDateTime> workHours = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        
+
         while (true) {
-            System.out.println("\n1. Register entry work hour");
-            System.out.println("2. Register exit work hour");
-            System.out.println("3. Quit");
-            System.out.print("\n\tEnter your choice: ");
+            System.out.println("\n1. Registrar la hora de entrada");
+            System.out.println("2. Registrar la hora de salida");
+            System.out.println("3. Atras");
+            System.out.print("\n\tElija una opcion: ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-            
+            scanner.nextLine();
+
             switch (choice) {
                 case 1:
-                    System.out.print("Enter your name: ");
+                    System.out.print("Ingrese su Nombre: ");
                     String name = scanner.nextLine();
                     LocalDateTime entryTime = LocalDateTime.now();
                     workHours.put(name, entryTime);
-                    System.out.println("Entry work hour registered for " + name + " at " + entryTime.format(formatter));
+                    System.out.println("\nHora de entrada registrada por " + name + " a las " + entryTime.format(formatter));
                     break;
-                    
+
                 case 2:
-                    System.out.print("Enter your name: ");
+                    System.out.print("Ingrese su Nombre: ");
                     name = scanner.nextLine();
                     LocalDateTime exitTime = LocalDateTime.now();
                     LocalDateTime storedEntryTime = workHours.get(name);
                     if (storedEntryTime != null) {
                         long hoursWorked = storedEntryTime.until(exitTime, java.time.temporal.ChronoUnit.HOURS);
-                        System.out.println("Exit work hour registered for " + name + " at " + exitTime.format(formatter));
-                        System.out.println("Total hours worked: " + hoursWorked);
-                        workHours.remove(name); // Remove the entry for the user
+                        System.out.println("\nHora de salida registrada por  " + name + " a las " + exitTime.format(formatter));
+                        System.out.println("Horas totales de Trabajo: " + hoursWorked);
+                        workHours.remove(name);
                     } else {
-                        System.out.println("No entry work hour found for " + name);
+                        System.out.println("No hay horas registradas por: " + name);
                     }
                     break;
-                    
+
                 case 3:
-                    /*System.out.println("Exiting program...");
-                    //scanner.close();
-                    System.exit(0);*/
-                    
+
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Opcion Invalida, Intente de nuevo.");
                     break;
             }
-            
-            System.out.println(); // Print a blank line for readability
+
+            System.out.println();
         }
     }
 }

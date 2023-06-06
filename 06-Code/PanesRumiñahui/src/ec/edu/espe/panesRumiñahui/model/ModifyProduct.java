@@ -11,7 +11,9 @@ import java.util.Scanner;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class ModifyProduct {
-    public void addProductStock() throws FileNotFoundException{
+
+    public void addProductStock() throws FileNotFoundException {
+        
         EditProductData editProductData = new EditProductData();
         Product product;
         Scanner readData = new Scanner(System.in);
@@ -24,7 +26,7 @@ public class ModifyProduct {
         } else {
             listProduct = editProductData.readProductData();
         }
-        
+
         System.out.print("Id: ");
         int id = readData.nextInt();
         product = listProduct.get(id);
@@ -34,8 +36,9 @@ public class ModifyProduct {
         listProduct.set(id, product);
         editProductData.writeProductData(listProduct);
     }
-    
+
     public void readProduct() throws FileNotFoundException {
+        
         EditProductData editProductData = new EditProductData();
         File archivo = new File("product.json");
         ArrayList<Product> listProduct = new ArrayList<>();
@@ -45,19 +48,21 @@ public class ModifyProduct {
             System.out.println("\nNo hay productos\n\n");
         } else {
             listProduct = editProductData.readProductData();
-            
-            for(Product product : listProduct){
+
+            for (Product product : listProduct) {
                 System.out.println(product.toString());
             }
         }
     }
-    
-    public void createProduct() throws FileNotFoundException{
+
+    public void createProduct() throws FileNotFoundException {
+
         EditProductData editProductData = new EditProductData();
         ArrayList<Product> listProduct = new ArrayList<>();
+
         Product product;
         Scanner readData = new Scanner(System.in);
-        
+
         System.out.print("\nId: ");
         int id = readData.nextInt();
         System.out.print("Nombre del producto: ");

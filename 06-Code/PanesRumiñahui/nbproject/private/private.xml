@@ -3,23 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Employee.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditSaleData.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ModifyEmployee.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Report.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/BudgetMenu.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ModifyAdministrator.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/EmployeeMenu.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Inventory.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Budget.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditEmployeeData.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ValidationUtil.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/AdministratorMenu.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/SaleOperation.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/controller/EditInventoryData.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/WorkHoursReport.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Sale.java</file>
-            <file>file:/C:/Users/gaboa/Documents/POO/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/ModifyEmployeeMenu.java</file>
+            <file>file:/D:/UNIVERSIDAD/2doSemestre/POO/CloneGrupoRep/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/AdministratorMenu.java</file>
+            <file>file:/D:/UNIVERSIDAD/2doSemestre/POO/CloneGrupoRep/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Employee.java</file>
+            <file>file:/D:/UNIVERSIDAD/2doSemestre/POO/CloneGrupoRep/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/Budget.java</file>
+            <file>file:/D:/UNIVERSIDAD/2doSemestre/POO/CloneGrupoRep/OOP9652-Techware/06-Code/PanesRumiñahui/src/ec/edu/espe/panesRumiñahui/model/BudgetMenu.java</file>
         </group>
     </open-files>
 </project-private>

@@ -28,7 +28,7 @@ public class AdministratorMenu {
             System.out.println ("3. Ver inventario: ");
             System.out.println ("4. Modificar inventario: ");
             System.out.println ("5. Ver administrador: ");
-            System.out.println ("6. Añadir administrador: ");
+            System.out.println ("6. Anadir administrador: ");
             System.out.println ("7. Presupuesto");
             System.out.println ("8. Salir");
             System.out.print("\n\tIngrese una opcion: ");
