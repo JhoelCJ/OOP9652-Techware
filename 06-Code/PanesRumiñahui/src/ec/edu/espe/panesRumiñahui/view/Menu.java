@@ -1,12 +1,9 @@
 package ec.edu.espe.panesrumiñahui.view;
 
-import ec.edu.espe.panesRumiñahui.model.BudgetMenu;
-import ec.edu.espe.panesrumiñahui.model.Administrator;
 import ec.edu.espe.panesrumiñahui.model.AdministratorMenu;
-import ec.edu.espe.panesrumiñahui.model.Employee;
 import ec.edu.espe.panesrumiñahui.model.EmployeeMenu;
+import ec.edu.espe.panesrumiñahui.model.ValidationUtil;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,40 +18,45 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         AdministratorMenu administratorMenu = new AdministratorMenu();
         EmployeeMenu employeeMenu = new EmployeeMenu();
-        
-        int choise;
+        ValidationUtil validationUtil = new ValidationUtil();
 
         System.out.println("\n\t\t------ Bienvenido a Panes de la Rumiñahui ------");
         System.out.println("\n\t\t\t--- System by Techware ---");
+        
+        boolean continueMenu = true;
 
-        do {
+        while (continueMenu) {
             System.out.println("\nMenu:");
             System.out.println("1. Administrador");
             System.out.println("2. Empleado ");
             System.out.println("3. Salir");
             System.out.print("\n\tIngrese una opcion: ");
-            choise = scanner.nextInt();
+            String choise = scanner.next();
+            if(validationUtil.validateInt(choise)){
+                switch (validationUtil.getInt(choise)) {
+                    case 1: 
+                        try {
+                            administratorMenu.administratorMenu();
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        break;
 
-            switch (choise) {
-                case 1:
-                {
-                    try {
-                        administratorMenu.administratorMenu();
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    case 2:
+                        employeeMenu.employeeMenu();
+                        break;
+                        
+                    case 3:
+                        System.out.println("\nGracias por usar el programa\n\n");
+                        continueMenu = false;
+                        break;
+                        
+                    default:
+                        System.out.println("Opcion invalida, intente de nuevo: ");
                 }
-                    break;
-
-                case 2:
-                    employeeMenu.employeeMenu();
-                    break;
-                case 3:
-                     System.out.println("Gracias por usar el programa");
-                    break;   
-                default:
-                    System.out.println("Opcion invalida, intente de nuevo: ");
+            }else{
+                System.out.println("\nDato Inalido!!");
             }
-        } while (choise != 3);
+        } 
     }
 }

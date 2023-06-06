@@ -29,19 +29,23 @@ public class SaleOperation {
         boolean continueSale = true;
         
         while(continueSale){
-            System.out.print("Codigo del producto: ");
+            System.out.print("\nCodigo del producto: ");
             int id = scanner.nextInt();
             product = listProduct.get(id);
             System.out.println("Producto: " + product.getNameProduct());
             if(product.getStock()>0){
                 System.out.print("Cantidad: ");
                 int amount = scanner.nextInt();
-                totalPay = totalPay + (amount * product.getBudgetProduct());
-                product.setStock(product.getStock() - amount);
-                listProduct.set(id, product);
-                editProductData.writeProductData(listProduct);
+                if((product.getStock() - amount)<0){
+                    System.out.println("\nSolo exixten " + product.getStock() + " productos disponibles!!");
+                }else{
+                    totalPay = totalPay + (amount * product.getBudgetProduct());
+                    product.setStock(product.getStock() - amount);
+                    listProduct.set(id, product);
+                    editProductData.writeProductData(listProduct);
+                }
             }else{
-                System.out.println("No Exixte en Stock");
+                System.out.println("No Exixte producto en Stock");
             }
             
             System.out.print("\nAgregar producto(1=SI/0=NO): ");

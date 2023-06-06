@@ -7,7 +7,7 @@ package ec.edu.espe.panesrumiñahui.model;
  */
 public class ValidationUtil {
 
-    public boolean isValidInt(String input) {
+    public boolean validateInt(String input) {
         try {
             Integer.parseInt(input);
             return true;
@@ -15,12 +15,16 @@ public class ValidationUtil {
             return false;
         }
     }
+    
+    public int getInt(String input) {
+        return Integer.parseInt(input);
+    }
 
-    public boolean isValidNumericString(String input) {
+    public boolean ValidateNumberString(String input) {
         return input.matches("^[0-9]+$");
     }
 
-    public boolean isValidAlphaNumericString(String input) {
+    public boolean ValidateLetterString(String input) {
         return input.matches("^[a-zA-Z]+$");
     }
 }

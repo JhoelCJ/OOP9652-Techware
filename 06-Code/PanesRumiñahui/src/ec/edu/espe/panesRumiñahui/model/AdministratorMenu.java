@@ -23,6 +23,7 @@ public class AdministratorMenu {
             ModifyEmployeeMenu modifyEmployeeMenu = new ModifyEmployeeMenu();
             ModifyAdministrator modifyAdministrator = new ModifyAdministrator();
             ModifyInventoryMenu modifyInventoryMenu = new ModifyInventoryMenu();
+            ValidationUtil validationUtil = new ValidationUtil();
             
             System.out.println ("\n1. Ver empleado: ");
             System.out.println ("2. Modificar empleado: ");
@@ -34,38 +35,41 @@ public class AdministratorMenu {
             System.out.println ("8. Agregar Gasto Fijo");
             System.out.println ("9. Salir");
             System.out.print("\n\tIngrese una opcion: ");
-            int option = scanner.nextInt();
-            
-            switch (option) {
-                case 1:
-                    modifyEmployee.readEmployee();
-                    break;
-                case 2:
-                    modifyEmployeeMenu.modifyEmployeeMenu();
-                    break;
-                case 3:
-                    inventoryMenu.inventoryMenu();
-                    break;
-                case 4:
-                    modifyInventoryMenu.modifyInventoryMenu();
-                    break;
-                case 5:
-                    modifyAdministrator.readAdministrator();
-                    break;
-                case 6:
-                    modifyAdministrator.createAdministrator();
-                    break;
-                case 7:
-                    budgetMenu.budgetMenu();
-                    break;
-                case 8:
-                    expenseReport.addFixedExpense();
-                    break;
-                case 9:
-                    continueMenu = false;
-                    break;
-                default:
-                    System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 8");
+            String option = scanner.next();
+            if(validationUtil.validateInt(option)){
+                switch (validationUtil.getInt(option)) {
+                    case 1:
+                        modifyEmployee.readEmployee();
+                        break;
+                    case 2:
+                        modifyEmployeeMenu.modifyEmployeeMenu();
+                        break;
+                    case 3:
+                        inventoryMenu.inventoryMenu();
+                        break;
+                    case 4:
+                        modifyInventoryMenu.modifyInventoryMenu();
+                        break;
+                    case 5:
+                        modifyAdministrator.readAdministrator();
+                        break;
+                    case 6:
+                        modifyAdministrator.createAdministrator();
+                        break;
+                    case 7:
+                        budgetMenu.budgetMenu();
+                        break;
+                    case 8:
+                        expenseReport.addFixedExpense();
+                        break;
+                    case 9:
+                        continueMenu = false;
+                        break;
+                    default:
+                        System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 8");
+                }
+            }else{
+                System.out.println("\nDato Inalido!!");
             }
         }
     }

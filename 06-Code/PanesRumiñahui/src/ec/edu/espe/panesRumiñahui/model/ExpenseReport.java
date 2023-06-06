@@ -17,9 +17,10 @@ public class ExpenseReport {
         ArrayList<FixedExpense> listFixedExpense = new ArrayList();
         FixedExpense fixedExpense;
         Scanner readData = new Scanner(System.in);
-        
         System.out.print("\nArgumento: ");
         String argument = readData.next();
+        
+        
         System.out.print("Monto: ");
         float amount = readData.nextFloat();
         
