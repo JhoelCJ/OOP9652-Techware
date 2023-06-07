@@ -17,7 +17,8 @@ import java.util.ArrayList;
  */
 public class Budget {
 
-    public float CalculateExpense() throws FileNotFoundException{
+    public float CalculateExpense() throws FileNotFoundException {
+
         EditFixedExpenseData editFixedExpenseData = new EditFixedExpenseData();
         EditDirectExpenseData editDirectExpenseData = new EditDirectExpenseData();
         File fileFixedExpense = new File("data\\fixedExpense.json");
@@ -45,8 +46,9 @@ public class Budget {
         }
         return totalFixedExpense + totalDirectExpense;
     }
-    
-    public float CalculateIncome() throws FileNotFoundException{
+
+    public float CalculateIncome() throws FileNotFoundException {
+
         EditSaleData editSaleData = new EditSaleData();
         File file = new File("data\\sale.json");
         ArrayList<Sale> listSale = new ArrayList();

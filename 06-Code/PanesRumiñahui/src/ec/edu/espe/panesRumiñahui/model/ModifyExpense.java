@@ -11,7 +11,9 @@ import java.util.ArrayList;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class ModifyExpense {
+
     public void readDirectExpense() throws FileNotFoundException {
+
         EditDirectExpenseData editDirectExpenseData = new EditDirectExpenseData();
         File file = new File("data\\directExpense.json");
         ArrayList<DirectExpense> listDirectExpense = new ArrayList<>();
@@ -21,13 +23,14 @@ public class ModifyExpense {
             System.out.println("\nNo hay Gastos registrados\n\n");
         } else {
             listDirectExpense = editDirectExpenseData.readDirectExpenseData();
-            for(DirectExpense directExpense : listDirectExpense){
+            for (DirectExpense directExpense : listDirectExpense) {
                 System.out.println(directExpense.toString());
             }
         }
     }
-    
+
     public void readFixedExpense() throws FileNotFoundException {
+
         EditFixedExpenseData editFixedExpenseData = new EditFixedExpenseData();
         File file = new File("data\\fixedExpense.json");
         ArrayList<FixedExpense> listFixedExpense = new ArrayList<>();
@@ -37,7 +40,7 @@ public class ModifyExpense {
             System.out.println("\nNo hay Gastos registrados\n\n");
         } else {
             listFixedExpense = editFixedExpenseData.readFixedExpenseData();
-            for(FixedExpense fixedExpense : listFixedExpense){
+            for (FixedExpense fixedExpense : listFixedExpense) {
                 System.out.println(fixedExpense.toString() + "\n");
             }
         }

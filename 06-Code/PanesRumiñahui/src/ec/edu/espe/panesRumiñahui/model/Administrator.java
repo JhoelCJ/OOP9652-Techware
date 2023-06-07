@@ -1,12 +1,11 @@
 package ec.edu.espe.panesrumiñahui.model;
 
-
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-
 public class Administrator {
+
     private int id;
     private String name;
     private int age;
@@ -14,7 +13,7 @@ public class Administrator {
 
     @Override
     public String toString() {
-        return "\n\t\tAdministrador" + "\n\tid: " + id + "\n\tNombre: " 
+        return "\n\t\tAdministrador" + "\n\tid: " + id + "\n\tNombre: "
                 + name + "\n\tEdad: " + age + "\n\tNumero de contacto: " + contactNumber + "\n";
     }
 

@@ -9,6 +9,12 @@
     "id": 1,
     "nameMaterial": "Manteca",
     "priceProduct": 60.0,
+    "stock": 3
+  },
+  {
+    "id": 5,
+    "nameMaterial": "harina",
+    "priceProduct": 20.0,
     "stock": 0
   }
 ]

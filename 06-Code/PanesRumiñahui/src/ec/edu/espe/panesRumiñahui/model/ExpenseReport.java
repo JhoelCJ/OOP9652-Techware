@@ -10,19 +10,40 @@ import java.util.Scanner;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-
 public class ExpenseReport {
-    public void addFixedExpense() throws FileNotFoundException{
+
+   public void addFixedExpense() throws FileNotFoundException{
+       
         EditFixedExpenseData editFixedExpenseData = new EditFixedExpenseData();
         ArrayList<FixedExpense> listFixedExpense = new ArrayList();
+        ValidationUtil validationUtil = new ValidationUtil();
         FixedExpense fixedExpense;
         Scanner readData = new Scanner(System.in);
-        System.out.print("\nArgumento: ");
-        String argument = readData.next();
+        String argument = null;
+        float amount = 0;
         
+        boolean continueValidation = true;
+        while (continueValidation) {
+            System.out.print("\nArgumento: ");
+            argument = readData.nextLine();
+            if (validationUtil.ValidateLetterString(argument)) {
+                continueValidation = false;
+            } else {
+                System.out.println("\n\tDato Invalido");
+            }
+        }
         
-        System.out.print("Monto: ");
-        float amount = readData.nextFloat();
+        continueValidation = true;
+        while(continueValidation){
+            System.out.print("Monto: ");
+            String amountString = readData.nextLine();
+            if (validationUtil.validateFloat(amountString)) {
+                amount = validationUtil.getFloat(amountString);
+                continueValidation = false;
+            } else {
+                System.out.println("\n\tDato Invalido");
+            }
+        }
         
         File file = new File("data\\fixedExpense.json");
         if (file.exists() && file.length() == 0) {
