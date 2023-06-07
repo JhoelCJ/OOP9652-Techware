@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class BudgetMenu {
 
     public void budgetMenu() throws FileNotFoundException {
-
         ValidationUtil validationUtil = new ValidationUtil();
         Scanner scanner = new Scanner(System.in);
         Inventory inventory = new Inventory();
@@ -22,17 +21,13 @@ public class BudgetMenu {
         boolean continueMenu = true;
 
         while (continueMenu) {
-
             System.out.println("\n1. Gastos ");
             System.out.println("2. Ingresos ");
             System.out.println("3. Ingreso Neto ");
             System.out.println("4. Salir ");
             System.out.print("\n\tIngrese una opcion: ");
-            
             String option = scanner.nextLine();
-            
-            if (validationUtil.validateInt(option)) {
-                
+            if(validationUtil.validateInt(option)){
                 switch (validationUtil.getInt(option)) {
                     case 1:
                         modifyExpense.readDirectExpense();
@@ -55,7 +50,7 @@ public class BudgetMenu {
                     default:
                         System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 4");
                 }
-            } else {
+            }else{
                 System.out.println("\nDato Invalido!!");
             }
         }

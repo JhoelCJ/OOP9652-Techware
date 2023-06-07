@@ -19,9 +19,8 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditInventoryData {
-
+    
     public void writeInventoryData(List<Inventory> inventory) {
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(inventory);
 
@@ -32,20 +31,18 @@ public class EditInventoryData {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-
-    public ArrayList<Inventory> readInventoryData() throws FileNotFoundException {
-
+    
+    public  ArrayList<Inventory> readInventoryData() throws FileNotFoundException{
         ArrayList<Inventory> listInventory = new ArrayList();
-
+        
         try (FileReader reader = new FileReader("data\\inventory.json")) {
             Gson gson = new Gson();
-            Type arrayListInventory = new TypeToken<ArrayList<Inventory>>() {
-            }.getType();
+            Type arrayListInventory = new TypeToken<ArrayList<Inventory>>(){}.getType();
             listInventory = gson.fromJson(reader, arrayListInventory);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-
+        
         return listInventory;
     }
 }

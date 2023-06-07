@@ -10,25 +10,20 @@ import java.util.Scanner;
 public class ModifyEmployeeMenu {
 
     public void modifyEmployeeMenu() throws FileNotFoundException {
-
         Scanner scanner = new Scanner(System.in);
         ValidationUtil validationUtil = new ValidationUtil();
-        String option;
-        boolean continueMenu = true;
 
+        boolean continueMenu = true;
         while (continueMenu) {
             ModifyEmployee modifyEmployee = new ModifyEmployee();
 
             System.out.println("\n1. Agregar Empleado");
             System.out.println("2. Elimiar ");
             System.out.println("3. Salir");
-            System.out.print("\n\tIngrece una opcion: ");
-
-            option = scanner.nextLine();
-
+            System.out.print("\n\tIngrese una opcion: ");
+            String option = scanner.nextLine();
             if (validationUtil.validateInt(option)) {
                 switch (validationUtil.getInt(option)) {
-
                     case 1:
                         modifyEmployee.createEmployee();
                         break;

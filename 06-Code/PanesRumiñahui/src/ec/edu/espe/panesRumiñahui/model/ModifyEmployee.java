@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class ModifyEmployee {
 
     public void readEmployee() throws FileNotFoundException {
-
         EditEmployeeData editEmployeeData = new EditEmployeeData();
         File archivo = new File("data\\employee.json");
         ArrayList<Employee> listEmployees = new ArrayList<>();
@@ -31,72 +30,96 @@ public class ModifyEmployee {
     }
 
     public void createEmployee() throws FileNotFoundException {
-
         EditEmployeeData editEmployeeData = new EditEmployeeData();
-        ArrayList<Employee> listEmployees = new ArrayList<>();
-        ValidationUtil validationUtil = new ValidationUtil();
+        ArrayList<Employee> listEmployees = new ArrayList();
         Employee employee;
         Scanner readData = new Scanner(System.in);
+        ValidationUtil validationUtil = new ValidationUtil();
 
-        System.out.print("\nId: ");
-        String idInput = readData.nextLine();
-        while (!validationUtil.validateInt(idInput)) {
-            System.out.println("El id debe ser un valor numerico.");
-            System.out.print("Id: ");
-            idInput = readData.nextLine();
+        int id = 0;
+        boolean continueValidation = true;
+        while (continueValidation) {
+            System.out.print("\nId: ");
+            String idString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(idString)) {
+                continueValidation = false;
+                id = validationUtil.getInt(idString);
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        int id = validationUtil.getInt(idInput);
 
-        System.out.print("Nombre: ");
-        String name = readData.nextLine();
-        while (!validationUtil.ValidateLetterString(name)) {
-            System.out.println("El nombre debe contener letras.");
+        String name = null;
+        continueValidation = true;
+        while (continueValidation) {
             System.out.print("Nombre: ");
             name = readData.nextLine();
+            if (validationUtil.ValidateLetterString(name)) {
+                continueValidation = false;
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        
-        System.out.print("Edad: ");
-        String ageInput = readData.nextLine();
-        while (!validationUtil.validateInt(ageInput)) {
-            System.out.println("La edad debe ser un valor numerico entero.");
+
+        int age = 0;
+        continueValidation = true;
+        while (continueValidation) {
             System.out.print("Edad: ");
-            ageInput = readData.nextLine();
+            String ageString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(ageString)) {
+                continueValidation = false;
+                age = validationUtil.getInt(ageString);
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        int age = validationUtil.getInt(ageInput);
 
-        System.out.print("Anio que empezo a trabajar: ");
-        String yearInput = readData.nextLine();
-        while (!validationUtil.validateInt(yearInput)) {
-            System.out.println("El anio debe ser un valor numerico.");
+        int year = 0;
+        continueValidation = true;
+        while (continueValidation) {
             System.out.print("Anio que empezo a trabajar: ");
-            yearInput = readData.nextLine();
+            String yearString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(yearString)) {
+                continueValidation = false;
+                year = validationUtil.getInt(yearString);
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        int year = validationUtil.getInt(yearInput);
 
-        System.out.print("Mes que empezo a trabajar: ");
-        String monthInput = readData.nextLine();
-        while (!validationUtil.validateInt(monthInput)) {
-            System.out.println("El mes debe ser un valor numerico.");
+        int month = 0;
+        continueValidation = true;
+        while (continueValidation) {
             System.out.print("Mes que empezo a trabajar: ");
-            monthInput = readData.nextLine();
+            String yearString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(yearString)) {
+                continueValidation = false;
+                month = validationUtil.getInt(yearString);
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        int month = validationUtil.getInt(monthInput);
 
-        System.out.print("Dia que empezo a trabajar: ");
-        String dayInput = readData.nextLine();
-        while (!validationUtil.validateInt(dayInput)) {
-            System.out.println("El dia debe ser un valor numerico.");
+        int day = 0;
+        continueValidation = true;
+        while (continueValidation) {
             System.out.print("Dia que empezo a trabajar: ");
-            dayInput = readData.nextLine();
+            String dayString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(dayString)) {
+                continueValidation = false;
+                day = validationUtil.getInt(dayString);
+            } else {
+                System.out.println("Dato Invalido");
+            }
         }
-        int day = validationUtil.getInt(dayInput);
 
         String contactNumber;
         boolean validContactNumber = false;
         do {
             System.out.print("Numero telefonico: ");
             contactNumber = readData.nextLine();
-            if (!validationUtil.ValidateNumberString(contactNumber)) {
+            String patronNumerico = "^[0-9]+$";
+            if (!contactNumber.matches(patronNumerico)) {
                 System.out.println("El numero de contacto solo debe contener digitos numericos.");
             } else {
                 validContactNumber = true;
@@ -117,19 +140,27 @@ public class ModifyEmployee {
     }
 
     public void deleteEmployee() throws FileNotFoundException {
-
         EditEmployeeData editEmployeeData = new EditEmployeeData();
         File archivo = new File("data\\employee.json");
         ArrayList<Employee> listEmployees = new ArrayList();
+        ValidationUtil validationUtil = new ValidationUtil();
 
         if (archivo.exists() && archivo.length() == 0) {
             System.out.println("No hay empleados\n\n");
         } else {
             listEmployees = editEmployeeData.readEmployeeData();
             Scanner readData = new Scanner(System.in);
-
-            System.out.print("\nNombre del empleado a eliminar: ");
-            String name = readData.next();
+            String name = null;
+            boolean continueValidation = true;
+            while (continueValidation) {
+                System.out.print("Nombre del empleado a eliminar: ");
+                name = readData.nextLine();
+                if (validationUtil.ValidateLetterString(name)) {
+                    continueValidation = false;
+                } else {
+                    System.out.println("Dato Invalido");
+                }
+            }
 
             for (int i = 0; i < listEmployees.size(); i++) {
                 Employee employee = listEmployees.get(i);

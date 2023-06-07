@@ -5,7 +5,6 @@ package ec.edu.espe.panesrumiñahui.model;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class DirectExpense {
-
     String invoiceNumber;
     String name;
     int amount;
@@ -13,8 +12,8 @@ public class DirectExpense {
 
     @Override
     public String toString() {
-        return "\n\tNo. de Factura: " + invoiceNumber + "\n\tProducto: " + name
-                + "\n\tCantidad: " + amount + "\n\tPrecio: " + price;
+        return "\n\tNo. de Factura: " + invoiceNumber + "\n\tProducto: " + name +
+                "\n\tCantidad: " + amount + "\n\tPrecio: " + price;
     }
 
     public DirectExpense(String invoiceNumber, String name, int amount, float price) {
@@ -55,5 +54,5 @@ public class DirectExpense {
     public void setPrice(float price) {
         this.price = price;
     }
-
+    
 }

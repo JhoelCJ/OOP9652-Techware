@@ -19,9 +19,7 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditFixedExpenseData {
-
     public void writeFixedExpenseData(List<FixedExpense> fixedExpense) {
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(fixedExpense);
 
@@ -31,20 +29,18 @@ public class EditFixedExpenseData {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-
-    public ArrayList<FixedExpense> readFixedExpenseData() throws FileNotFoundException {
-
+    
+    public  ArrayList<FixedExpense> readFixedExpenseData() throws FileNotFoundException{
         ArrayList<FixedExpense> listFixedExpense = new ArrayList();
-
+        
         try (FileReader reader = new FileReader("data\\fixedExpense.json")) {
             Gson gson = new Gson();
-            Type arrayListFixedExpense = new TypeToken<ArrayList<FixedExpense>>() {
-            }.getType();
+            Type arrayListFixedExpense = new TypeToken<ArrayList<FixedExpense>>(){}.getType();
             listFixedExpense = gson.fromJson(reader, arrayListFixedExpense);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-
+        
         return listFixedExpense;
     }
 }

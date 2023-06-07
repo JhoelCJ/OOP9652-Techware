@@ -10,23 +10,20 @@ import java.util.Scanner;
 public class InventoryMenu {
 
     public void inventoryMenu() throws FileNotFoundException {
-        
         Scanner scanner = new Scanner(System.in);
-        boolean continueMenu = true;
         ValidationUtil validationUtil = new ValidationUtil();
-
+        boolean continueMenu = true;
+        
         while (continueMenu) {
             Inventory inventory = new Inventory();
-
+            
             System.out.println("\n1. Ventas del dia: ");
             System.out.println("2. Total de ventas Diaria: ");
             System.out.println("3. Productos en stock: ");
             System.out.println("4. Materia prima en stock: ");
             System.out.println("5. Salir");
             System.out.print("\n\tIngrese una opcion: ");
-
             String option = scanner.nextLine();
-
             if (validationUtil.validateInt(option)) {
                 switch (validationUtil.getInt(option)) {
                     case 1:
@@ -47,9 +44,8 @@ public class InventoryMenu {
                     default:
                         System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 7");
                 }
-            } else {
-                System.out.println("\nDato Inalido!!");
             }
+            
         }
     }
 }

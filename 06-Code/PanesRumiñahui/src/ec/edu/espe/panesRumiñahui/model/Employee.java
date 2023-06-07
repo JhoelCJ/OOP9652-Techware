@@ -6,8 +6,8 @@ import java.util.Date;
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class Employee {
 
+public class Employee {
     private int id;
     private String name;
     private int age;
@@ -16,9 +16,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "\n\tid: " + id + "\n\tNombre: " + name + "\n\tEdad: "
-                + age + "\n\tEmpieza a Trabajar: " + startWork
-                + "\n\tNumero de Contacto: " + contactNumber + "\n";
+        return "\n\tid: " + id + "\n\tNombre: " + name + "\n\tEdad: " +
+                age  + "\n\tEmpieza a Trabajar: " + startWork +
+                "\n\tNumero de Contacto: " + contactNumber + "\n";
     }
 
     public Employee(int id, String name, int age, Date startWork, String contactNumber) {
@@ -56,7 +56,7 @@ public class Employee {
     public Date getStartWork() {
         return startWork;
     }
-
+    
     public void setStartWork(Date startWork) {
         this.startWork = startWork;
     }

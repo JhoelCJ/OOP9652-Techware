@@ -19,9 +19,7 @@ import java.util.List;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class EditProductData {
-
     public void writeProductData(List<Product> product) {
-
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(product);
 
@@ -31,20 +29,18 @@ public class EditProductData {
             System.out.println("Error generating JSON file: " + e.getMessage());
         }
     }
-
-    public ArrayList<Product> readProductData() throws FileNotFoundException {
-
+    
+    public  ArrayList<Product> readProductData() throws FileNotFoundException{
         ArrayList<Product> listProduct = new ArrayList();
-
+        
         try (FileReader reader = new FileReader("data\\product.json")) {
             Gson gson = new Gson();
-            Type arrayListProduct = new TypeToken<ArrayList<Product>>() {
-            }.getType();
+            Type arrayListProduct = new TypeToken<ArrayList<Product>>(){}.getType();
             listProduct = gson.fromJson(reader, arrayListProduct);
         } catch (IOException | JsonSyntaxException | JsonIOException e) {
             e.printStackTrace();
         }
-
+        
         return listProduct;
     }
 }

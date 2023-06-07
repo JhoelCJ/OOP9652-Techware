@@ -11,78 +11,75 @@ import java.util.Scanner;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class WorkHoursReport {
-
+    
     public void workHour() {
-
+        ValidationUtil validationUtil = new ValidationUtil();
         Map<String, LocalDateTime> workHours = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        ValidationUtil validationUtil = new ValidationUtil();
         boolean continueMenu = true;
-
+        
         while (continueMenu) {
             System.out.println("\n1. Registrar hora de ingreso");
             System.out.println("2. Registrar hora de salida");
             System.out.println("3. Salir");
-            System.out.print("\n\tEnter your choice: ");
-
-            String choice = scanner.next();
-
-            scanner.nextLine();
-
+            System.out.print("\n\tIngrese opcion: ");
+            String choice = scanner.nextLine();
             if (validationUtil.validateInt(choice)) {
                 switch (validationUtil.getInt(choice)) {
-
                     case 1:
-
-                        System.out.print("Ingrese su Nombre: ");
-                        String name = scanner.nextLine();
-                        while (!validationUtil.ValidateLetterString(name)) {
-                            System.out.println("\nEl nombre debe contener letras.");
+                        String name = null;
+                        boolean continueValidation = true;
+                        while (continueValidation) {
                             System.out.print("Nombre: ");
                             name = scanner.nextLine();
+                            if (validationUtil.ValidateLetterString(name)) {
+                                continueValidation = false;
+                            } else {
+                                System.out.println("Dato Invalido");
+                            }
                         }
                         LocalDateTime entryTime = LocalDateTime.now();
                         workHours.put(name, entryTime);
-                        System.out.println("\nHora de entrada registrada por " + name + " a las " + entryTime.format(formatter));
-
+                        System.out.println("Entry work hour registered for " + name + " at " + entryTime.format(formatter));
                         break;
-
+                    
                     case 2:
-
-                        System.out.print("Ingrese su Nombre: ");
-                        name = scanner.nextLine();
-                        while (!validationUtil.ValidateLetterString(name)) {
-                            System.out.println("\nEl nombre debe contener letras.");
+                        name = null;
+                        continueValidation = true;
+                        while (continueValidation) {
                             System.out.print("Nombre: ");
                             name = scanner.nextLine();
+                            if (validationUtil.ValidateLetterString(name)) {
+                                continueValidation = false;
+                            } else {
+                                System.out.println("Dato Invalido");
+                            }
                         }
                         LocalDateTime exitTime = LocalDateTime.now();
                         LocalDateTime storedEntryTime = workHours.get(name);
                         if (storedEntryTime != null) {
                             long hoursWorked = storedEntryTime.until(exitTime, java.time.temporal.ChronoUnit.HOURS);
-                            System.out.println("\nHora de entrada registrada por " + name + " a las " + exitTime.format(formatter));
-                            System.out.println("\n\tTotal Horas de Trabajo: " + hoursWorked);
+                            System.out.println("Exit work hour registered for " + name + " at " + exitTime.format(formatter));
+                            System.out.println("Total hours worked: " + hoursWorked);
                             workHours.remove(name);
                         } else {
-                            System.out.println("\nNo hay horas registradas por " + name);
+                            System.out.println("No entry work hour found for " + name);
                         }
                         break;
-
+                    
                     case 3:
                         continueMenu = false;
                         break;
-
+                    
                     default:
-                        System.out.println("Opcion Invalida, Por favor ingrese de nuevo.");
+                        System.out.println("Dato invalido.");
                         break;
-
                 }
-
-            } else {
-                System.out.println("\nDato Invalido!!");
-
+            }else{
+                System.out.println("\nDato Inalido!!");
             }
+            System.out.println();
         }
     }
 }

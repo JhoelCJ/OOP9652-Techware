@@ -24,15 +24,9 @@
     "price": 5.0
   },
   {
-    "invoiceNumber": "4444",
-    "name": "Cola",
-    "amount": 5,
-    "price": 15.0
-  },
-  {
-    "invoiceNumber": "jhfdvjsd",
-    "name": "Manteca",
-    "amount": 3,
-    "price": 12.0
+    "invoiceNumber": "29173",
+    "name": "Leche",
+    "amount": 4,
+    "price": 10.0
   }
 ]

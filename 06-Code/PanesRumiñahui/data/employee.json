@@ -12,12 +12,5 @@
     "age": 32,
     "startWork": "Apr 2, 2021, 12:00:00 AM",
     "contactNumber": "0987654321"
-  },
-  {
-    "id": 5,
-    "name": "Ron",
-    "age": 45,
-    "startWork": "Apr 6, 2018, 12:00:00 AM",
-    "contactNumber": "09875645"
   }
 ]

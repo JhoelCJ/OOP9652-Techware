@@ -5,8 +5,8 @@ package ec.edu.espe.panesrumiñahui.model;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class Sale {
-
     private float totalSales;
+    
 
     public Sale(float totalSales) {
         this.totalSales = totalSales;

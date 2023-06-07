@@ -5,18 +5,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * @author Jilmar Calderon, Techware, DCCO-ESPE
- * @author Diego Casignia, Techware, DCCO-ESPE
+ *@author Jilmar Calderon, Techware, DCCO-ESPE
+ *@author Diego Casignia, Techware, DCCO-ESPE
  */
+
 public class AdministratorMenu {
-
-    public void administratorMenu() throws FileNotFoundException {
-
+    
+    public void administratorMenu() throws FileNotFoundException{
         Scanner scanner = new Scanner(System.in);
         boolean continueMenu = true;
-
-        while (continueMenu) {
-
+        
+        while(continueMenu){
             InventoryMenu inventoryMenu = new InventoryMenu();
             ModifyEmployee modifyEmployee = new ModifyEmployee();
             BudgetMenu budgetMenu = new BudgetMenu();
@@ -25,22 +24,19 @@ public class AdministratorMenu {
             ModifyAdministrator modifyAdministrator = new ModifyAdministrator();
             ModifyInventoryMenu modifyInventoryMenu = new ModifyInventoryMenu();
             ValidationUtil validationUtil = new ValidationUtil();
-
-            System.out.println("\n1. Ver empleado: ");
-            System.out.println("2. Modificar empleado: ");
-            System.out.println("3. Ver inventario: ");
-            System.out.println("4. Modificar inventario: ");
-            System.out.println("5. Ver administrador: ");
-            System.out.println("6. Agregar administrador: ");
-            System.out.println("7. Reporte y Presupuesto");
-            System.out.println("8. Agregar Gasto Fijo");
-            System.out.println("9. Salir");
+            
+            System.out.println ("\n1. Ver empleado: ");
+            System.out.println ("2. Modificar empleado: ");
+            System.out.println ("3. Ver inventario: ");
+            System.out.println ("4. Modificar inventario: ");
+            System.out.println ("5. Ver administrador: ");
+            System.out.println ("6. Agregar administrador: ");
+            System.out.println ("7. Reporte y Presupuesto");
+            System.out.println ("8. Agregar Gasto Fijo");
+            System.out.println ("9. Salir");
             System.out.print("\n\tIngrese una opcion: ");
-
             String option = scanner.nextLine();
-
-            if (validationUtil.validateInt(option)) {
-
+            if(validationUtil.validateInt(option)){
                 switch (validationUtil.getInt(option)) {
                     case 1:
                         modifyEmployee.readEmployee();
@@ -72,7 +68,7 @@ public class AdministratorMenu {
                     default:
                         System.out.println("Opcion invalida, selecione otra vez una opcion del 1 al 8");
                 }
-            } else {
+            }else{
                 System.out.println("\nDato Invalido!!");
             }
         }

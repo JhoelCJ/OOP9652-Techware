@@ -10,10 +10,9 @@ import java.util.Scanner;
  *
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
-public class ExpenseReport {
 
-   public void addFixedExpense() throws FileNotFoundException{
-       
+public class ExpenseReport {
+    public void addFixedExpense() throws FileNotFoundException{
         EditFixedExpenseData editFixedExpenseData = new EditFixedExpenseData();
         ArrayList<FixedExpense> listFixedExpense = new ArrayList();
         ValidationUtil validationUtil = new ValidationUtil();
@@ -29,7 +28,7 @@ public class ExpenseReport {
             if (validationUtil.ValidateLetterString(argument)) {
                 continueValidation = false;
             } else {
-                System.out.println("\n\tDato Invalido");
+                System.out.println("Dato Invalido");
             }
         }
         
@@ -41,7 +40,7 @@ public class ExpenseReport {
                 amount = validationUtil.getFloat(amountString);
                 continueValidation = false;
             } else {
-                System.out.println("\n\tDato Invalido");
+                System.out.println("Dato Invalido");
             }
         }
         

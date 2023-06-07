@@ -12,90 +12,89 @@ import java.util.Scanner;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class ModifyAdministrator {
-
-    public void readAdministrator() throws FileNotFoundException {
-
+    public void readAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
         File archivo = new File("data\\administrator.json");
         ArrayList<Administrator> listAdministrator = new ArrayList();
         System.out.println("\t\t\t\tAdministrator List");
-
+        
         if (archivo.exists() && archivo.length() == 0) {
             System.out.println("No hay Administradores\n\n");
         } else {
             listAdministrator = editAdministratorData.readAdministratorData();
-            for (Administrator administrator : listAdministrator) {
+            for(Administrator administrator : listAdministrator){
                 System.out.println(administrator.toString());
             }
         }
     }
-
-    public void createAdministrator() throws FileNotFoundException {
+    
+    public void createAdministrator() throws FileNotFoundException{
         EditAdministratorData editAdministratorData = new EditAdministratorData();
-        ArrayList<Administrator> listAdministrator = new ArrayList<>();
-        ValidationUtil validationUtil = new ValidationUtil();
+        ArrayList<Administrator> listAdministrator = new ArrayList();
         Administrator administrator;
         Scanner readData = new Scanner(System.in);
-
-        System.out.print("\nId: ");
+        ValidationUtil validationUtil = new ValidationUtil();
+        
         int id = 0;
-        boolean validId = false;
-        do {
-            String idInput = readData.next();
-            if (validationUtil.validateInt(idInput)) {
-                id = validationUtil.getInt(idInput);
-                validId = true;
+        boolean continueValidation = true;
+        while (continueValidation) {
+        System.out.print("\nId: ");
+        String idString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(idString)) {
+                continueValidation = false;
+                validationUtil.getInt(idString);
             } else {
-                System.out.println("El ID debe ser un número entero. Por favor, ingrese un ID válido.");
+                System.out.println("Dato Invalido");
             }
-        } while (!validId);
-
-        System.out.print("Nombre: ");
-        String name;
-        boolean validName = false;
-        do {
-            name = readData.next();
+        }
+        
+        String name = null;
+        continueValidation = true;
+        while (continueValidation){
+            System.out.print("Nombre: ");
+            name = readData.nextLine();
             if (validationUtil.ValidateLetterString(name)) {
-                validName = true;
+                continueValidation = false;
             } else {
-                System.out.println("El nombre solo debe contener letras. Por favor, ingrese un nombre válido.");
+                System.out.println("Dato Invalido");
             }
-        } while (!validName);
-
-        System.out.print("Edad: ");
+        }
+        
         int age = 0;
-        boolean validAge = false;
-        do {
-            String ageInput = readData.next();
-            if (validationUtil.validateInt(ageInput)) {
-                age = validationUtil.getInt(ageInput);
-                validAge = true;
+        continueValidation = true;
+        while (continueValidation) {
+        System.out.print("Edad: ");
+        String ageString = readData.nextLine();
+            if (validationUtil.ValidateLetterString(ageString)) {
+                continueValidation = false;
+                age = validationUtil.getInt(ageString);
             } else {
-                System.out.println("La edad debe ser un número entero. Por favor, ingrese una edad válida.");
+                System.out.println("Dato Invalido");
             }
-        } while (!validAge);
+        }
 
         String contactNumber;
         boolean validContactNumber = false;
         do {
             System.out.print("Numero telefonico: ");
-            contactNumber = readData.next();
-            if (!validationUtil.ValidateNumberString(contactNumber)) {
-                System.out.println("El número de contacto solo debe contener dígitos numéricos.");
+            contactNumber = readData.nextLine();
+            String patronNumerico = "^[0-9]+$";
+            if (!contactNumber.matches(patronNumerico)) {
+                System.out.println("El numero de contacto solo debe contener digitos numericos.");
             } else {
                 validContactNumber = true;
             }
         } while (!validContactNumber);
-
+        
         administrator = new Administrator(id, name, age, contactNumber);
-
+        
         File archivo = new File("data\\administrator.json");
         if (archivo.exists() && archivo.length() == 0) {
             listAdministrator = new ArrayList<>();
         } else {
             listAdministrator = editAdministratorData.readAdministratorData();
         }
-
+        
         listAdministrator.add(administrator);
         editAdministratorData.writeEmployeeData(listAdministrator);
     }
