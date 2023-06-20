@@ -19,13 +19,17 @@ public class ModifyEmployee {
         ArrayList<Employee> listEmployees = new ArrayList<>();
         System.out.println("\t\t\t\tEmployed List");
 
-        if (archivo.exists() && archivo.length() == 0) {
-            System.out.println("No hay empleados\n\n");
-        } else {
-            listEmployees = editEmployeeData.readEmployeeData();
-            for (Employee employee : listEmployees) {
-                System.out.println(employee.toString());
+        try {
+            if (archivo.exists() && archivo.length() == 0) {
+                System.out.println("No hay empleados\n\n");
+            } else {
+                listEmployees = editEmployeeData.readEmployeeData();
+                for (Employee employee : listEmployees) {
+                    System.out.println(employee.toString());
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
         }
     }
 
@@ -145,31 +149,35 @@ public class ModifyEmployee {
         ArrayList<Employee> listEmployees = new ArrayList();
         ValidationUtil validationUtil = new ValidationUtil();
 
-        if (archivo.exists() && archivo.length() == 0) {
-            System.out.println("No hay empleados\n\n");
-        } else {
-            listEmployees = editEmployeeData.readEmployeeData();
-            Scanner readData = new Scanner(System.in);
-            String name = null;
-            boolean continueValidation = true;
-            while (continueValidation) {
-                System.out.print("Nombre del empleado a eliminar: ");
-                name = readData.nextLine();
-                if (validationUtil.ValidateLetterString(name)) {
-                    continueValidation = false;
-                } else {
-                    System.out.println("Dato Invalido");
+        try {
+            if (archivo.exists() && archivo.length() == 0) {
+                System.out.println("No hay empleados\n\n");
+            } else {
+                listEmployees = editEmployeeData.readEmployeeData();
+                Scanner readData = new Scanner(System.in);
+                String name = null;
+                boolean continueValidation = true;
+                while (continueValidation) {
+                    System.out.print("Nombre del empleado a eliminar: ");
+                    name = readData.nextLine();
+                    if (validationUtil.ValidateLetterString(name)) {
+                        continueValidation = false;
+                    } else {
+                        System.out.println("Dato Invalido");
+                    }
                 }
-            }
 
-            for (int i = 0; i < listEmployees.size(); i++) {
-                Employee employee = listEmployees.get(i);
-                if (employee.getName().equals(name)) {
-                    listEmployees.remove(i);
-                    editEmployeeData.writeEmployeeData(listEmployees);
-                    break;
+                for (int i = 0; i < listEmployees.size(); i++) {
+                    Employee employee = listEmployees.get(i);
+                    if (employee.getName().equals(name)) {
+                        listEmployees.remove(i);
+                        editEmployeeData.writeEmployeeData(listEmployees);
+                        break;
+                    }
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Error inesperado: " + e.getMessage());
         }
     }
 }
