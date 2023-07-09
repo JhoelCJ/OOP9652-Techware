@@ -1,4 +1,3 @@
-
 package ec.edu.espe.panesdelaruminahui.controler;
 
 import com.mongodb.client.MongoClient;
@@ -14,37 +13,32 @@ import java.util.Scanner;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-
 /**
  *
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
-public class DirectExpenseDB {
-     public static void createDocument() {
+public class FixedExpenseDB {
+    public static void createDocument() {
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("directExpense");
+            MongoCollection<Document> collection = database.getCollection("fixedExpense");
 
             System.out.print("id: ");
             int id = readData.nextInt();
-            System.out.print("invoiceNumber: ");
-            String invoiceNumber = readData.next();
-            System.out.print("name: ");
-            String name = readData.next();
+            System.out.print("argument: ");
+            String argument = readData.next();
             System.out.print("amount: ");
-            int amount = readData.nextInt();
-            while (amount <= -1) {
-                System.out.println("No allowed");
-                System.out.print("Age:");
+            float amount = readData.nextFloat();
+            while (amount <= -1){
+                System.out.println("age");
+                System.out.println("Age");
                 amount = readData.nextInt();
             }
-            System.out.print("price: ");
-            float price = readData.nextFloat();
 
-            Document doc1 = new Document("id", id).append("invoiceNumber", invoiceNumber).append("name", name).append("amount", amount).append("price", price);
+            Document doc1 = new Document("id", id).append("argument", argument).append("amount", amount);
             InsertOneResult result = collection.insertOne(doc1);
             System.out.println("Inserted a document with the following id: "
                     + result.getInsertedId().asObjectId().getValue());
@@ -57,7 +51,7 @@ public class DirectExpenseDB {
         Scanner readData = new Scanner(System.in);
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("directExpense");
+            MongoCollection<Document> collection = database.getCollection("fixedExpense");
 
             System.out.println("What id you Want delete?");
             int del = readData.nextInt();
@@ -73,7 +67,7 @@ public class DirectExpenseDB {
         Scanner readData = new Scanner(System.in);
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("directExpense");
+            MongoCollection<Document> collection = database.getCollection("fixedExpense");
 
             System.out.println("What id you want to view?");
             int search = readData.nextInt();
@@ -95,7 +89,7 @@ public class DirectExpenseDB {
         Scanner readData = new Scanner(System.in);
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("directExpense");
+            MongoCollection<Document> collection = database.getCollection("fixedExpense");
 
             System.out.println("What ID you want to modify?");
             int search = readData.nextInt();
@@ -103,23 +97,19 @@ public class DirectExpenseDB {
             System.out.println("Please insert new data:");
 
             
-             System.out.print("id: ");
+            System.out.print("id: ");
             int id = readData.nextInt();
-            System.out.print("invoiceNumber: ");
-            String invoiceNumber = readData.next();
-            System.out.print("name: ");
-            String name = readData.next();
+            System.out.print("argument: ");
+            String argument = readData.next();
             System.out.print("amount: ");
-            int amount = readData.nextInt();
-            while (amount <= -1) {
-                System.out.println("No allowed");
-                System.out.print("Age:");
+            float amount = readData.nextFloat();
+            while (amount <= -1){
+                System.out.println("age");
+                System.out.println("Age");
                 amount = readData.nextInt();
             }
-            System.out.print("price: ");
-            float price = readData.nextFloat();
 
-            Document doc1 = new Document("id", id).append("invoiceNumber", invoiceNumber).append("name", name).append("amount", amount).append("price", price);
+            Document doc1 = new Document("id", id).append("argument", argument).append("amount", amount);
 
             UpdateResult result = collection.replaceOne(docmod, doc1);
             System.out.println("Matched document count: " + result.getMatchedCount());
@@ -134,7 +124,7 @@ public class DirectExpenseDB {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = 
-                    database.getCollection("directExpense");
+                    database.getCollection("fixedExpense");
 
             MongoCursor<Document> cursor = collection.find().cursor();
 
@@ -148,5 +138,3 @@ public class DirectExpenseDB {
         }
     }
 }
-
-  
