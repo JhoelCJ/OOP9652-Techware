@@ -1,3 +1,4 @@
+
 package ec.edu.espe.deinglogin.model;
 
 //import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -27,35 +28,43 @@ public class Login {
  
      public static void createDocument() {
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
         try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
             System.out.print("Username: ");
             String username = readData.next();
             System.out.println("Password");
             String password = readData.next();
             
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            String cifrada = "";
+		int desplazar = 1;
+ 
+		for (int i = 0; i < password.length(); i++) {
+ 
+			int codigoLetra = password.codePointAt(i);
 
-            Document doc1 = new Document("username", username).append("password", hashedPassword);
+			char letraDesplazada = (char)(codigoLetra + desplazar);
+
+			cifrada = cifrada + letraDesplazada;
+		}
+
+            Document doc1 = new Document("username", username).append("password", cifrada);
 
             collection.insertOne(doc1);
-            /*InsertOneResult result = collection.insertOne(doc1);
-            System.out.println("Inserted a document with the following id: "
-                 + result.getInsertedId().asObjectId().getValue());*/
+
         }
     }
      public static void deleteDocument() {
-    String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority"; // Agrega tu URI de conexión de MongoDB aquí
-    Scanner readData = new Scanner(System.in);
-    try (MongoClient mongoClient = MongoClients.create(uri)) {
-        MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-        MongoCollection<Document> collection = database.getCollection("login");
+         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        Scanner readData = new Scanner(System.in);
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
-        System.out.println("¿Que username quiere combalidar?");
+        System.out.println("What username do you want to delete?");
         String del = readData.next();
         Bson filter = Filters.eq("username", del);
         Document resultado = collection.find(filter).first();
@@ -67,14 +76,15 @@ public class Login {
         }
     }
 }
+
     public static void readDocument() {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+          String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
         try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
-            System.out.println("¿Cual username quiere ver?");
+            System.out.println("What Username you want to view?");
             String search = readData.next();
             MongoCursor<Document> cursor = collection.find(eq("Username", search)).cursor();
 
@@ -89,16 +99,16 @@ public class Login {
     }
 
     public static void modifyDocument() {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
         try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
-            System.out.println("¿Cual username quiere ver?");
+            System.out.println("What Username you want to modify?");
             String search = readData.next();
             Document docmod = collection.find(eq("Username", search)).first();
-            System.out.println("Porfavor inserte un nuevo dato:");
+            System.out.println("Please insert new data:");
 
             System.out.print("Username: ");
             String username = readData.next();
@@ -114,11 +124,11 @@ public class Login {
     }
 
     public static void showDatabase() {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
         try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
             MongoCursor<Document> cursor = collection.find().cursor();
 
