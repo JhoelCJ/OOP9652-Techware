@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.model;
 
 //import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -56,7 +55,7 @@ public class Login {
         MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
         MongoCollection<Document> collection = database.getCollection("login");
 
-        System.out.println("What username do you want to delete?");
+        System.out.println("¿Que username quiere combalidar?");
         String del = readData.next();
         Bson filter = Filters.eq("username", del);
         Document resultado = collection.find(filter).first();
@@ -68,27 +67,6 @@ public class Login {
         }
     }
 }
-
-/*
-    public static void deleteDocument() {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
-
-            System.out.println("What username you Want delete?");
-            String del = readData.next();
-            Bson filter = Filters.eq("Username", del);
-            Document resultado = collection.find(filter).first();
-
-            if (resultado != null) {
-                System.out.println("El dato existe en la colección.");
-            } else {
-                System.out.println("El dato no existe en la colección.");
-            }
-    }
-}*/
     public static void readDocument() {
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
@@ -96,7 +74,7 @@ public class Login {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("login");
 
-            System.out.println("What Username you want to view?");
+            System.out.println("¿Cual username quiere ver?");
             String search = readData.next();
             MongoCursor<Document> cursor = collection.find(eq("Username", search)).cursor();
 
@@ -117,10 +95,10 @@ public class Login {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("login");
 
-            System.out.println("What Username you want to modify?");
+            System.out.println("¿Cual username quiere ver?");
             String search = readData.next();
             Document docmod = collection.find(eq("Username", search)).first();
-            System.out.println("Please insert new data:");
+            System.out.println("Porfavor inserte un nuevo dato:");
 
             System.out.print("Username: ");
             String username = readData.next();
