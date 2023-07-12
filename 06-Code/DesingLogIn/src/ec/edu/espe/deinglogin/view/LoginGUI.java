@@ -1,8 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ec.edu.espe.deinglogin.view;
+
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import static ec.edu.espe.deinglogin.model.Login.createDocument;
+import ec.edu.espe.deinglogin.model.UserAndPassword;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
 
 /**
  *
@@ -32,11 +43,16 @@ public class LoginGUI extends javax.swing.JFrame {
         txPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         nameOfProyect = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnExitProgram = new javax.swing.JButton();
+        btnSignIn = new javax.swing.JButton();
+        btnEnter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txUser.setText("Usuario");
 
+        txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
@@ -45,48 +61,88 @@ public class LoginGUI extends javax.swing.JFrame {
 
         txPassword.setText("Contraseña");
 
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
             }
         });
 
-        nameOfProyect.setText("Panes De La Ruminahui");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txPassword)
-                            .addComponent(txUser))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(nameOfProyect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                    .addComponent(txPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txUser, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(188, 188, 188))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(nameOfProyect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(55, 55, 55)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txUser))
-                .addGap(58, 58, 58)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txPassword))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        nameOfProyect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameOfProyect.setText("Panes De La Ruminahui");
+
+        btnExitProgram.setText("Salir");
+        btnExitProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitProgramActionPerformed(evt);
+            }
+        });
+
+        btnSignIn.setText("Registrar");
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignInActionPerformed(evt);
+            }
+        });
+
+        btnEnter.setText("Entrar");
+        btnEnter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(btnExitProgram)
+                .addGap(116, 116, 116)
+                .addComponent(btnSignIn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnter)
+                .addGap(57, 57, 57))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSignIn)
+                    .addComponent(btnExitProgram)
+                    .addComponent(btnEnter))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,26 +151,162 @@ public class LoginGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(nameOfProyect, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameOfProyect, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public  void createDocument(){
+        
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
+            int id = Integer.parseInt(TFId.getText());
+        String fullName=TFullName.getText();
+        String contactName=cmbContacName.getSelectedItem().toString();
+        String phoneNumber=TFPhoneNumber.getText().trim();
+        String email = TFEmail.getText();
+        String comments = TAComments.getText();
+        String gender=CBGender.getSelectedItem().toString();
+        String type= CBType.getSelectedItem().toString();
+        String bornOnDate= TFBornOnDate.getText();
+        String favoriteTeam = CBFavoriteTeam.getSelectedItem().toString();
+        String hobbies=CBHobbies.getSelectedItem().toString();
+        javax.swing.text.Document doc1 = new javax.swing.text.Document("Id", id).append("Full name", fullName).append
+        ("Phone Number", phoneNumber).append("E-mail", email).append("Born On Date",bornOnDate).append("Contact Name",contactName)
+                .append("Gender", gender).append("Hobbies", hobbies).append("Type", type)
+                .append("Favorite Team",favoriteTeam ).append("Comments", comments);
+
+            collection.insertOne(doc1);
+        }
+    }
+    
+    private void emptyFiled() {
+        
+        txtUser.setText("");
+        txtPassword.setText("");
+        
+    }
+    
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         
+        
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        Scanner readData = new Scanner(System.in);
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
+
+            String password = txtPassword.getText();
+
+            String cifrada = "";
+            int desplazar = 1;
+
+            for (int i = 0; i < password.length(); i++) {
+
+                int codigoLetra = password.codePointAt(i);
+
+                char letraDesplazada = (char) (codigoLetra + desplazar);
+
+                cifrada = cifrada + letraDesplazada;
+            }
+
+            Bson cifradaFilter = Filters.eq("password", cifrada);
+            Document cifradaVerification = collection.find(cifradaFilter).first();
+
+
+            if (cifradaVerification != null) {
+                
+               
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña no encontrada");
+            } 
+        }
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        
+       
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        Scanner readData = new Scanner(System.in);
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
+
+
+            String username = txtUser.getText();
+            Bson usernameFilter = Filters.eq("username", username);
+            Document usernameVerification = collection.find(usernameFilter).first();
+ 
+            if (usernameVerification != null) {
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrada");
+            }
+        }
     }//GEN-LAST:event_txtUserActionPerformed
 
+    private void btnExitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitProgramActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnExitProgramActionPerformed
+
+    private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
+
+        UserAndPassword userAndPassword;
+        
+        int option = JOptionPane.showConfirmDialog(this, "Are you sure to save \n" + userAndPassword);
+        if(option == 0){
+            JOptionPane.showMessageDialog(rootPane, "Saved");
+            createDocument();
+            emptyFiled();
+        }
+        if(option == 1){
+            JOptionPane.showMessageDialog(rootPane, "Abort");
+            emptyFiled();
+        }
+        if(option == 2){
+            JOptionPane.showMessageDialog(rootPane, "Cancelled");
+        }
+        
+        emptyFiled();
+
+    }//GEN-LAST:event_btnEnterActionPerformed
+
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private UserAndPassword readData(){
     
+        UserAndPassword userAndPassword;
+        
+        String user;
+        String pasword;
+        
+        user = txtUser.getText();
+        pasword = txtPassword.getText();
+        
+        userAndPassword = new UserAndPassword(user, pasword);
+        
+        return userAndPassword;
+    }
     
     /**
      * @param args the command line arguments
@@ -153,7 +345,11 @@ public class LoginGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnter;
+    private javax.swing.JButton btnExitProgram;
+    private javax.swing.JButton btnSignIn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel nameOfProyect;
     private javax.swing.JLabel txPassword;
     private javax.swing.JLabel txUser;
