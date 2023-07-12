@@ -14,13 +14,11 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import com.mongodb.client.result.UpdateResult;
 
-
-
-
 /**
  *
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  */
+
 public class Login {
  
      public static void createDocument() {
