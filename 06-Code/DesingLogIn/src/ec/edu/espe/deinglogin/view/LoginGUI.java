@@ -1,6 +1,4 @@
-
 package ec.edu.espe.deinglogin.view;
-
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -13,7 +11,6 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-
 
 /**
  *
@@ -171,96 +168,58 @@ public class LoginGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public  void createDocument(){
-        
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-        
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Login");
-            int id = Integer.parseInt(TFId.getText());
-        String fullName=TFullName.getText();
-        String contactName=cmbContacName.getSelectedItem().toString();
-        String phoneNumber=TFPhoneNumber.getText().trim();
-        String email = TFEmail.getText();
-        String comments = TAComments.getText();
-        String gender=CBGender.getSelectedItem().toString();
-        String type= CBType.getSelectedItem().toString();
-        String bornOnDate= TFBornOnDate.getText();
-        String favoriteTeam = CBFavoriteTeam.getSelectedItem().toString();
-        String hobbies=CBHobbies.getSelectedItem().toString();
-        javax.swing.text.Document doc1 = new javax.swing.text.Document("Id", id).append("Full name", fullName).append
-        ("Phone Number", phoneNumber).append("E-mail", email).append("Born On Date",bornOnDate).append("Contact Name",contactName)
-                .append("Gender", gender).append("Hobbies", hobbies).append("Type", type)
-                .append("Favorite Team",favoriteTeam ).append("Comments", comments);
-
-            collection.insertOne(doc1);
-        }
-    }
-    
-    private void emptyFiled() {
-        
-        txtUser.setText("");
-        txtPassword.setText("");
-        
-    }
-    
+    private boolean userValid = false;
+    private boolean passwordValid = false;
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        
-        
+        String password = txtPassword.getText();
+
+        String cifrada = "";
+        int desplazar = 1;
+
+        for (int i = 0; i < password.length(); i++) {
+            int codigoLetra = password.codePointAt(i);
+            char letraDesplazada = (char) (codigoLetra + desplazar);
+            cifrada = cifrada + letraDesplazada;
+        }
+
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-        Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
-            String password = txtPassword.getText();
+            Bson passwordFilter = Filters.eq("password", cifrada);
+            Document passwordVerification = collection.find(passwordFilter).first();
 
-            String cifrada = "";
-            int desplazar = 1;
+            if (passwordVerification != null) {
 
-            for (int i = 0; i < password.length(); i++) {
-
-                int codigoLetra = password.codePointAt(i);
-
-                char letraDesplazada = (char) (codigoLetra + desplazar);
-
-                cifrada = cifrada + letraDesplazada;
-            }
-
-            Bson cifradaFilter = Filters.eq("password", cifrada);
-            Document cifradaVerification = collection.find(cifradaFilter).first();
-
-
-            if (cifradaVerification != null) {
-                
-               
+                passwordValid = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Contraseña no encontrada");
-            } 
+
+                passwordValid = false;
+            }
         }
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-       
+        String username = txtUser.getText();
+
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-        Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
-
-            String username = txtUser.getText();
             Bson usernameFilter = Filters.eq("username", username);
             Document usernameVerification = collection.find(usernameFilter).first();
- 
+
             if (usernameVerification != null) {
 
+                userValid = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrada");
+
+                userValid = false;
             }
         }
+
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnExitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitProgramActionPerformed
@@ -268,24 +227,13 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitProgramActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-
-        UserAndPassword userAndPassword;
-        
-        int option = JOptionPane.showConfirmDialog(this, "Are you sure to save \n" + userAndPassword);
-        if(option == 0){
-            JOptionPane.showMessageDialog(rootPane, "Saved");
-            createDocument();
-            emptyFiled();
+        if (userValid && passwordValid) {
+            // Inicio de sesión exitoso
+            JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+        } else {
+            // Inicio de sesión fallido
+            JOptionPane.showMessageDialog(null, "Inicio de sesión fallido");
         }
-        if(option == 1){
-            JOptionPane.showMessageDialog(rootPane, "Abort");
-            emptyFiled();
-        }
-        if(option == 2){
-            JOptionPane.showMessageDialog(rootPane, "Cancelled");
-        }
-        
-        emptyFiled();
 
     }//GEN-LAST:event_btnEnterActionPerformed
 
@@ -293,21 +241,6 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSignInActionPerformed
 
-    private UserAndPassword readData(){
-    
-        UserAndPassword userAndPassword;
-        
-        String user;
-        String pasword;
-        
-        user = txtUser.getText();
-        pasword = txtPassword.getText();
-        
-        userAndPassword = new UserAndPassword(user, pasword);
-        
-        return userAndPassword;
-    }
-    
     /**
      * @param args the command line arguments
      */

@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.model;
 
 //import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -18,66 +17,18 @@ import com.mongodb.client.result.UpdateResult;
  *
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  */
-
 public class Login {
- 
-     public static void createDocument() {
+
+    public static void createDocument() {
 
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
             System.out.print("Username: ");
             String username = readData.next();
-            System.out.println("Password");
-            String password = readData.next();
-            
-            String cifrada = "";
-		int desplazar = 1;
- 
-		for (int i = 0; i < password.length(); i++) {
- 
-			int codigoLetra = password.codePointAt(i);
-
-			char letraDesplazada = (char)(codigoLetra + desplazar);
-
-			cifrada = cifrada + letraDesplazada;
-		}
-
-            Document doc1 = new Document("username", username).append("password", cifrada);
-
-            collection.insertOne(doc1);
-
-        }
-    }
-     public static void deleteDocument() {
-         
-        boolean userLoop = true;
-        boolean passwordLoop = true;
-         
-         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-        Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Login");
-
-            do{
-            System.out.print("Username: ");
-            String username = readData.next();
-            Bson usernameFilter = Filters.eq("username", username);
-            Document usernameVerification = collection.find(usernameFilter).first();
- 
-            if (usernameVerification != null) {
-                System.out.println("El dato existe en la colección.");
-                userLoop = false;
-            } else {
-                System.out.println("El dato no existe en la colección.");
-            }
-            }while(userLoop);
-            
-            do{
             System.out.println("Password");
             String password = readData.next();
 
@@ -93,21 +44,68 @@ public class Login {
                 cifrada = cifrada + letraDesplazada;
             }
 
-            Bson cifradaFilter = Filters.eq("password", cifrada);
-            Document cifradaVerification = collection.find(cifradaFilter).first();
+            Document doc1 = new Document("username", username).append("password", cifrada);
 
+            collection.insertOne(doc1);
 
-            if (cifradaVerification != null) {
-                System.out.println("El dato existe en la colección.");
-                passwordLoop= false;
-            } else {
-                System.out.println("El dato no existe en la colección.");
-            } 
-        }while(passwordLoop);
         }
+    }
+
+    public static void deleteDocument() {
+
+        boolean userLoop = true;
+        boolean passwordLoop = true;
+
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        Scanner readData = new Scanner(System.in);
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
+
+            do {
+                System.out.print("Username: ");
+                String username = readData.next();
+                Bson usernameFilter = Filters.eq("username", username);
+                Document usernameVerification = collection.find(usernameFilter).first();
+
+                if (usernameVerification != null) {
+                    System.out.println("El dato existe en la colección.");
+                    userLoop = false;
+                } else {
+                    System.out.println("El dato no existe en la colección.");
+                }
+            } while (userLoop);
+
+            do {
+                System.out.println("Password");
+                String password = readData.next();
+
+                String cifrada = "";
+                int desplazar = 1;
+
+                for (int i = 0; i < password.length(); i++) {
+
+                    int codigoLetra = password.codePointAt(i);
+
+                    char letraDesplazada = (char) (codigoLetra + desplazar);
+
+                    cifrada = cifrada + letraDesplazada;
+                }
+
+                Bson cifradaFilter = Filters.eq("password", cifrada);
+                Document cifradaVerification = collection.find(cifradaFilter).first();
+
+                if (cifradaVerification != null) {
+                    System.out.println("El dato existe en la colección.");
+                    passwordLoop = false;
+                } else {
+                    System.out.println("El dato no existe en la colección.");
+                }
+            } while (passwordLoop);
         }
-            
-            /*
+    }
+
+    /*
         System.out.println("What username do you want to delete?");
         String del = readData.next();
         Bson filter = Filters.eq("username", del);
@@ -119,12 +117,10 @@ public class Login {
             System.out.println("El dato no existe en la colección.");
         }
     }*/
-
-
     public static void readDocument() {
-          String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
@@ -143,9 +139,9 @@ public class Login {
     }
 
     public static void modifyDocument() {
-         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
@@ -170,7 +166,7 @@ public class Login {
     public static void showDatabase() {
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         Scanner readData = new Scanner(System.in);
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
@@ -185,5 +181,5 @@ public class Login {
             }
         }
     }
-    
+
 }
