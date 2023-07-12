@@ -9,12 +9,9 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
-//import com.mongodb.client.result.UpdateResult;
 import java.util.Scanner;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.mindrot.jbcrypt.BCrypt;
-//import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 
 
@@ -64,6 +61,42 @@ public class Login {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
 
+            System.out.print("Username: ");
+            String username = readData.next();
+            System.out.println("Password");
+            String password = readData.next();
+
+            String cifrada = "";
+            int desplazar = 1;
+
+            for (int i = 0; i < password.length(); i++) {
+
+                int codigoLetra = password.codePointAt(i);
+
+                char letraDesplazada = (char) (codigoLetra + desplazar);
+
+                cifrada = cifrada + letraDesplazada;
+            }
+
+            Bson usernameFilter = Filters.eq("username", username);
+            Document usernameVerification = collection.find(usernameFilter).first();
+            Bson cifradaFilter = Filters.eq("password", cifrada);
+            Document cifradaVerification = collection.find(cifradaFilter).first();
+            
+            if (usernameVerification != null) {
+                System.out.println("El dato existe en la colección.");
+            } else {
+                System.out.println("El dato no existe en la colección.");
+            }
+
+            if (cifradaVerification != null) {
+                System.out.println("El dato existe en la colección.");
+            } else {
+                System.out.println("El dato no existe en la colección.");
+            }
+        }
+            
+            /*
         System.out.println("What username do you want to delete?");
         String del = readData.next();
         Bson filter = Filters.eq("username", del);
@@ -74,7 +107,7 @@ public class Login {
         } else {
             System.out.println("El dato no existe en la colección.");
         }
-    }
+    }*/
 }
 
     public static void readDocument() {
