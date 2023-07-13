@@ -4,12 +4,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.model.Inventory;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 
 /**
  *
@@ -22,8 +19,7 @@ public class InventoryData extends javax.swing.JFrame {
     public void setInventoryGUI(InventoryGUI inventoryGUI) {
         this.inventoryGUI = inventoryGUI;
     }
-    
-    
+
     /**
      * Creates new form InventoryData
      */

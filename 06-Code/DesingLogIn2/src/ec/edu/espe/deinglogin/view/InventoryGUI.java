@@ -8,18 +8,11 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import javax.swing.JFrame;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import ec.edu.espe.deinglogin.model.Inventory;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 
 /**
  *
@@ -203,6 +196,8 @@ public class InventoryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        MainPage mainPage = new MainPage();
+        mainPage.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 
