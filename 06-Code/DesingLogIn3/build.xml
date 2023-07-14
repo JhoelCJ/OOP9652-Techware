@@ -68,6 +68,29 @@
     the compile target as the regular run target does. Again, for a list of available 
     properties which you can use, check the target you are overriding in the
     nbproject/build-impl.xml file. 
+-->
+    <path id="classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
 
+    <target name="run" depends="run-single">
+        <jvmarg value="-ea"/>
+        <classpath>
+            <path refid="classpath"/>
+        </classpath>
+        <jvmarg value="-Dfile.encoding=UTF8"/>
+        <!-- ... -->
+    </target>
+
+    <target name="compile" depends="pre-compile" description="Compile project">
+        <jvmarg value="-J-Dfile.encoding=UTF8"/>
+        <classpath>
+            <path refid="classpath"/>
+        </classpath>
+        <!-- ... -->
+    </target>
+</project>
     -->
 </project>

@@ -1,6 +1,4 @@
-
 package ec.edu.espe.deinglogin.view;
-
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
@@ -15,15 +13,15 @@ import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-
 /**
  *
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class LoginGUI extends javax.swing.JFrame {
-    
+
     private boolean userValid = false;
     private boolean passwordValid = false;
+
     /**
      * Creates new form Login
      */
@@ -175,44 +173,44 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public  void createDocument(){
-        
+    public void createDocument() {
+
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-        
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
+
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
             MongoCollection<Document> collection = database.getCollection("Login");
-            
-        String user = txtUser.getText();
-        String pasword = txtPassword.getText();
-        
-        String cifrada = "";
-		int desplazar = 1;
- 
-		for (int i = 0; i < pasword.length(); i++) {
- 
-			int codigoLetra = pasword.codePointAt(i);
 
-			char letraDesplazada = (char)(codigoLetra + desplazar);
+            String user = txtUser.getText();
+            String pasword = txtPassword.getText();
 
-			cifrada = cifrada + letraDesplazada;
-		}
-            
-        Document doc1 = new Document("User", user).append("Pasword", cifrada);
+            String encrypted = "";
+            int move = 1;
+
+            for (int i = 0; i < pasword.length(); i++) {
+
+                int codeRename = pasword.codePointAt(i);
+
+                char letterMove = (char) (codeRename + move);
+
+                encrypted = encrypted + letterMove;
+            }
+
+            Document doc1 = new Document("User", user).append("Pasword", encrypted);
 
             collection.insertOne(doc1);
         }
     }
-    
+
     private void emptyFiled() {
-        
+
         txtUser.setText("");
         txtPassword.setText("");
-        
+
     }
-    
+
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        
+
     }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnExitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitProgramActionPerformed
@@ -220,33 +218,33 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitProgramActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-                                         
-       String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
 
-    try (MongoClient mongoClient = MongoClients.create(uri)) {
-        MongoDatabase database = mongoClient.getDatabase("Prueba");
-        MongoCollection<Document> collection = database.getCollection("Login");
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
 
-        String username = txtUser.getText();
-        String password = txtPassword.getText();
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Login");
 
-        String cifrada = "";
-        int desplazar = 1;
+            String username = txtUser.getText();
+            String password = txtPassword.getText();
 
-        for (int i = 0; i < password.length(); i++) {
-            int codigoLetra = password.codePointAt(i);
-            char letraDesplazada = (char) (codigoLetra + desplazar);
-            cifrada = cifrada + letraDesplazada;
-        }
+            String cifrada = "";
+            int desplazar = 1;
 
-        Bson usernameFilter = Filters.eq("User", username);
-        Document userDocument = collection.find(usernameFilter).first();
+            for (int i = 0; i < password.length(); i++) {
+                int codigoLetra = password.codePointAt(i);
+                char letraDesplazada = (char) (codigoLetra + desplazar);
+                cifrada = cifrada + letraDesplazada;
+            }
 
-        if (userDocument != null) {
-            String storedPassword = userDocument.getString("Pasword");
-            if (storedPassword.equals(cifrada)) {
+            Bson usernameFilter = Filters.eq("User", username);
+            Document userDocument = collection.find(usernameFilter).first();
 
-                Date fechaActual = new Date();
+            if (userDocument != null) {
+                String storedPassword = userDocument.getString("Pasword");
+                if (storedPassword.equals(cifrada)) {
+
+                    Date fechaActual = new Date();
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String fechaTexto = sdf.format(fechaActual);
@@ -254,37 +252,41 @@ public class LoginGUI extends javax.swing.JFrame {
                     userDocument.append("Fecha de entrada: ", fechaTexto);
 
                     collection.replaceOne(usernameFilter, userDocument);
-                    
+                    MainPage mainPage = new MainPage();
+                    mainPage.setVisible(true);
+                    this.setVisible(false);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                    txtUser.setText("");
+                    txtPassword.setText("");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                txtUser.setText("");
+                    txtPassword.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+        } catch (MongoException e) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            e.printStackTrace();
         }
-    } catch (MongoException e) {
-        JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-        e.printStackTrace();
-    }
-    
-        MainPage mainPage = new MainPage();
-        mainPage.setVisible(true);
-        this.setVisible(false);
-    
+
+
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        
+
         UserAndPassword userAndPassword;
-        
+
         String user;
         String pasword;
         user = txtUser.getText();
         pasword = txtPassword.getText();
         userAndPassword = new UserAndPassword(user, pasword);
 
-        int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n" );
-        
-        if(option == 0){
+        int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n");
+
+        if (option == 0) {
             JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
             createDocument();
             emptyFiled();
@@ -297,20 +299,19 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private UserAndPassword readData() {
 
-    private UserAndPassword readData(){
-        
         UserAndPassword userAndPassword;
-        
+
         String user;
         String pasword;
         user = txtUser.getText();
         pasword = txtPassword.getText();
         userAndPassword = new UserAndPassword(user, pasword);
-        
+
         return userAndPassword;
     }
-    
+
     /**
      * @param args the command line arguments
      */

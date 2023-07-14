@@ -1,6 +1,7 @@
 
 package ec.edu.espe.deinglogin.view;
 
+import com.itextpdf.text.PageSize;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -8,11 +9,13 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.bson.Document;
+
 
 /**
  *
@@ -69,7 +72,7 @@ public class InventoryGUI extends javax.swing.JFrame {
             }
         });
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,7 +120,7 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        btnCancel.setText("Cancelar");
+        btnCancel.setText("Rgresar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -143,13 +146,13 @@ public class InventoryGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(91, 91, 91)
                 .addComponent(btnAdd)
-                .addGap(112, 112, 112)
+                .addGap(83, 83, 83)
                 .addComponent(btnDelete)
-                .addGap(40, 40, 40))
+                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
