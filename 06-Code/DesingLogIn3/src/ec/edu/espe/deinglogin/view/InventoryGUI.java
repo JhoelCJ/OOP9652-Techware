@@ -1,7 +1,7 @@
 
 package ec.edu.espe.deinglogin.view;
 
-import com.itextpdf.text.PageSize;
+
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -120,7 +120,7 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        btnCancel.setText("Rgresar");
+        btnCancel.setText("Regresar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);

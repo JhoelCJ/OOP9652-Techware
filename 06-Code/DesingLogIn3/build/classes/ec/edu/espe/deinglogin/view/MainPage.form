@@ -22,6 +22,21 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Presupuesto"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gastos"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="mnuHelp">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
@@ -32,6 +47,16 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mniHelp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contacto"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniHelpActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnExit">
           <Properties>
@@ -361,8 +386,8 @@
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="271" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="277" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtFinalPrice" min="-2" max="-2" attributes="0"/>

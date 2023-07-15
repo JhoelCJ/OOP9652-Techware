@@ -12,6 +12,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.model.Inventory;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -71,7 +72,10 @@ public class MainPage extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuInventory = new javax.swing.JMenu();
         itmAddRawMaterial = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
+        mniHelp = new javax.swing.JMenuItem();
         mnExit = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -291,8 +295,8 @@ public class MainPage extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(txtFinalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,9 +320,30 @@ public class MainPage extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuInventory);
 
+        jMenu1.setText("Presupuesto");
+
+        jMenuItem2.setText("Gastos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
         mnuHelp.setText("Ayuda");
         mnuHelp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mnuHelp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        mniHelp.setText("Contacto");
+        mniHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniHelpActionPerformed(evt);
+            }
+        });
+        mnuHelp.add(mniHelp);
+
         jMenuBar1.add(mnuHelp);
 
         mnExit.setText("Finalizar");
@@ -487,6 +512,7 @@ public class MainPage extends javax.swing.JFrame {
                 txtAmount.setText("");
                 txtAmount.requestFocus();
             }
+            btnAddProduct.requestFocus();
         }
     }//GEN-LAST:event_txtAmountKeyPressed
 
@@ -500,6 +526,7 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewSaleActionPerformed
 
     private void btnFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishSaleActionPerformed
+        saveSale();
         String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Prueba");
@@ -526,11 +553,42 @@ public class MainPage extends javax.swing.JFrame {
         }
         initAllPanel();
     }//GEN-LAST:event_btnFinishSaleActionPerformed
+    
+    private void saveSale(){
+        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
 
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Prueba");
+            MongoCollection<Document> collection = database.getCollection("Ingresos");
+
+            int id;
+            String name;
+            int amount;
+            float price;
+            float finalPrice;
+            
+            for(int i=0; i<saleList.size(); i++){
+                
+            sale = saleList.get(i);
+                
+            id = sale.getId();
+            name = sale.getNameProduct();
+            amount = sale.getAmount();
+            price = sale.getTotalPrice();
+            finalPrice = Float.parseFloat(txtFinalPrice.getText());  
+            
+            Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
+
+            collection.insertOne(doc1);
+            } 
+        }
+    }
+    
     private void btnAddProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddProductKeyPressed
         ValidationUtil validationUtil = new ValidationUtil();
-
-        boolean validate = true;
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            boolean validate = true;
         
         int id = 0;
         int amount = 0;
@@ -575,6 +633,9 @@ public class MainPage extends javax.swing.JFrame {
             }
 
         }
+        }
+
+        
     }//GEN-LAST:event_btnAddProductKeyPressed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -592,6 +653,16 @@ public class MainPage extends javax.swing.JFrame {
     private void txtFinalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFinalPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFinalPriceActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        IncomeGUI billsGUI = new IncomeGUI();
+        billsGUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void mniHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHelpActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Por faovr contactese al siguiente numero: 0987654321");
+    }//GEN-LAST:event_mniHelpActionPerformed
 
     private void addProductToList() {
         float finalPrice = Float.parseFloat(txtFinalPrice.getText());
@@ -621,6 +692,7 @@ public class MainPage extends javax.swing.JFrame {
         model.addColumn("Precio Unitario");
         model.addColumn("Precio Total");
     }
+    
 
     /**
      * @param args the command line arguments
@@ -656,6 +728,8 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntNewProduct;
@@ -669,12 +743,15 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu mnExit;
+    private javax.swing.JMenuItem mniHelp;
     private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenu mnuInventory;
     private javax.swing.JTable tabList;
