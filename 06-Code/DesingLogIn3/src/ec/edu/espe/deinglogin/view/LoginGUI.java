@@ -7,6 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
+import ec.edu.espe.utils.ValidationUtil;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -277,9 +278,20 @@ public class LoginGUI extends javax.swing.JFrame {
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
 
         UserAndPassword userAndPassword;
-
+        ValidationUtil validationUtil = new ValidationUtil();
+        
         String user;
         String pasword;
+        
+        boolean validate;
+        if(validationUtil.ValidateLetterStringWithSpaces(txtUser.getText())){
+            validate = true;
+            user = txtUser.getText();
+        } else {
+          validate = false;
+          JOptionPane.showMessageDialog(null, "Ingrese Solo Letras Para El Usuario");
+        }
+        
         user = txtUser.getText();
         pasword = txtPassword.getText();
         userAndPassword = new UserAndPassword(user, pasword);

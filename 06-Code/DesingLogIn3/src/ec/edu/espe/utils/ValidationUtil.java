@@ -37,7 +37,7 @@ public class ValidationUtil {
         return input.matches("^[0-9]+$");
     }
 
-    public boolean ValidateLetterString(String input) {
-        return input.matches("^[a-zA-Z]+$");
+    public boolean ValidateLetterStringWithSpaces(String input) {
+    return input.matches("^[ a-zA-Z ]+$");
     }
 }
