@@ -5,8 +5,15 @@
 
 package ec.edu.espe.deinglogin.view;
 
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.awt.print.PrinterException;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import org.bson.Document;
 
 /**
  *
@@ -17,8 +24,35 @@ public class ExpensesGUI extends javax.swing.JFrame {
     /** Creates new form Expensive */
     public ExpensesGUI() {
         initComponents();
+        loadRawMaterialData();
     }
+    
+    public void loadRawMaterialData() {
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
 
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("rawMaterial");
+
+            FindIterable<Document> iterable = collection.find();
+            for (Document document : iterable) {
+                int id = document.getInteger("Id");
+                String nombre = document.getString("Name");
+                int cantidad = document.getInteger("Ammount");
+                float precio = document.getDouble("Price").floatValue();
+
+                model.addRow(new Object[]{id, nombre, cantidad, precio});
+            }
+        }
+
+        tbExpensive.setModel(model);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -125,9 +159,7 @@ public class ExpensesGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MainPage mainPage = new MainPage();
         mainPage.setVisible(true);

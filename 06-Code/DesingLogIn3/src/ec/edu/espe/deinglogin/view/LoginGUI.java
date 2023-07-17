@@ -176,11 +176,10 @@ public class LoginGUI extends javax.swing.JFrame {
 
     public void createDocument() {
 
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Login");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("login");
 
             String user = txtUser.getText();
             String pasword = txtPassword.getText();
@@ -220,11 +219,10 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
 
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Login");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("login");
 
             String username = txtUser.getText();
             String password = txtPassword.getText();

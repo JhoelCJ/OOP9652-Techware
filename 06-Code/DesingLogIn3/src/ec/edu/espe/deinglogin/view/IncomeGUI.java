@@ -37,12 +37,12 @@ public class IncomeGUI extends javax.swing.JFrame {
         model.addColumn("Producto");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
-        model.addColumn("Total");
+        //model.addColumn("Total");
 
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Ingresos");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("income");
 
             FindIterable<Document> iterable = collection.find();
             for (Document document : iterable) {
@@ -50,9 +50,9 @@ public class IncomeGUI extends javax.swing.JFrame {
                 String nombre = document.getString("Name");
                 int cantidad = document.getInteger("Ammount");
                 float precio = document.getDouble("Price").floatValue();
-                float total = document.getDouble("Final Price").floatValue();
+                //float total = document.getDouble("Final Price").floatValue();
 
-                model.addRow(new Object[]{id, nombre, cantidad, precio, total});
+                model.addRow(new Object[]{id, nombre, cantidad, precio});
             }
             tbIncome.setModel(model);
 

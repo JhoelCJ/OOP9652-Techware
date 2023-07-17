@@ -98,19 +98,19 @@ public class InventoryData extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(btnAdd)
-                .addGap(83, 83, 83)
+                .addGap(52, 52, 52)
                 .addComponent(btnCancel)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btnAdd)
+                .addGap(64, 64, 64))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnCancel))
+                    .addComponent(btnCancel)
+                    .addComponent(btnAdd))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -196,11 +196,10 @@ public class InventoryData extends javax.swing.JFrame {
 
         ValidationUtil validationUtil = new ValidationUtil();
 
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Inventario");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("inventory");
 
             Inventory inventory;
 

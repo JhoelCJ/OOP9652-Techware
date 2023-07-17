@@ -53,10 +53,10 @@ public class MainPage extends javax.swing.JFrame {
         model.addColumn("Cantidad");
         
 
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Inventario");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("inventory");
 
             FindIterable<Document> iterable = collection.find();
             for (Document document : iterable) {
@@ -69,20 +69,6 @@ public class MainPage extends javax.swing.JFrame {
             }
             tbInventory.setModel(model);
 
-        /*tbInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent event) {
-                if (!event.getValueIsAdjusting()) {
-                    int selectedRow = tbIncome.getSelectedRow();
-                    if (selectedRow != -1) {
-
-                        btnReturn.setEnabled(true);
-                    } else {
-
-                        btnReturn.setEnabled(false);
-                    }
-                }
-            }
-        });*/
         }
     }
     
@@ -121,6 +107,7 @@ public class MainPage extends javax.swing.JFrame {
         mnuInventory = new javax.swing.JMenu();
         itmAddRawMaterial = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -190,6 +177,11 @@ public class MainPage extends javax.swing.JFrame {
         txtFullValue.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         txtFullValue.setForeground(new java.awt.Color(0, 0, 0));
         txtFullValue.setRequestFocusEnabled(false);
+        txtFullValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFullValueActionPerformed(evt);
+            }
+        });
 
         bntNewProduct.setBackground(new java.awt.Color(255, 255, 255));
         bntNewProduct.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -395,6 +387,14 @@ public class MainPage extends javax.swing.JFrame {
         });
         mnuInventory.add(jMenuItem4);
 
+        jMenuItem5.setText("Materia Prima");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        mnuInventory.add(jMenuItem5);
+
         jMenuBar1.add(mnuInventory);
 
         jMenu1.setText("Presupuesto");
@@ -501,12 +501,12 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdKeyPressed
 
     private void validateProduct(int id) {
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Inventario");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("inventory");
 
-            //Bson usernameFilter = Filters.eq("Id", String.valueOf(id));
             Bson usernameFilter = Filters.eq("Id", id);
             Document productDocument = collection.find(usernameFilter).first();
 
@@ -612,10 +612,10 @@ public class MainPage extends javax.swing.JFrame {
 
     private void btnFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishSaleActionPerformed
         saveSale();
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Inventario");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("inventory");
             int sizeSaleList = saleList.size();
             for (int i = 0; i < sizeSaleList; i++) {
                 sale = saleList.get(i);
@@ -640,11 +640,11 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinishSaleActionPerformed
     
     private void saveSale(){
-        String uri = "mongodb+srv://gcalvache:gcalvache@cluster0.qsalyjy.mongodb.net/?retryWrites=true&w=majority";
-
+        
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Prueba");
-            MongoCollection<Document> collection = database.getCollection("Ingresos");
+            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+            MongoCollection<Document> collection = database.getCollection("income");
 
             int id;
             String name;
@@ -670,6 +670,7 @@ public class MainPage extends javax.swing.JFrame {
     }
     
     private void btnAddProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddProductKeyPressed
+        
         ValidationUtil validationUtil = new ValidationUtil();
         
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -681,8 +682,6 @@ public class MainPage extends javax.swing.JFrame {
         
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            
-            
             if (validationUtil.validateInt(txtId.getText())) {
                 btnAddProduct.requestFocus();
                 id = Integer.parseInt(txtId.getText());
@@ -716,11 +715,8 @@ public class MainPage extends javax.swing.JFrame {
                 addProductToList();
                 initPanelProduct();
             }
-
         }
-        }
-
-        
+      }  
     }//GEN-LAST:event_btnAddProductKeyPressed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -760,6 +756,16 @@ public class MainPage extends javax.swing.JFrame {
         machineryGUI.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        RawMaterialGUI rawMaterialGUI = new RawMaterialGUI();
+        rawMaterialGUI.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void txtFullValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFullValueActionPerformed
 
     private void addProductToList() {
         float finalPrice = Float.parseFloat(txtFinalPrice.getText());
@@ -846,6 +852,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
