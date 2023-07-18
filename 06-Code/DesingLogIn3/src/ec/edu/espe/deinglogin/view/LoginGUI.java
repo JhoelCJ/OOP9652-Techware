@@ -6,8 +6,10 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.controller.MongoConnect;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
 import ec.edu.espe.utils.ValidationUtil;
+import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -219,62 +221,26 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
-
-            String username = txtUser.getText();
-            String password = txtPassword.getText();
-
-            String cifrada = "";
-            int desplazar = 1;
-
-            for (int i = 0; i < password.length(); i++) {
-                int codigoLetra = password.codePointAt(i);
-                char letraDesplazada = (char) (codigoLetra + desplazar);
-                cifrada = cifrada + letraDesplazada;
-            }
-
-            Bson usernameFilter = Filters.eq("User", username);
-            Document userDocument = collection.find(usernameFilter).first();
-
-            if (userDocument != null) {
-                String storedPassword = userDocument.getString("Pasword");
-                if (storedPassword.equals(cifrada)) {
-
-                    Date fechaActual = new Date();
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    String fechaTexto = sdf.format(fechaActual);
-
-                    userDocument.append("Fecha de entrada: ", fechaTexto);
-
-                    collection.replaceOne(usernameFilter, userDocument);
-                    MainPage mainPage = new MainPage();
-                    mainPage.setVisible(true);
-                    this.setVisible(false);
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-                    txtUser.setText("");
-                    txtPassword.setText("");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-                txtUser.setText("");
-                    txtPassword.setText("");
-            }
-        } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-            e.printStackTrace();
+        String username = txtUser.getText();
+        String password = txtPassword.getText();
+        
+        MongoConnect mongoConnect = new MongoConnect();
+        
+        if( mongoConnect.loginConnect(username, password) ){
+            
+            txtUser.setText("");
+            txtPassword.setText("");
         }
-
-
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
 
+        signInAction();
+
+        emptyFiled();
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void signInAction() throws HeadlessException {
         UserAndPassword userAndPassword;
         ValidationUtil validationUtil = new ValidationUtil();
         
@@ -286,24 +252,22 @@ public class LoginGUI extends javax.swing.JFrame {
             validate = true;
             user = txtUser.getText();
         } else {
-          validate = false;
-          JOptionPane.showMessageDialog(null, "Ingrese Solo Letras Para El Usuario");
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras Para El Usuario");
         }
         
         user = txtUser.getText();
         pasword = txtPassword.getText();
         userAndPassword = new UserAndPassword(user, pasword);
-
+        
         int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n");
-
+        
         if (option == 0) {
             JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
             createDocument();
             emptyFiled();
         }
-
-        emptyFiled();
-    }//GEN-LAST:event_btnSignInActionPerformed
+    }
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:

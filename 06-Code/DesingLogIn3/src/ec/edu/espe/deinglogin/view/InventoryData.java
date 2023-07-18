@@ -8,6 +8,7 @@ import ec.edu.espe.deinglogin.model.Inventory;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import ec.edu.espe.utils.ValidationUtil;
+import java.awt.HeadlessException;
 
 /**
  *
@@ -196,20 +197,24 @@ public class InventoryData extends javax.swing.JFrame {
 
         ValidationUtil validationUtil = new ValidationUtil();
 
+        AddInventory(validationUtil);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void AddInventory(ValidationUtil validationUtil) throws NumberFormatException, HeadlessException {
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("inventory");
-
+            
             Inventory inventory;
-
+            
             int id = 1;
             String name = "string";
             int amount = 1;
             float price = 1;
-
+            
             boolean validate;
-
+            
             if (validationUtil.validateInt(txtId.getText())) {
                 validate = true;
                 id = Integer.parseInt(txtId.getText());
@@ -240,21 +245,21 @@ public class InventoryData extends javax.swing.JFrame {
             }
             if (validate) {
                 Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price);
-
+                
                 collection.insertOne(doc1);
-
+                
                 int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-
+                
                 if (option == 0) {
                     JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-
+                    
                     emptyFiled();
                 }
-
+                
                 emptyFiled();
             }
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
 

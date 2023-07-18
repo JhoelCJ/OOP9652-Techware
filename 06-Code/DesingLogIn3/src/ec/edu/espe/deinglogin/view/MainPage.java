@@ -13,12 +13,14 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.controller.MongoConnect;
 import ec.edu.espe.deinglogin.model.Inventory;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import java.util.*;
 import ec.edu.espe.utils.ValidationUtil;
+import java.awt.HeadlessException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -44,14 +46,13 @@ public class MainPage extends javax.swing.JFrame {
         addTable();
         loadInventoryGUI();
     }
-    
+
     public void loadInventoryGUI() {
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
         model.addColumn("Producto");
         model.addColumn("Cantidad");
-        
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -63,7 +64,6 @@ public class MainPage extends javax.swing.JFrame {
                 int id = document.getInteger("Id");
                 String nombre = document.getString("Name");
                 int cantidad = document.getInteger("Ammount");
-                
 
                 model.addRow(new Object[]{id, nombre, cantidad});
             }
@@ -71,7 +71,7 @@ public class MainPage extends javax.swing.JFrame {
 
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -480,8 +480,9 @@ public class MainPage extends javax.swing.JFrame {
     private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
 
     }//GEN-LAST:event_txtIdKeyReleased
-    
+
     private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+        
         ValidationUtil validationUtil = new ValidationUtil();
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
@@ -501,7 +502,7 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdKeyPressed
 
     private void validateProduct(int id) {
-        
+
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
@@ -527,50 +528,52 @@ public class MainPage extends javax.swing.JFrame {
     }
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
+        addProductAction();
+    }//GEN-LAST:event_btnAddProductActionPerformed
+
+    private void addProductAction() throws NumberFormatException, HeadlessException {
         
         ValidationUtil validationUtil = new ValidationUtil();
 
         boolean validate = true;
-        
+
         int id = 0;
         int amount = 0;
         float totalPrice = 0;
-        
-            if (validationUtil.validateInt(txtId.getText())) {
-                btnAddProduct.requestFocus();
-                id = Integer.parseInt(txtId.getText());
-                validateProduct(id);
-                txtAmount.requestFocus();
-                //txtUnitValue.setText(String.valueOf(product.getBudgetProduct()));
-                
-                if (validationUtil.validateInt(txtAmount.getText())) {
+
+        if (validationUtil.validateInt(txtId.getText())) {
+            btnAddProduct.requestFocus();
+            id = Integer.parseInt(txtId.getText());
+            validateProduct(id);
+            txtAmount.requestFocus();
+
+            if (validationUtil.validateInt(txtAmount.getText())) {
 
                 amount = Integer.parseInt(txtAmount.getText());
                 txtFullValue.setText(String.valueOf(product.getBudgetProduct() * amount));
                 totalPrice = product.getBudgetProduct() * amount;
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para la Cantidad");
                 validate = false;
                 txtAmount.setText("");
                 txtAmount.requestFocus();
             }
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para el Id");
-                txtId.setText("");
-                txtId.requestFocus();
-                validate = false;
-            }    
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para el Id");
+            txtId.setText("");
+            txtId.requestFocus();
+            validate = false;
+        }
 
-            if (validate) {
-                
-                
-                sale = new Sale(product.getId(), product.getNameProduct(), amount, product.getBudgetProduct(), totalPrice);
-                saleList.add(sale);
-                addProductToList();
-                initPanelProduct();
-            }
-    }//GEN-LAST:event_btnAddProductActionPerformed
+        if (validate) {
+
+            sale = new Sale(product.getId(), product.getNameProduct(), amount, product.getBudgetProduct(), totalPrice);
+            saleList.add(sale);
+            addProductToList();
+            initPanelProduct();
+        }
+    }
 
     private void txtAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyPressed
         ValidationUtil validationUtil = new ValidationUtil();
@@ -612,111 +615,27 @@ public class MainPage extends javax.swing.JFrame {
 
     private void btnFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishSaleActionPerformed
         saveSale();
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
-            int sizeSaleList = saleList.size();
-            for (int i = 0; i < sizeSaleList; i++) {
-                sale = saleList.get(i);
-                Bson usernameFilter = Filters.eq("Id", sale.getId());
-                Document productDocument = collection.find(usernameFilter).first();
-                if (productDocument != null) {
-                    int amount = productDocument.getInteger("Ammount");
-                    amount = amount - sale.getAmount();
-                    Bson update = new Document("$set", new Document("Ammount", amount));
-                    collection.updateOne(usernameFilter, update);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Producto no encontrado");
-                }
-                model.removeRow(0);
-                tabList.setModel(model);
-            }
-        } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-            e.printStackTrace();
-        }
+        finishSale();
         initAllPanel();
     }//GEN-LAST:event_btnFinishSaleActionPerformed
-    
-    private void saveSale(){
-        
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("income");
 
-            int id;
-            String name;
-            int amount;
-            float price;
-            float finalPrice;
-            
-            for(int i=0; i<saleList.size(); i++){
-                
-            sale = saleList.get(i);
-                
-            id = sale.getId();
-            name = sale.getNameProduct();
-            amount = sale.getAmount();
-            price = sale.getTotalPrice();
-            finalPrice = Float.parseFloat(txtFinalPrice.getText());  
-            
-            Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
+    private void finishSale() throws HeadlessException {
 
-            collection.insertOne(doc1);
-            } 
-        }
+        MongoConnect mongoConnect = new MongoConnect();
+        mongoConnect.inventoryConnect(saleList, model, tabList);
+
     }
-    
+
+    private void saveSale() {
+
+        float finalPrice = Float.parseFloat(txtFinalPrice.getText());
+
+        MongoConnect mongoConnect = new MongoConnect();
+        mongoConnect.incomeConnect(saleList, finalPrice);
+    }
+
     private void btnAddProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddProductKeyPressed
-        
-        ValidationUtil validationUtil = new ValidationUtil();
-        
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            boolean validate = true;
-        
-        int id = 0;
-        int amount = 0;
-        float totalPrice = 0;
-        
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            if (validationUtil.validateInt(txtId.getText())) {
-                btnAddProduct.requestFocus();
-                id = Integer.parseInt(txtId.getText());
-                validateProduct(id);
-                txtAmount.requestFocus();
-                
-                if (validationUtil.validateInt(txtAmount.getText())) {
-
-                amount = Integer.parseInt(txtAmount.getText());
-                txtFullValue.setText(String.valueOf(product.getBudgetProduct() * amount));
-                totalPrice = product.getBudgetProduct() * amount;
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para la Cantidad");
-                validate = false;
-                txtAmount.setText("");
-                txtAmount.requestFocus();
-            }
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para el Id");
-                txtId.setText("");
-                txtId.requestFocus();
-                validate = false;
-            }    
-
-            if (validate) {
-                
-                
-                sale = new Sale(product.getId(), product.getNameProduct(), amount, product.getBudgetProduct(), totalPrice);
-                saleList.add(sale);
-                addProductToList();
-                initPanelProduct();
-            }
-        }
-      }  
+        addProductAction();
     }//GEN-LAST:event_btnAddProductKeyPressed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -795,7 +714,6 @@ public class MainPage extends javax.swing.JFrame {
         model.addColumn("Precio Unitario");
         model.addColumn("Precio Total");
     }
-    
 
     /**
      * @param args the command line arguments
@@ -831,8 +749,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntNewProduct;

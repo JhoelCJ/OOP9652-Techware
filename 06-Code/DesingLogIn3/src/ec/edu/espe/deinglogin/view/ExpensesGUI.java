@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 package ec.edu.espe.deinglogin.view;
 
@@ -12,6 +8,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.awt.print.PrinterException;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
 
@@ -24,14 +22,14 @@ public class ExpensesGUI extends javax.swing.JFrame {
     /** Creates new form Expensive */
     public ExpensesGUI() {
         initComponents();
-        loadRawMaterialData();
+        loadExpensesGUI();
     }
-    
-    public void loadRawMaterialData() {
+
+     public void loadExpensesGUI() {
         
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID");
-        model.addColumn("Nombre");
+        model.addColumn("Id");
+        model.addColumn("Producto");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
 
@@ -49,10 +47,26 @@ public class ExpensesGUI extends javax.swing.JFrame {
 
                 model.addRow(new Object[]{id, nombre, cantidad, precio});
             }
-        }
+            tbExpensive.setModel(model);
 
-        tbExpensive.setModel(model);
+        tbExpensive.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    int selectedRow = tbExpensive.getSelectedRow();
+                    if (selectedRow != -1) {
+
+                        tbExpensive.setEnabled(true);
+                    } else {
+
+                        tbExpensive.setEnabled(false);
+                    }
+                }
+            }
+        });
+        }
     }
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
