@@ -201,7 +201,6 @@ public class MachineryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-                                    
         MachineryData machineryData = new MachineryData();
         machineryData.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
