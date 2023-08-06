@@ -220,7 +220,6 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitProgramActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-
         String username = txtUser.getText();
         String password = txtPassword.getText();
         
@@ -231,6 +230,7 @@ public class LoginGUI extends javax.swing.JFrame {
             txtUser.setText("");
             txtPassword.setText("");
         }
+        this.setVisible(false);
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed

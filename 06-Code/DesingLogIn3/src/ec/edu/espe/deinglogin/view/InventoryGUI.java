@@ -193,8 +193,8 @@ public class InventoryGUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         InventoryData inventoryData = new InventoryData();
-        inventoryData.setInventoryGUI(this);
         inventoryData.setVisible(true);
+        this.setVisible(false);
     
     }//GEN-LAST:event_btnAddActionPerformed
 
