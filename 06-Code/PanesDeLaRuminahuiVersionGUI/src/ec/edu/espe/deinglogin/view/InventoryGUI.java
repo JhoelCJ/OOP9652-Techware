@@ -9,6 +9,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import java.awt.HeadlessException;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -193,9 +194,8 @@ public class InventoryGUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         InventoryData inventoryData = new InventoryData();
+        inventoryData.setInventoryGUI(this);
         inventoryData.setVisible(true);
-        this.setVisible(false);
-    
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -206,22 +206,26 @@ public class InventoryGUI extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
+        Delete();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void Delete() throws HeadlessException {
         int selectedRow = tbInventory.getSelectedRow();
         if (selectedRow != -1) {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este dato?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-
+                
                 int id = (int) tbInventory.getValueAt(selectedRow, 0);
-
+                
                 String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-                    try (MongoClient mongoClient = MongoClients.create(uri)) {
+                try (MongoClient mongoClient = MongoClients.create(uri)) {
                     MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
                     MongoCollection<Document> collection = database.getCollection("inventory");
-
+                    
                     collection.deleteOne(Filters.eq("Id", id));
-
+                    
                     loadInventoryData();
-
+                    
                     JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
                 } catch (MongoException e) {
                     JOptionPane.showMessageDialog(this, "Error al eliminar el dato", "Error", JOptionPane.ERROR_MESSAGE);
@@ -229,7 +233,7 @@ public class InventoryGUI extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
     /**
      * @param args the command line arguments
