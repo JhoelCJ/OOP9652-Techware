@@ -22,16 +22,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  */
 public class MongoConnect {
-    public void inventoryConnect(ArrayList<Sale> saleList, DefaultTableModel model, javax.swing.JTable tabList){
-        
+
+    public void inventoryConnect(ArrayList<Sale> saleList, DefaultTableModel model, javax.swing.JTable tabList) {
+
         Sale sale;
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("inventory");
-            
+
             int sizeSaleList = saleList.size();
-            
+
             for (int i = 0; i < sizeSaleList; i++) {
                 sale = saleList.get(i);
                 Bson usernameFilter = Filters.eq("Id", sale.getId());
@@ -52,11 +53,12 @@ public class MongoConnect {
             e.printStackTrace();
         }
     }
-    public void incomeConnect(ArrayList<Sale> saleList, float finalPrice){
 
-    Sale sale;
-        
-    String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
+    public void incomeConnect(ArrayList<Sale> saleList, float finalPrice) {
+
+        Sale sale;
+
+        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("income");
@@ -65,28 +67,28 @@ public class MongoConnect {
             String name;
             int amount;
             float price;
-            
-            for(int i=0; i<saleList.size(); i++){
-                
-            sale = saleList.get(i);
-                
-            id = sale.getId();
-            name = sale.getNameProduct();
-            amount = sale.getAmount();
-            price = sale.getTotalPrice();
-            
-            Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
 
-            collection.insertOne(doc1);
-            } 
+            for (int i = 0; i < saleList.size(); i++) {
+
+                sale = saleList.get(i);
+
+                id = sale.getId();
+                name = sale.getNameProduct();
+                amount = sale.getAmount();
+                price = sale.getTotalPrice();
+
+                Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
+
+                collection.insertOne(doc1);
+            }
         }
 
     }
-            
-    public boolean loginConnect( String username, String password ){
-        
+
+    public boolean loginConnect(String username, String password) {
+
         boolean txtDelete = true;
-        
+
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
@@ -120,7 +122,7 @@ public class MongoConnect {
                     mainPage.setVisible(true);
                     LoginGUI loginGUI = new LoginGUI();
                     loginGUI.setVisible(false);
-                    
+
                     txtDelete = false;
 
                 } else {
