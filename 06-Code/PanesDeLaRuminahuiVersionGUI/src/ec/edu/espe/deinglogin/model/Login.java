@@ -98,10 +98,10 @@ public class Login {
 
 
             if (cifradaVerification != null) {
-                System.out.println("El dato existe en la colección.");
+                System.out.println(" El  dato existe en la colección.");
                 passwordLoop= false;
             } else {
-                System.out.println("El dato no existe en la colección.");
+                System.out.println(" El  dato no existe en la colección.");
             } 
         }while(passwordLoop);
     }
