@@ -113,7 +113,7 @@ public class MongoConnect {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     String fechaTexto = sdf.format(fechaActual);
 
-                    userDocument.append("Fecha de entrada: ", fechaTexto);
+                    userDocument.append("Fecha de entrada:  ", fechaTexto);
 
                     collection.replaceOne(usernameFilter, userDocument);
                     MainPage mainPage = new MainPage();
@@ -124,15 +124,15 @@ public class MongoConnect {
                     txtDelete = false;
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta ");
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado ");
 
             }
         } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos ");
             e.printStackTrace();
         }
         return txtDelete;
