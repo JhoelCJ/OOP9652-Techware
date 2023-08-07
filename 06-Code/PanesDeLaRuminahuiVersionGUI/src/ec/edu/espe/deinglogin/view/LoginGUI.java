@@ -10,6 +10,7 @@ import ec.edu.espe.deinglogin.controller.MongoConnect;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
 import ec.edu.espe.utils.ValidationUtil;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         initComponents();
+        txtUser.requestFocus();
     }
 
     /**
@@ -62,6 +64,11 @@ public class LoginGUI extends javax.swing.JFrame {
                 txtUserActionPerformed(evt);
             }
         });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
+        });
 
         txPassword.setText("Contraseña");
 
@@ -69,6 +76,11 @@ public class LoginGUI extends javax.swing.JFrame {
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
+            }
+        });
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
             }
         });
 
@@ -122,6 +134,11 @@ public class LoginGUI extends javax.swing.JFrame {
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterActionPerformed(evt);
+            }
+        });
+        btnEnter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEnterKeyPressed(evt);
             }
         });
 
@@ -220,48 +237,37 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitProgramActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        String username = txtUser.getText();
-        String password = txtPassword.getText();
-        
-        MongoConnect mongoConnect = new MongoConnect();
-        
-        if( mongoConnect.loginConnect(username, password) ){
-            
-            txtUser.setText("");
-            txtPassword.setText("");
-        }
-        this.setVisible(false);
+        enterAction();
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
 
         signInAction();
-
         emptyFiled();
     }//GEN-LAST:event_btnSignInActionPerformed
 
     private void signInAction() throws HeadlessException {
         UserAndPassword userAndPassword;
         ValidationUtil validationUtil = new ValidationUtil();
-        
+
         String user;
         String pasword;
-        
+
         boolean validate;
-        if(validationUtil.ValidateLetterStringWithSpaces(txtUser.getText())){
+        if (validationUtil.ValidateLetterStringWithSpaces(txtUser.getText())) {
             validate = true;
             user = txtUser.getText();
         } else {
             validate = false;
             JOptionPane.showMessageDialog(null, "Ingrese Solo Letras Para El Usuario");
         }
-        
+
         user = txtUser.getText();
         pasword = txtPassword.getText();
         userAndPassword = new UserAndPassword(user, pasword);
-        
+
         int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n");
-        
+
         if (option == 0) {
             JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
             createDocument();
@@ -272,6 +278,38 @@ public class LoginGUI extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnEnter.requestFocus();
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnEnterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEnterKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            enterAction();
+        }
+    }//GEN-LAST:event_btnEnterKeyPressed
+
+    private void enterAction() {
+        String username = txtUser.getText();
+        String password = txtPassword.getText();
+        
+        MongoConnect mongoConnect = new MongoConnect();
+        
+        if (mongoConnect.loginConnect(username, password)) {
+            
+            txtUser.setText("");
+            txtPassword.setText("");
+        }
+        this.setVisible(false);
+    }
 
     private UserAndPassword readData() {
 
