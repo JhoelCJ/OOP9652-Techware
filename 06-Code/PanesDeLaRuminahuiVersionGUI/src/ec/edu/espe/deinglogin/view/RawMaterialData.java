@@ -216,11 +216,11 @@ public class RawMaterialData extends javax.swing.JFrame {
                     }
                 } else {
                     validate = false;
-                    JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+                    JOptionPane.showMessageDialog(null, " Ingrese solo letras");
                 }
             } else {
                 validate = false;
-                JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
+                JOptionPane.showMessageDialog(null, " Ingrese un numero positivo para el id");
             }
             if (validate) {
                 Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price);
