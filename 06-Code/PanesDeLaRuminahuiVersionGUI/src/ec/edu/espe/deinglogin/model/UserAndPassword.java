@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.model;
 
 /**
@@ -6,7 +5,7 @@ package ec.edu.espe.deinglogin.model;
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  */
 public class UserAndPassword {
-    
+
     private String user;
     private String pasword;
 
@@ -20,16 +19,13 @@ public class UserAndPassword {
         return "UserAndPassword: " + "\nuser: " + user + "\npasword: " + pasword;
     }
 
-    
     public String getUser() {
         return user;
     }
 
-
     public void setUser(String user) {
         this.user = user;
     }
-
 
     public String getPasword() {
         return pasword;

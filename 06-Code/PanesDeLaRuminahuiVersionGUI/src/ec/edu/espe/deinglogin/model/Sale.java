@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
  * @author Diego Casignia, Techware, DCCO-ESPE
  */
 public class Sale {
+
     private int id;
     private String nameProduct;
     private int amount;
