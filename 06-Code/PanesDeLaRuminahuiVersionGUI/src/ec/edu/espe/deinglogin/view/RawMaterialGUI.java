@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.MongoException;
@@ -29,7 +28,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
     }
 
     public void loadRawMaterialData() {
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nombre");
@@ -69,9 +68,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,7 +204,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
+
         RawMaterialData rawMaterialData = new RawMaterialData();
         rawMaterialData.setVisible(true);
 
@@ -222,7 +219,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
                 int id = (int) tbRawMaterial.getValueAt(selectedRow, 0);
 
                 String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-                    try (MongoClient mongoClient = MongoClients.create(uri)) {
+                try (MongoClient mongoClient = MongoClients.create(uri)) {
                     MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
                     MongoCollection<Document> collection = database.getCollection("rawMaterial");
 
@@ -230,9 +227,9 @@ public class RawMaterialGUI extends javax.swing.JFrame {
 
                     loadRawMaterialData();
 
-                    JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
+                    JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
                 } catch (MongoException e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el dato", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, " Error al eliminar el dato ", " Error ", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
             }

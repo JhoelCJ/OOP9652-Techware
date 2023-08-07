@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.client.MongoClient;
@@ -18,25 +17,25 @@ import org.bson.Document;
 public class RawMaterialData extends javax.swing.JFrame {
 
     RawMaterialGUI rawMaterialGUI;
-    
+
     public void setRawMaterialGUI(RawMaterialGUI rawMaterialGUI) {
         this.rawMaterialGUI = rawMaterialGUI;
     }
-    
+
     /**
      * Creates new form RawMaterialData
      */
     public RawMaterialData() {
         initComponents();
     }
-    
+
     private void emptyFiled() {
         txtId.setText("");
         txtName.setText("");
         txtAmount.setText("");
         txtPrice.setText("");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,7 +167,7 @@ public class RawMaterialData extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         this.setVisible(false);
-        
+
         RawMaterialGUI newRawMaterialGUI = new RawMaterialGUI();
         newRawMaterialGUI.loadRawMaterialData();
         newRawMaterialGUI.setVisible(true);
@@ -185,16 +184,16 @@ public class RawMaterialData extends javax.swing.JFrame {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("rawMaterial");
-            
+
             Inventory inventory;
-            
+
             int id = 1;
             String name = "string";
             int amount = 1;
             float price = 1;
-            
+
             boolean validate;
-            
+
             if (validationUtil.validateInt(txtId.getText())) {
                 validate = true;
                 id = Integer.parseInt(txtId.getText());
@@ -225,17 +224,17 @@ public class RawMaterialData extends javax.swing.JFrame {
             }
             if (validate) {
                 Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price);
-                
+
                 collection.insertOne(doc1);
-                
+
                 int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-                
+
                 if (option == 0) {
                     JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-                    
+
                     emptyFiled();
                 }
-                
+
                 emptyFiled();
             }
         }
