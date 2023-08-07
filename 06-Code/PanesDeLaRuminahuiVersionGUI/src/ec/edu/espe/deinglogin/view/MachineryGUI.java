@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.MongoException;
@@ -106,13 +105,13 @@ public class MachineryGUI extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(84, 84, 84)
                 .addComponent(btnReturn)
-                .addGap(142, 142, 142)
-                .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdd)
+                .addGap(174, 174, 174)
                 .addComponent(btnDelete)
-                .addGap(104, 104, 104))
+                .addGap(75, 75, 75))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,15 +148,13 @@ public class MachineryGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     public void loadInventoryData() {
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Uso");
         model.addColumn("Garantia");
-
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
@@ -171,7 +168,6 @@ public class MachineryGUI extends javax.swing.JFrame {
                 String uso = document.getString("Use");
                 String garantia = document.getString("Warranty");
 
-                
                 model.addRow(new Object[]{id, nombre, uso, garantia});
             }
         }
@@ -193,7 +189,7 @@ public class MachineryGUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         MainPage mainPage = new MainPage();
         mainPage.setVisible(true);
@@ -206,7 +202,7 @@ public class MachineryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-                         
+
         int selectedRow = tbMachinery.getSelectedRow();
         if (selectedRow != -1) {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este dato?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -215,17 +211,17 @@ public class MachineryGUI extends javax.swing.JFrame {
                 int id = (int) tbMachinery.getValueAt(selectedRow, 0);
 
                 String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("machinery");
+                try (MongoClient mongoClient = MongoClients.create(uri)) {
+                    MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
+                    MongoCollection<Document> collection = database.getCollection("machinery");
 
                     collection.deleteOne(Filters.eq("Id", id));
 
                     loadInventoryData();
 
-                    JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
+                    JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
                 } catch (MongoException e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el dato", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, " Error al eliminar el dato", "Error ", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
             }

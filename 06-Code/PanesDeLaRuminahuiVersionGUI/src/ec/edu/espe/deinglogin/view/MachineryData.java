@@ -1,4 +1,3 @@
-
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.client.MongoClient;
@@ -87,11 +86,11 @@ public class MachineryData extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(74, 74, 74)
                 .addComponent(btnReturn)
-                .addGap(144, 144, 144)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAdd)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,8 +188,8 @@ public class MachineryData extends javax.swing.JFrame {
         ValidationUtil validationUtil = new ValidationUtil();
 
         AddMachinery(validationUtil);
-        
-    
+
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void AddMachinery(ValidationUtil validationUtil) throws NumberFormatException, HeadlessException {
@@ -198,18 +197,18 @@ public class MachineryData extends javax.swing.JFrame {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("machinery");
-            
+
             Inventory inventory;
-            
+
             int id = 1;
             String name = "String";
             String use = "String";
             String warranty;
-            
+
             warranty = txtWarranty.getText();
-            
+
             boolean validate;
-            
+
             if (validationUtil.validateInt(txtId.getText())) {
                 validate = true;
                 id = Integer.parseInt(txtId.getText());
@@ -219,31 +218,31 @@ public class MachineryData extends javax.swing.JFrame {
                     if (validationUtil.ValidateLetterStringWithSpaces(txtUse.getText())) {
                         validate = true;
                         use = txtUse.getText();
-                    }else {
+                    } else {
                         validate = false;
                         JOptionPane.showMessageDialog(null, "Ingrese solo letras para el uso");
                     }
-                }else {
+                } else {
                     validate = false;
                     JOptionPane.showMessageDialog(null, "Ingrese solo letras");
                 }
-            }else {
+            } else {
                 validate = false;
                 JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
             }
             if (validate) {
                 Document doc1 = new Document("Id", id).append("Name", name).append("Use", use).append("Warranty", warranty);
-                
+
                 collection.insertOne(doc1);
-                
+
                 int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-                
+
                 if (option == 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-                    
+                    JOptionPane.showMessageDialog(rootPane, " Registrado con exito ");
+
                     emptyFiled();
                 }
-                
+
                 emptyFiled();
             }
         }
