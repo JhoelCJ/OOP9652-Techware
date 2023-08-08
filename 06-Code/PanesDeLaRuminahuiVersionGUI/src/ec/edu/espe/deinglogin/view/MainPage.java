@@ -125,12 +125,9 @@ public class MainPage extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(650, 625));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Código del Producto");
 
-        txtId.setBackground(new java.awt.Color(255, 255, 255));
         txtId.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtId.setForeground(new java.awt.Color(0, 0, 0));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
@@ -146,20 +143,15 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cantidad");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Valor por unidad");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Valor Total");
 
-        txtAmount.setBackground(new java.awt.Color(255, 255, 255));
         txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtAmount.setForeground(new java.awt.Color(0, 0, 0));
         txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAmountKeyPressed(evt);
@@ -169,13 +161,11 @@ public class MainPage extends javax.swing.JFrame {
         txtUnitValue.setEditable(false);
         txtUnitValue.setBackground(new java.awt.Color(255, 255, 255));
         txtUnitValue.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        txtUnitValue.setForeground(new java.awt.Color(0, 0, 0));
         txtUnitValue.setRequestFocusEnabled(false);
 
         txtFullValue.setEditable(false);
         txtFullValue.setBackground(new java.awt.Color(255, 255, 255));
         txtFullValue.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        txtFullValue.setForeground(new java.awt.Color(0, 0, 0));
         txtFullValue.setRequestFocusEnabled(false);
         txtFullValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,9 +173,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        bntNewProduct.setBackground(new java.awt.Color(255, 255, 255));
         bntNewProduct.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        bntNewProduct.setForeground(new java.awt.Color(0, 0, 0));
         bntNewProduct.setText("Nuevo Producto");
         bntNewProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,9 +181,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        btnAddProduct.setBackground(new java.awt.Color(255, 255, 255));
         btnAddProduct.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnAddProduct.setForeground(new java.awt.Color(0, 0, 0));
         btnAddProduct.setText("Agregar Producto");
         btnAddProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,12 +270,9 @@ public class MainPage extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(665, 625));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Lista de Productos");
 
-        btnFinishSale.setBackground(new java.awt.Color(255, 255, 255));
         btnFinishSale.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnFinishSale.setForeground(new java.awt.Color(0, 0, 0));
         btnFinishSale.setText("Finalizar Venta");
         btnFinishSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,9 +280,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        btnNewSale.setBackground(new java.awt.Color(255, 255, 255));
         btnNewSale.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnNewSale.setForeground(new java.awt.Color(0, 0, 0));
         btnNewSale.setText("Nueva Venta");
         btnNewSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +291,6 @@ public class MainPage extends javax.swing.JFrame {
         txtFinalPrice.setEditable(false);
         txtFinalPrice.setBackground(new java.awt.Color(255, 255, 255));
         txtFinalPrice.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        txtFinalPrice.setForeground(new java.awt.Color(0, 0, 0));
         txtFinalPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFinalPriceActionPerformed(evt);
@@ -318,7 +298,6 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Precio Final");
 
         tabList.setModel(new javax.swing.table.DefaultTableModel(
@@ -326,7 +305,7 @@ public class MainPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Cantidad", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(tabList);
