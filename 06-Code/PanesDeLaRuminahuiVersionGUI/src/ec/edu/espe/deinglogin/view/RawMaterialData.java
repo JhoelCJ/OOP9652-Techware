@@ -58,7 +58,7 @@ public class RawMaterialData extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Id");
+        jLabel1.setText("Id:");
 
         jLabel2.setText("Nombre");
 
