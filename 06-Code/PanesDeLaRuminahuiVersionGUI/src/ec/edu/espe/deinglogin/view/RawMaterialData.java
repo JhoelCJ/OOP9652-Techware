@@ -60,11 +60,11 @@ public class RawMaterialData extends javax.swing.JFrame {
 
         jLabel1.setText("Id:");
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Nombre:");
 
-        jLabel3.setText("Cantidad");
+        jLabel3.setText("Cantidad:");
 
-        jLabel4.setText("Precio");
+        jLabel4.setText("Precio:");
 
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
