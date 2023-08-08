@@ -55,7 +55,7 @@ public class MachineryGUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Uso", "Garantia", "Price"
+                "Id", "Nombre", "Uso", "Garantia", "Precio"
             }
         ));
         jScrollPane1.setViewportView(tbMachinery);
