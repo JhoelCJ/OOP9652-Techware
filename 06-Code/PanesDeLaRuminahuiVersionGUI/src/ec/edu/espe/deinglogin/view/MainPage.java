@@ -305,7 +305,7 @@ public class MainPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Cantidad", "Title 4", "Precio Total"
+                "Title 1", "Title 2", "Cantidad", "Precio Unitario", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(tabList);
