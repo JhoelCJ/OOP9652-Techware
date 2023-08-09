@@ -5,6 +5,7 @@ package ec.edu.espe.deinglogin.model;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class Inventory {
+
     private int id;
     private String Name;
     private int amount;
