@@ -34,6 +34,7 @@ public class MongoConnect {
             int sizeSaleList = saleList.size();
 
             for (int i = 0; i < sizeSaleList; i++) {
+
                 sale = saleList.get(i);
                 Bson usernameFilter = Filters.eq("Id", sale.getId());
                 Document productDocument = collection.find(usernameFilter).first();
@@ -42,9 +43,11 @@ public class MongoConnect {
                     amount = amount - sale.getAmount();
                     Bson update = new Document("$set", new Document("Ammount", amount));
                     collection.updateOne(usernameFilter, update);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 }
+
                 model.removeRow(0);
                 tabList.setModel(model);
             }
@@ -98,6 +101,7 @@ public class MongoConnect {
             int desplazar = 1;
 
             for (int i = 0; i < password.length(); i++) {
+                
                 int codigoLetra = password.codePointAt(i);
                 char letraDesplazada = (char) (codigoLetra + desplazar);
                 cifrada = cifrada + letraDesplazada;
