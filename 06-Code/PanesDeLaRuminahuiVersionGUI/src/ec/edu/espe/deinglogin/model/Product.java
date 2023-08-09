@@ -13,9 +13,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\n\tProducto " + "\n\t\tId: " + id + "\n\t\tNombre del Producto: "
-                + nameProduct + "\n\t\tPrecio producto: " + budgetProduct
-                + "\n\t\tStock: " + stock;
+        return "\n\tProducto " + "\n\t\tId:" + id + "\n\t\tNombre del Producto:"
+                + nameProduct + "\n\t\tPrecio producto:" + budgetProduct
+                + "\n\t\tStock:" + stock;
     }
 
     public Product(int id, String nameProduct, float budgetproduct, int stock) {
