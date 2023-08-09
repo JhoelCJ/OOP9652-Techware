@@ -63,9 +63,9 @@ public class MachineryData extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre:");
 
-        jLabel3.setText("Uso");
+        jLabel3.setText("Uso:");
 
-        jLabel4.setText("Garantia");
+        jLabel4.setText("Garantia:");
 
         btnReturn.setText("Regresar");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +86,11 @@ public class MachineryData extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(73, 73, 73)
                 .addComponent(btnReturn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
                 .addComponent(btnAdd)
-                .addGap(72, 72, 72))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,11 +139,11 @@ public class MachineryData extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtWarranty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUse, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                    .addComponent(txtName))
-                .addContainerGap(186, Short.MAX_VALUE))
+                    .addComponent(txtName)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWarranty))
+                .addContainerGap(185, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
