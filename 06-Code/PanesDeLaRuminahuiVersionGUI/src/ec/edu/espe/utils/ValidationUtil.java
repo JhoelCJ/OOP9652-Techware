@@ -15,11 +15,11 @@ public class ValidationUtil {
             return false;
         }
     }
-    
+
     public int getInt(String input) {
         return Integer.parseInt(input);
     }
-    
+
     public boolean validateFloat(String input) {
         try {
             float value = Float.parseFloat(input);
@@ -38,6 +38,6 @@ public class ValidationUtil {
     }
 
     public boolean ValidateLetterStringWithSpaces(String input) {
-    return input.matches("^[ a-zA-Z ]+$");
+        return input.matches("^[ a-zA-Z ]+$");
     }
 }
