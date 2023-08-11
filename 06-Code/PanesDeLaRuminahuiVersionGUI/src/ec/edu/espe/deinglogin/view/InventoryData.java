@@ -1,14 +1,11 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import ec.edu.espe.deinglogin.model.Inventory;
+import ec.edu.espe.deinglogin.controller.MongoDataConnect;
 import javax.swing.JOptionPane;
-import org.bson.Document;
 import ec.edu.espe.utils.ValidationUtil;
 import java.awt.HeadlessException;
+import org.bson.Document;
 
 /**
  *
@@ -17,6 +14,7 @@ import java.awt.HeadlessException;
 public class InventoryData extends javax.swing.JFrame {
 
     InventoryGUI inventoryGUI;
+    private MongoDataConnect mongoDataConnect;
 
     public void setInventoryGUI(InventoryGUI inventoryGUI) {
         this.inventoryGUI = inventoryGUI;
@@ -27,13 +25,34 @@ public class InventoryData extends javax.swing.JFrame {
      */
     public InventoryData() {
         initComponents();
+        mongoDataConnect = new MongoDataConnect("inventory");
     }
 
-    private void emptyFiled() {
+    private void emptyFields() {
         txtAmount.setText("");
         txtId.setText("");
         txtName.setText("");
         txtPrice.setText("");
+    }
+
+    private boolean validateFields(ValidationUtil validationUtil) {
+        boolean validate = true;
+
+        if (!validationUtil.validateInt(txtId.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
+        } else if (!validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras para el nombre");
+        } else if (!validationUtil.validateInt(txtAmount.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese numeros para la cantidad");
+        } else if (!validationUtil.validateFloat(txtPrice.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero para el precio");
+        }
+
+        return validate;
     }
 
     /**
@@ -194,72 +213,41 @@ public class InventoryData extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPriceActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
         ValidationUtil validationUtil = new ValidationUtil();
-
         AddInventory(validationUtil);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void AddInventory(ValidationUtil validationUtil) throws NumberFormatException, HeadlessException {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
-            
-            Inventory inventory;
-            
-            int id = 1;
-            String name = "string";
-            int amount = 1;
-            float price = 1;
-            
-            boolean validate;
-            
-            if (validationUtil.validateInt(txtId.getText())) {
-                validate = true;
-                id = Integer.parseInt(txtId.getText());
-                if (validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
-                    validate = true;
-                    name = txtName.getText();
-                    if (validationUtil.validateInt(txtAmount.getText())) {
-                        validate = true;
-                        amount = Integer.parseInt(txtAmount.getText());
-                        if (validationUtil.validateFloat(txtPrice.getText())) {
-                            validate = true;
-                            price = Float.parseFloat(txtPrice.getText());
-                        } else {
-                            validate = false;
-                            JOptionPane.showMessageDialog(null, "Ingrese Un numero para el precio");
-                        }
-                    } else {
-                        validate = false;
-                        JOptionPane.showMessageDialog(null, "Ingrese numeros para la cantidad");
-                    }
-                } else {
-                    validate = false;
-                    JOptionPane.showMessageDialog(null, "Ingrese solo letras");
-                }
-            } else {
-                validate = false;
-                JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
+        if (validateFields(validationUtil)) {
+            int id = Integer.parseInt(txtId.getText());
+            String name = txtName.getText();
+            int amount = Integer.parseInt(txtAmount.getText());
+            float price = Float.parseFloat(txtPrice.getText());
+
+            // Obtener la instancia de MongoDataConnect y la colección
+            MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+            MongoCollection<Document> collection = mongoDataConnect.getCollection();
+
+            // Crear el documento a insertar
+            Document doc = new Document("id", id)
+                    .append("Name", name)
+                    .append("amount", amount)
+                    .append("price", price);
+
+            // Insertar el documento en la colección
+            collection.insertOne(doc);
+
+            int option = JOptionPane.showConfirmDialog(this, "Guardar");
+
+            if (option == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
+                emptyFields();
             }
-            if (validate) {
-                Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price);
-                
-                collection.insertOne(doc1);
-                
-                int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-                
-                if (option == 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-                    
-                    emptyFiled();
-                }
-                
-                emptyFiled();
-            }
+
+            emptyFields();
         }
     }
+
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
 
