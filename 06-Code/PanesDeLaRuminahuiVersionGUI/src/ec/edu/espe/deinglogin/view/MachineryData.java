@@ -35,6 +35,23 @@ public class MachineryData extends javax.swing.JFrame {
         txtName.setText("");
         txtWarranty.setText("");
     }
+    
+    private boolean validateFields(ValidationUtil validationUtil) {
+        boolean validate = true;
+
+        if (!validationUtil.validateInt(txtId.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
+        } else if (!validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras para el nombre");
+        } else if (!validationUtil.ValidateLetterStringWithSpaces(txtUse.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese numeros para la cantidad");
+        }
+
+        return validate;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,61 +210,31 @@ public class MachineryData extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void AddMachinery(ValidationUtil validationUtil) throws NumberFormatException, HeadlessException {
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("machinery");
+        if (validateFields(validationUtil)) {
+            int id = Integer.parseInt(txtId.getText());
+            String name = txtName.getText();
+            String use = txtUse.getText();
+            String warranty = txtWarranty.getText();
+            MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
+            MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            Inventory inventory;
+            // Crear el documento a insertar
+            Document doc = new Document("Id", id)
+                    .append("Name", name)
+                    .append("Use", use)
+                    .append("Warranty", warranty);
 
-            int id = 1;
-            String name = "String";
-            String use = "String";
-            String warranty;
+            // Insertar el documento en la colección
+            collection.insertOne(doc);
+            int option = JOptionPane.showConfirmDialog(this, "Guardar");
 
-            warranty = txtWarranty.getText();
-
-            boolean validate;
-
-            if (validationUtil.validateInt(txtId.getText())) {
-                validate = true;
-                id = Integer.parseInt(txtId.getText());
-                if (validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
-                    validate = true;
-                    name = txtName.getText();
-                    if (validationUtil.ValidateLetterStringWithSpaces(txtUse.getText())) {
-                        validate = true;
-                        use = txtUse.getText();
-                    } else {
-                        validate = false;
-                        JOptionPane.showMessageDialog(null, " Ingrese solo letras para el uso");
-                    }
-                } else {
-                    validate = false;
-                    JOptionPane.showMessageDialog(null, " Ingrese solo letras");
-                }
-            } else {
-                validate = false;
-                JOptionPane.showMessageDialog(null, " Ingrese un numero positivo para el id");
-            }
-            if (validate) {
-                Document doc1 = new Document("Id", id).append("Name", name).append("Use", use).append("Warranty", warranty);
-
-                collection.insertOne(doc1);
-
-                int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-
-                if (option == 0) {
-                    JOptionPane.showMessageDialog(rootPane, " Registrado con exito ");
-
-                    emptyFiled();
-                }
-
+            if (option == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFiled();
             }
+            emptyFiled();
         }
     }
-
     private void txtWarrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWarrantyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtWarrantyActionPerformed
