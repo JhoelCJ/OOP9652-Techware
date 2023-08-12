@@ -1,7 +1,5 @@
 package ec.edu.espe.deinglogin.model;
 
-import java.text.DecimalFormat;
-
 /**
  *
  * @author Diego Casignia, Techware, DCCO-ESPE

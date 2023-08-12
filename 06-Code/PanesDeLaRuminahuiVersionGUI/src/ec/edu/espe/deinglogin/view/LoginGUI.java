@@ -1,21 +1,16 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.utils.MongoConnect;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 
 /**
  *
@@ -247,44 +242,18 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignInActionPerformed
 
     private void signInAction() throws HeadlessException {
-        /* UserAndPassword userAndPassword;
-        ValidationUtil validationUtil = new ValidationUtil();
-
-        String user;
-        String pasword;
-  
-        boolean validate;
-        if (validationUtil.ValidateLetterStringWithSpaces(txtUser.getText())) {
-            validate = true;
-            user = txtUser.getText();
-        } else {
-            validate = false;
-            JOptionPane.showMessageDialog(null, "Ingrese Solo Letras Para El Usuario");
-        }
-
-        user = txtUser.getText();
-        pasword = txtPassword.getText();
-        userAndPassword = new UserAndPassword(user, pasword);
-
-        int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n");
-
-        if (option == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-            createDocument();
-            emptyFiled();
-        }*/
         String username = txtUser.getText();
         String password = txtPassword.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
-            return; // Don't proceed further
+            return;
         }
 
         ValidationUtil validationUtil = new ValidationUtil();
         if (!validationUtil.ValidateLetterStringWithSpaces(username)) {
             JOptionPane.showMessageDialog(this, "Ingrese solo letras para el usuario");
-            return; // Don't proceed further
+            return;
         }
 
         UserAndPassword userAndPassword = new UserAndPassword(username, password);
@@ -326,7 +295,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
-            return; 
+            return;
         }
 
         MongoConnect mongoConnect = new MongoConnect();
@@ -335,7 +304,7 @@ public class LoginGUI extends javax.swing.JFrame {
             txtUser.setText("");
             txtPassword.setText("");
         }
-     }
+    }
 
     private UserAndPassword readData() {
 

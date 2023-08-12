@@ -1,11 +1,8 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
-import ec.edu.espe.deinglogin.model.Inventory;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
