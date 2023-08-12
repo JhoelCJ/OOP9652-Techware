@@ -321,24 +321,12 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnterKeyPressed
 
     private void enterAction() {
-        /*String username = txtUser.getText();
-        String password = txtPassword.getText();
-        
-        MongoConnect mongoConnect = new MongoConnect();
-        
-        if (mongoConnect.loginConnect(username, password)) {
-            
-            txtUser.setText("");
-            txtPassword.setText("");
-        }
-        this.setVisible(false);*/
-
         String username = txtUser.getText();
         String password = txtPassword.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
-            return; // Don't proceed further
+            return; 
         }
 
         MongoConnect mongoConnect = new MongoConnect();
@@ -347,8 +335,7 @@ public class LoginGUI extends javax.swing.JFrame {
             txtUser.setText("");
             txtPassword.setText("");
         }
-        this.setVisible(false);
-    }
+     }
 
     private UserAndPassword readData() {
 
