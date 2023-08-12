@@ -247,12 +247,12 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignInActionPerformed
 
     private void signInAction() throws HeadlessException {
-        UserAndPassword userAndPassword;
+        /* UserAndPassword userAndPassword;
         ValidationUtil validationUtil = new ValidationUtil();
 
         String user;
         String pasword;
-
+  
         boolean validate;
         if (validationUtil.ValidateLetterStringWithSpaces(txtUser.getText())) {
             validate = true;
@@ -270,6 +270,29 @@ public class LoginGUI extends javax.swing.JFrame {
 
         if (option == 0) {
             JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
+            createDocument();
+            emptyFiled();
+        }*/
+        String username = txtUser.getText();
+        String password = txtPassword.getText();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
+            return; // Don't proceed further
+        }
+
+        ValidationUtil validationUtil = new ValidationUtil();
+        if (!validationUtil.ValidateLetterStringWithSpaces(username)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras para el usuario");
+            return; // Don't proceed further
+        }
+
+        UserAndPassword userAndPassword = new UserAndPassword(username, password);
+
+        int option = JOptionPane.showConfirmDialog(this, "Registrar:  \n");
+
+        if (option == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Registrado con éxito");
             createDocument();
             emptyFiled();
         }
@@ -298,13 +321,29 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnterKeyPressed
 
     private void enterAction() {
-        String username = txtUser.getText();
+        /*String username = txtUser.getText();
         String password = txtPassword.getText();
         
         MongoConnect mongoConnect = new MongoConnect();
         
         if (mongoConnect.loginConnect(username, password)) {
             
+            txtUser.setText("");
+            txtPassword.setText("");
+        }
+        this.setVisible(false);*/
+
+        String username = txtUser.getText();
+        String password = txtPassword.getText();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
+            return; // Don't proceed further
+        }
+
+        MongoConnect mongoConnect = new MongoConnect();
+
+        if (mongoConnect.loginConnect(username, password)) {
             txtUser.setText("");
             txtPassword.setText("");
         }
