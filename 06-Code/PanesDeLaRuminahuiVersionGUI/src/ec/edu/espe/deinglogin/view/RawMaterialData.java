@@ -180,6 +180,7 @@ public class RawMaterialData extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void AddRawMaterial(ValidationUtil validationUtil) throws HeadlessException, NumberFormatException {
+
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");

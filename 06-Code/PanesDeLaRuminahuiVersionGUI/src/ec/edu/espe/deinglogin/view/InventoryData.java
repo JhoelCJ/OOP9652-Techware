@@ -224,17 +224,17 @@ public class InventoryData extends javax.swing.JFrame {
             int amount = Integer.parseInt(txtAmount.getText());
             float price = Float.parseFloat(txtPrice.getText());
 
-            // Obtener la instancia de MongoDataConnect y la colección
+
             MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            // Crear el documento a insertar
+
             Document doc = new Document("id", id)
                     .append("Name", name)
                     .append("amount", amount)
                     .append("price", price);
 
-            // Insertar el documento en la colección
+
             collection.insertOne(doc);
 
             int option = JOptionPane.showConfirmDialog(this, "Guardar");

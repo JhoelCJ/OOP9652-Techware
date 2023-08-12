@@ -4,6 +4,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import ec.edu.espe.deinglogin.controller.MongoDataConnect;
 import ec.edu.espe.deinglogin.model.Inventory;
 import ec.edu.espe.utils.ValidationUtil;
 import java.awt.HeadlessException;
@@ -218,13 +219,13 @@ public class MachineryData extends javax.swing.JFrame {
             MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            // Crear el documento a insertar
+
             Document doc = new Document("Id", id)
                     .append("Name", name)
                     .append("Use", use)
                     .append("Warranty", warranty);
 
-            // Insertar el documento en la colección
+
             collection.insertOne(doc);
             int option = JOptionPane.showConfirmDialog(this, "Guardar");
 
@@ -235,6 +236,7 @@ public class MachineryData extends javax.swing.JFrame {
             emptyFiled();
         }
     }
+    
     private void txtWarrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWarrantyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtWarrantyActionPerformed

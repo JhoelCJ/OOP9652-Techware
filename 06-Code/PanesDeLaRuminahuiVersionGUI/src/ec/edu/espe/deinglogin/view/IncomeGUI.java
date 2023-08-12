@@ -47,7 +47,6 @@ public class IncomeGUI extends javax.swing.JFrame {
                 String nombre = document.getString("Name");
                 int cantidad = document.getInteger("Ammount");
                 float precio = document.getDouble("Price").floatValue();
-                //float total = document.getDouble("Final Price").floatValue();
 
                 model.addRow(new Object[]{id, nombre, cantidad, precio});
             }
