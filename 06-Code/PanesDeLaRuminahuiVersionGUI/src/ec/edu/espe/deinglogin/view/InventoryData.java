@@ -229,10 +229,10 @@ public class InventoryData extends javax.swing.JFrame {
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
 
-            Document doc = new Document("id", id)
+            Document doc = new Document("Id", id)
                     .append("Name", name)
-                    .append("amount", amount)
-                    .append("price", price);
+                    .append("Amount", amount)
+                    .append("Price", price);
 
 
             collection.insertOne(doc);
