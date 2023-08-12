@@ -36,7 +36,7 @@ public class MachineryData extends javax.swing.JFrame {
         txtName.setText("");
         txtWarranty.setText("");
     }
-    
+
     private boolean validateFields(ValidationUtil validationUtil) {
         boolean validate = true;
 
@@ -196,9 +196,9 @@ public class MachineryData extends javax.swing.JFrame {
 
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        MachineryGUI machineryGUI = new MachineryGUI();
+        setVisible(false);
         machineryGUI.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -219,12 +219,10 @@ public class MachineryData extends javax.swing.JFrame {
             MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-
             Document doc = new Document("Id", id)
                     .append("Name", name)
                     .append("Use", use)
                     .append("Warranty", warranty);
-
 
             collection.insertOne(doc);
             int option = JOptionPane.showConfirmDialog(this, "Guardar");
@@ -232,11 +230,12 @@ public class MachineryData extends javax.swing.JFrame {
             if (option == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFiled();
+                machineryGUI.loadInventoryData();  // Actualiza la tabla en la GUI principal
             }
-            emptyFiled();
         }
+
     }
-    
+
     private void txtWarrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWarrantyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtWarrantyActionPerformed

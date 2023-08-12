@@ -198,7 +198,9 @@ public class MachineryGUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         MachineryData machineryData = new MachineryData();
+        machineryData.setInventoryGUI(this); // Establece la referencia a la ventana principal
         machineryData.setVisible(true);
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
