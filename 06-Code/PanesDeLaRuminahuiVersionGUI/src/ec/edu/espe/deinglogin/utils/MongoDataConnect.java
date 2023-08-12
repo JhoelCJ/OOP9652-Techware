@@ -1,4 +1,4 @@
-package ec.edu.espe.deinglogin.controller;
+package ec.edu.espe.deinglogin.utils;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

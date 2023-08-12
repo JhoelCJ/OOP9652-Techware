@@ -5,7 +5,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.deinglogin.model.Inventory;
-import ec.edu.espe.utils.ValidationUtil;
+import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import org.bson.Document;

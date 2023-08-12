@@ -1,9 +1,9 @@
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.client.MongoCollection;
-import ec.edu.espe.deinglogin.controller.MongoDataConnect;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
-import ec.edu.espe.utils.ValidationUtil;
+import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import org.bson.Document;
 
