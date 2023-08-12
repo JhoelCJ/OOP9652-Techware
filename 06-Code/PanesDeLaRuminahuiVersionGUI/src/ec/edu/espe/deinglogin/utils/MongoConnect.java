@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
+import ec.edu.espe.deinglogin.controller.Encrypted;
 
 /**
  *
@@ -97,15 +98,7 @@ public class MongoConnect {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("login");
 
-            String cifrada = "";
-            int desplazar = 1;
-
-            for (int i = 0; i < password.length(); i++) {
-
-                int codigoLetra = password.codePointAt(i);
-                char letraDesplazada = (char) (codigoLetra + desplazar);
-                cifrada = cifrada + letraDesplazada;
-            }
+            String cifrada = Encrypted.encryptPassword(password);
 
             Bson usernameFilter = Filters.eq("User", username);
             Document userDocument = collection.find(usernameFilter).first();
