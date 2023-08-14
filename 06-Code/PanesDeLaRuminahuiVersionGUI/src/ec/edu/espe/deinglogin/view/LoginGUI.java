@@ -4,6 +4,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import ec.edu.espe.deinglogin.controller.Encrypted;
 import ec.edu.espe.deinglogin.utils.MongoConnect;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
@@ -198,19 +199,9 @@ public class LoginGUI extends javax.swing.JFrame {
             String user = txtUser.getText();
             String pasword = txtPassword.getText();
 
-            String encrypted = "";
-            int move = 1;
+            String encrypted = Encrypted.encryptPassword(pasword);
 
-            for (int i = 0; i < pasword.length(); i++) {
-
-                int codeRename = pasword.codePointAt(i);
-
-                char letterMove = (char) (codeRename + move);
-
-                encrypted = encrypted + letterMove;
-            }
-
-            Document doc1 = new Document("User", user).append("Pasword", encrypted);
+            Document doc1 = new Document("User", user).append("Pasword",encrypted);
 
             collection.insertOne(doc1);
         }
@@ -247,13 +238,13 @@ public class LoginGUI extends javax.swing.JFrame {
         String password = txtPassword.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
+            JOptionPane.showMessageDialog(this, "Ingrese usuario/contraseña");
             return;
         }
 
         ValidationUtil validationUtil = new ValidationUtil();
         if (!validationUtil.ValidateLetterStringWithSpaces(username)) {
-            JOptionPane.showMessageDialog(this, "Ingrese solo letras para el usuario");
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras para el usuario/contraseña");
             return;
         }
 
@@ -295,7 +286,7 @@ public class LoginGUI extends javax.swing.JFrame {
         String password = txtPassword.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña");
+            JOptionPane.showMessageDialog(this, "Ingrese usuario/contraseña");
             return;
         }
 

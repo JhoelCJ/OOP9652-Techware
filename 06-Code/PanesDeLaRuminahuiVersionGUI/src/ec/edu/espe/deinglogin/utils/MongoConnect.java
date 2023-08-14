@@ -123,11 +123,11 @@ public class MongoConnect {
                     txtDelete = false;
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta ");
+                    JOptionPane.showMessageDialog(null, "Contraseña/Usuario incorrecta ");
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario no encontrado ");
+                JOptionPane.showMessageDialog(null, "Usuario/Contraseña no encontrado ");
 
             }
         } catch (MongoException e) {
