@@ -206,6 +206,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         RawMaterialData rawMaterialData = new RawMaterialData();
+        rawMaterialData.setRawMaterialGUI(this);
         rawMaterialData.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed

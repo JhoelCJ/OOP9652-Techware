@@ -1,6 +1,5 @@
 package ec.edu.espe.deinglogin.view;
 
-
 import com.mongodb.client.MongoCollection;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
@@ -16,7 +15,7 @@ public class MachineryData extends javax.swing.JFrame {
 
     MachineryGUI machineryGUI;
 
-    public void setInventoryGUI(MachineryGUI machineryGUI) {
+    public void setMachinaryGUI(MachineryGUI machineryGUI) {
         this.machineryGUI = machineryGUI;
     }
 
@@ -227,7 +226,7 @@ public class MachineryData extends javax.swing.JFrame {
             if (option == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFiled();
-                machineryGUI.loadInventoryData();  // Actualiza la tabla en la GUI principal
+                machineryGUI.loadMachinaryData();
             }
         }
 

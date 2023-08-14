@@ -24,7 +24,7 @@ public class MachineryGUI extends javax.swing.JFrame {
      */
     public MachineryGUI() {
         initComponents();
-        loadInventoryData();
+        loadMachinaryData();
     }
 
     /**
@@ -148,7 +148,7 @@ public class MachineryGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void loadInventoryData() {
+    public void loadMachinaryData() {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
@@ -198,7 +198,7 @@ public class MachineryGUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         MachineryData machineryData = new MachineryData();
-        machineryData.setInventoryGUI(this); // Establece la referencia a la ventana principal
+        machineryData.setMachinaryGUI(this); // Establece la referencia a la ventana principal
         machineryData.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -219,7 +219,7 @@ public class MachineryGUI extends javax.swing.JFrame {
 
                     collection.deleteOne(Filters.eq("Id", id));
 
-                    loadInventoryData();
+                    loadMachinaryData();
 
                     JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
                 } catch (MongoException e) {

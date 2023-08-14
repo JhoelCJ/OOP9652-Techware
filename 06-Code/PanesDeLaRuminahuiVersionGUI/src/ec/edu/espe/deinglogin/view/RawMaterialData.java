@@ -1,10 +1,7 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import ec.edu.espe.deinglogin.model.Inventory;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
@@ -27,6 +24,7 @@ public class RawMaterialData extends javax.swing.JFrame {
      */
     public RawMaterialData() {
         initComponents();
+
     }
 
     private void emptyFiled() {
@@ -34,6 +32,26 @@ public class RawMaterialData extends javax.swing.JFrame {
         txtName.setText("");
         txtAmount.setText("");
         txtPrice.setText("");
+    }
+
+    private boolean validateFields(ValidationUtil validationUtil) {
+        boolean validate = true;
+
+        if (!validationUtil.validateInt(txtId.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el id");
+        } else if (!validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras para el nombre");
+        } else if (!validationUtil.validateInt(txtAmount.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para la cantidad");
+        } else if (!validationUtil.validateFloat(txtPrice.getText())) {
+            validate = false;
+            JOptionPane.showMessageDialog(null, "Ingrese un numero positivo para el precio");
+        }
+        return validate;
+
     }
 
     /**
@@ -167,10 +185,6 @@ public class RawMaterialData extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         this.setVisible(false);
-
-        RawMaterialGUI newRawMaterialGUI = new RawMaterialGUI();
-        newRawMaterialGUI.loadRawMaterialData();
-        newRawMaterialGUI.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -181,64 +195,29 @@ public class RawMaterialData extends javax.swing.JFrame {
 
     private void AddRawMaterial(ValidationUtil validationUtil) throws HeadlessException, NumberFormatException {
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("rawMaterial");
+        if (validateFields(validationUtil)) {
+            int id = Integer.parseInt(txtId.getText());
+            String name = txtName.getText();
+            int amount = Integer.parseInt(txtAmount.getText());
+            float price = Float.parseFloat(txtPrice.getText());
+            MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
+            MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            Inventory inventory;
+            Document doc = new Document("Id", id)
+                    .append("Name", name)
+                    .append("Ammount", amount)
+                    .append("Price", price);
 
-            int id = 1;
-            String name = "string";
-            int amount = 1;
-            float price = 1;
+            collection.insertOne(doc);
+            int option = JOptionPane.showConfirmDialog(this, "Guardar");
 
-            boolean validate;
-
-            if (validationUtil.validateInt(txtId.getText())) {
-                validate = true;
-                id = Integer.parseInt(txtId.getText());
-                if (validationUtil.ValidateLetterStringWithSpaces(txtName.getText())) {
-                    validate = true;
-                    name = txtName.getText();
-                    if (validationUtil.validateInt(txtAmount.getText())) {
-                        validate = true;
-                        amount = Integer.parseInt(txtAmount.getText());
-                        if (validationUtil.validateFloat(txtPrice.getText())) {
-                            validate = true;
-                            price = Float.parseFloat(txtPrice.getText());
-                        } else {
-                            validate = false;
-                            JOptionPane.showMessageDialog(null, "Ingrese Un numero para el precio");
-                        }
-                    } else {
-                        validate = false;
-                        JOptionPane.showMessageDialog(null, "Ingrese numeros para la cantidad");
-                    }
-                } else {
-                    validate = false;
-                    JOptionPane.showMessageDialog(null, " Ingrese solo letras");
-                }
-            } else {
-                validate = false;
-                JOptionPane.showMessageDialog(null, " Ingrese un numero positivo para el id");
-            }
-            if (validate) {
-                Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price);
-
-                collection.insertOne(doc1);
-
-                int option = JOptionPane.showConfirmDialog(this, " Guardar \n");
-
-                if (option == 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
-
-                    emptyFiled();
-                }
-
+            if (option == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFiled();
+                rawMaterialGUI.loadRawMaterialData();
             }
         }
+
     }
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
