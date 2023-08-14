@@ -216,47 +216,34 @@ public class InventoryData extends javax.swing.JFrame {
         ValidationUtil validationUtil = new ValidationUtil();
         AddInventory(validationUtil);
     }//GEN-LAST:event_btnAddActionPerformed
-
     private void AddInventory(ValidationUtil validationUtil) throws NumberFormatException, HeadlessException {
         if (validateFields(validationUtil)) {
             int id = Integer.parseInt(txtId.getText());
             String name = txtName.getText();
             int amount = Integer.parseInt(txtAmount.getText());
             float price = Float.parseFloat(txtPrice.getText());
-
-
             MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-
             Document doc = new Document("Id", id)
                     .append("Name", name)
-                    .append("Amount", amount)
+                    .append("Ammount", amount)
                     .append("Price", price);
 
-
             collection.insertOne(doc);
-
             int option = JOptionPane.showConfirmDialog(this, "Guardar");
 
             if (option == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFields();
+                inventoryGUI.loadInventoryData();  // Actualiza la tabla en la GUI principal
             }
-
-            emptyFields();
         }
+
     }
 
-
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
-        this.setVisible(false);
-
-        InventoryGUI newInventoryGUI = new InventoryGUI();
-        newInventoryGUI.loadInventoryData();
-        newInventoryGUI.setVisible(true);
-
+    this.setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
