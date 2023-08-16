@@ -1,21 +1,15 @@
-
 package ec.edu.espe.deinglogin.view;
 
-
-import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import java.awt.HeadlessException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.bson.Document;
-
 
 /**
  *
@@ -32,32 +26,30 @@ public class InventoryGUI extends javax.swing.JFrame {
     }
 
     public void loadInventoryData() {
-        
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            FindIterable<Document> iterable = collection.find();
-            for (Document document : iterable) {
-                int id = document.getInteger("Id");
-                String nombre = document.getString("Name");
-                int cantidad = document.getInteger("Ammount");
-                float precio = document.getDouble("Price").floatValue();
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) {
+            int id = document.getInteger("Id");
+            String nombre = document.getString("Name");
+            int cantidad = document.getInteger("Ammount");
+            float precio = document.getDouble("Price").floatValue();
 
-                model.addRow(new Object[]{id, nombre, cantidad, precio});
-            }
+            model.addRow(new Object[]{id, nombre, cantidad, precio});
         }
 
         tbInventory.setModel(model);
 
         tbInventory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
             public void valueChanged(ListSelectionEvent event) {
                 if (!event.getValueIsAdjusting()) {
                     int selectedRow = tbInventory.getSelectedRow();
@@ -70,9 +62,10 @@ public class InventoryGUI extends javax.swing.JFrame {
                     }
                 }
             }
-        });
+        }
+        );
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -204,7 +197,6 @@ public class InventoryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
         Delete();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -213,23 +205,18 @@ public class InventoryGUI extends javax.swing.JFrame {
         if (selectedRow != -1) {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este dato?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                
+
                 int id = (int) tbInventory.getValueAt(selectedRow, 0);
-                
-                String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-                try (MongoClient mongoClient = MongoClients.create(uri)) {
-                    MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-                    MongoCollection<Document> collection = database.getCollection("inventory");
-                    
-                    collection.deleteOne(Filters.eq("Id", id));
-                    
-                    loadInventoryData();
-                    
-                    JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
-                } catch (MongoException e) {
-                    JOptionPane.showMessageDialog(this, "Error al eliminar el dato", "Error", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
+
+                MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+                MongoCollection<Document> collection = mongoDataConnect.getCollection();
+
+                collection.deleteOne(Filters.eq("Id", id));
+
+                loadInventoryData();
+
+                JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
+                //Implementar un try cath para error de no borrado (jhoel mas te vale no aproevecharte para un commit)
             }
         }
     }
