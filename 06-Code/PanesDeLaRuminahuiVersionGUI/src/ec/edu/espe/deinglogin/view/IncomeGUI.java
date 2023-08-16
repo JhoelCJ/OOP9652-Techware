@@ -1,11 +1,8 @@
-
 package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import java.awt.print.PrinterException;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -18,7 +15,7 @@ import org.bson.Document;
  * @author Gabriel Baez, Techware, DCCO-ESPE
  */
 public class IncomeGUI extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Budget
      */
@@ -26,30 +23,28 @@ public class IncomeGUI extends javax.swing.JFrame {
         initComponents();
         loadIncomeGUI();
     }
-    
-     public void loadIncomeGUI() {
-        
+
+    public void loadIncomeGUI() {
+
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
         model.addColumn("Producto");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("income");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("income");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            FindIterable<Document> iterable = collection.find();
-            for (Document document : iterable) {
-                int id = document.getInteger("Id");
-                String nombre = document.getString("Name");
-                int cantidad = document.getInteger("Ammount");
-                float precio = document.getDouble("Price").floatValue();
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) {
+            int id = document.getInteger("Id");
+            String nombre = document.getString("Name");
+            int cantidad = document.getInteger("Ammount");
+            float precio = document.getDouble("Price").floatValue();
 
-                model.addRow(new Object[]{id, nombre, cantidad, precio});
-            }
-            tbIncome.setModel(model);
+            model.addRow(new Object[]{id, nombre, cantidad, precio});
+        }
+        tbIncome.setModel(model);
 
         tbIncome.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -65,7 +60,7 @@ public class IncomeGUI extends javax.swing.JFrame {
                 }
             }
         });
-        }
+
     }
 
     /**
