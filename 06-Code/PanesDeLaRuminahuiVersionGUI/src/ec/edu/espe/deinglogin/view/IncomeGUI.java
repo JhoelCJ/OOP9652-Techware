@@ -34,7 +34,6 @@ public class IncomeGUI extends javax.swing.JFrame {
         model.addColumn("Producto");
         model.addColumn("Cantidad");
         model.addColumn("Precio");
-        //model.addColumn("Total");
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
         try (MongoClient mongoClient = MongoClients.create(uri)) {

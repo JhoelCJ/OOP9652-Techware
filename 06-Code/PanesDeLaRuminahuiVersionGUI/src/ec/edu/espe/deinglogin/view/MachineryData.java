@@ -44,7 +44,7 @@ public class MachineryData extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solo letras para el nombre");
         } else if (!validationUtil.ValidateLetterStringWithSpaces(txtUse.getText())) {
             validate = false;
-            JOptionPane.showMessageDialog(null, "Ingrese numeros para la cantidad");
+            JOptionPane.showMessageDialog(null, "Ingrese Letras para el Uso");
         }
 
         return validate;

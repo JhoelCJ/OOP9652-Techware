@@ -236,7 +236,7 @@ public class InventoryData extends javax.swing.JFrame {
             if (option == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Registrado con exito");
                 emptyFields();
-                inventoryGUI.loadInventoryData();  // Actualiza la tabla en la GUI principal
+                inventoryGUI.loadInventoryData();
             }
         }
 

@@ -7,6 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -156,10 +157,8 @@ public class MachineryGUI extends javax.swing.JFrame {
         model.addColumn("Uso");
         model.addColumn("Garantia");
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("machinery");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
             FindIterable<Document> iterable = collection.find();
             for (Document document : iterable) {
@@ -170,7 +169,6 @@ public class MachineryGUI extends javax.swing.JFrame {
 
                 model.addRow(new Object[]{id, nombre, uso, garantia});
             }
-        }
 
         tbMachinery.setModel(model);
 
@@ -188,7 +186,7 @@ public class MachineryGUI extends javax.swing.JFrame {
                 }
             }
         });
-    }
+}
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         MainPage mainPage = new MainPage();
