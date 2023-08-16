@@ -210,20 +210,14 @@ public class MachineryGUI extends javax.swing.JFrame {
 
                 int id = (int) tbMachinery.getValueAt(selectedRow, 0);
 
-                String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-                try (MongoClient mongoClient = MongoClients.create(uri)) {
-                    MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-                    MongoCollection<Document> collection = database.getCollection("machinery");
+                MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
+                MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-                    collection.deleteOne(Filters.eq("Id", id));
+                collection.deleteOne(Filters.eq("Id", id));
 
-                    loadMachinaryData();
+                loadMachinaryData();
 
-                    JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
-                } catch (MongoException e) {
-                    JOptionPane.showMessageDialog(this, " Error al eliminar el dato", "Error ", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
+                JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
             }
         }
 
