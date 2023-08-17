@@ -29,13 +29,12 @@ public class MongoConnect {
 
         Sale sale;
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("inventory");
 
             int sizeSaleList = saleList.size();
 
-            
             List<Integer> rowsToRemove = new ArrayList<>();
 
             for (int i = 0; i < sizeSaleList; i++) {
@@ -52,11 +51,9 @@ public class MongoConnect {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 }
 
-                
                 rowsToRemove.add(i);
             }
 
-            // Remove rows in reverse order to avoid index shifting
             for (int i = rowsToRemove.size() - 1; i >= 0; i--) {
                 int rowIndex = rowsToRemove.get(i);
                 if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
@@ -64,7 +61,6 @@ public class MongoConnect {
                 }
             }
 
-            // Set the model for the table after removing rows
             tabList.setModel(model);
 
         } catch (MongoException e) {
@@ -78,7 +74,7 @@ public class MongoConnect {
         Sale sale;
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("income");
 
@@ -109,7 +105,7 @@ public class MongoConnect {
         boolean txtDelete = true;
 
         String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
+        try ( MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
             MongoCollection<Document> collection = database.getCollection("login");
 
