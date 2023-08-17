@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import ec.edu.espe.deinglogin.controller.Encrypted;
+import java.util.List;
 
 /**
  *
@@ -34,24 +35,38 @@ public class MongoConnect {
 
             int sizeSaleList = saleList.size();
 
-            for (int i = 0; i < sizeSaleList; i++) {
+            // Create a list to store the indices of rows to be removed
+            List<Integer> rowsToRemove = new ArrayList<>();
 
+            for (int i = 0; i < sizeSaleList; i++) {
                 sale = saleList.get(i);
                 Bson usernameFilter = Filters.eq("Id", sale.getId());
                 Document productDocument = collection.find(usernameFilter).first();
+
                 if (productDocument != null) {
                     int amount = productDocument.getInteger("Ammount");
                     amount = amount - sale.getAmount();
                     Bson update = new Document("$set", new Document("Ammount", amount));
                     collection.updateOne(usernameFilter, update);
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 }
 
-                model.removeRow(0);
-                tabList.setModel(model);
+                // Add the index of the row to be removed to the list
+                rowsToRemove.add(i);
             }
+
+            // Remove rows in reverse order to avoid index shifting
+            for (int i = rowsToRemove.size() - 1; i >= 0; i--) {
+                int rowIndex = rowsToRemove.get(i);
+                if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
+                    model.removeRow(rowIndex);
+                }
+            }
+
+            // Set the model for the table after removing rows
+            tabList.setModel(model);
+
         } catch (MongoException e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
             e.printStackTrace();

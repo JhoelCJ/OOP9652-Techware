@@ -1,11 +1,7 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
@@ -160,15 +156,15 @@ public class MachineryGUI extends javax.swing.JFrame {
         MongoDataConnect mongoDataConnect = new MongoDataConnect("machinery");
         MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            FindIterable<Document> iterable = collection.find();
-            for (Document document : iterable) {
-                int id = document.getInteger("Id");
-                String nombre = document.getString("Name");
-                String uso = document.getString("Use");
-                String garantia = document.getString("Warranty");
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) {
+            int id = document.getInteger("Id");
+            String nombre = document.getString("Name");
+            String uso = document.getString("Use");
+            String garantia = document.getString("Warranty");
 
-                model.addRow(new Object[]{id, nombre, uso, garantia});
-            }
+            model.addRow(new Object[]{id, nombre, uso, garantia});
+        }
 
         tbMachinery.setModel(model);
 
@@ -186,7 +182,7 @@ public class MachineryGUI extends javax.swing.JFrame {
                 }
             }
         });
-}
+    }
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         MainPage mainPage = new MainPage();
@@ -195,8 +191,9 @@ public class MachineryGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
         MachineryData machineryData = new MachineryData();
-        machineryData.setMachinaryGUI(this); // Establece la referencia a la ventana principal
+        machineryData.setMachinaryGUI(this); 
         machineryData.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed

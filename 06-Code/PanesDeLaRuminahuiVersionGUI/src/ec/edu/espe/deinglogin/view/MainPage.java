@@ -6,21 +6,17 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.utils.MongoConnect;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import java.util.*;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
-
 
 /**
  *
@@ -52,22 +48,19 @@ public class MainPage extends javax.swing.JFrame {
         model.addColumn("Producto");
         model.addColumn("Cantidad");
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            FindIterable<Document> iterable = collection.find();
-            for (Document document : iterable) {
-                int id = document.getInteger("Id");
-                String nombre = document.getString("Name");
-                int cantidad = document.getInteger("Ammount");
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) {
+            int id = document.getInteger("Id");
+            String nombre = document.getString("Name");
+            int cantidad = document.getInteger("Ammount");
 
-                model.addRow(new Object[]{id, nombre, cantidad});
-            }
-            tbInventory.setModel(model);
-
+            model.addRow(new Object[]{id, nombre, cantidad});
         }
+        tbInventory.setModel(model);
+
     }
 
     /**
@@ -91,7 +84,7 @@ public class MainPage extends javax.swing.JFrame {
         bntNewProduct = new javax.swing.JButton();
         btnAddProduct = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        tblInventory = new javax.swing.JScrollPane();
         tbInventory = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -172,7 +165,7 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         bntNewProduct.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        bntNewProduct.setText("Nuevo Producto");
+        bntNewProduct.setText("Borrar");
         bntNewProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntNewProductActionPerformed(evt);
@@ -204,9 +197,9 @@ public class MainPage extends javax.swing.JFrame {
             }
         ));
         tbInventory.setEnabled(false);
-        jScrollPane2.setViewportView(tbInventory);
+        tblInventory.setViewportView(tbInventory);
 
-        jScrollPane3.setViewportView(jScrollPane2);
+        jScrollPane3.setViewportView(tblInventory);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,6 +223,7 @@ public class MainPage extends javax.swing.JFrame {
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(77, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
                         .addComponent(bntNewProduct)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddProduct)
@@ -257,7 +251,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddProduct)
                     .addComponent(bntNewProduct))
                 .addGap(63, 63, 63))
@@ -279,7 +273,7 @@ public class MainPage extends javax.swing.JFrame {
         });
 
         btnNewSale.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnNewSale.setText("Nueva Venta");
+        btnNewSale.setText("Cancelar Venta");
         btnNewSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewSaleActionPerformed(evt);
@@ -303,7 +297,7 @@ public class MainPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Cantidad", "Precio Unitario", "Precio Total"
+                "Id", "Nombre", "Cantidad", "Precio Unitario", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(tabList);
@@ -313,7 +307,7 @@ public class MainPage extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE)
                 .addComponent(btnNewSale)
                 .addGap(125, 125, 125)
                 .addComponent(btnFinishSale)
@@ -459,7 +453,7 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdKeyReleased
 
     private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
-        
+
         ValidationUtil validationUtil = new ValidationUtil();
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
@@ -479,29 +473,23 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdKeyPressed
 
     private void validateProduct(int id) {
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
+        Bson usernameFilter = Filters.eq("Id", id);
+        Document productDocument = collection.find(usernameFilter).first();
 
-            Bson usernameFilter = Filters.eq("Id", id);
-            Document productDocument = collection.find(usernameFilter).first();
-
-            if (productDocument != null) {
-                String nameProduct = productDocument.getString("Name");
-                float budgetProduct = productDocument.getDouble("Price").floatValue();
-                System.out.println(budgetProduct);
-                int stock = productDocument.getInteger("Ammount");
-                System.out.println(stock);
-                product = new Product(id, nameProduct, budgetProduct, stock);
-            } else {
-                JOptionPane.showMessageDialog(null, "Producto no encontrado");
-            }
-        } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-            e.printStackTrace();
+        if (productDocument != null) {
+            String nameProduct = productDocument.getString("Name");
+            float budgetProduct = productDocument.getDouble("Price").floatValue();
+            System.out.println(budgetProduct);
+            int stock = productDocument.getInteger("Ammount");
+            System.out.println(stock);
+            product = new Product(id, nameProduct, budgetProduct, stock);
+        } else {
+            JOptionPane.showMessageDialog(null, "Producto no encontrado");
         }
+
     }
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
@@ -509,7 +497,7 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void addProductAction() throws NumberFormatException, HeadlessException {
-        
+
         ValidationUtil validationUtil = new ValidationUtil();
 
         boolean validate = true;
@@ -582,18 +570,21 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountKeyPressed
 
     private void btnNewSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewSaleActionPerformed
-        int rowTable = tabList.getRowCount();
-        for (int i = 1; i <= rowTable; i++) {
-            model.removeRow(0);
-            tabList.setModel(model);
-        }
+        DefaultTableModel newModel = new DefaultTableModel();
+        newModel.addColumn("Id");
+        newModel.addColumn("Producto");
+        newModel.addColumn("Cantidad");
+
+        tabList.setModel(newModel);
         initAllPanel();
     }//GEN-LAST:event_btnNewSaleActionPerformed
 
     private void btnFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishSaleActionPerformed
+
         saveSale();
         finishSale();
         initAllPanel();
+        loadInventoryGUI();
     }//GEN-LAST:event_btnFinishSaleActionPerformed
 
     private void finishSale() throws HeadlessException {
@@ -750,7 +741,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JMenu mnExit;
     private javax.swing.JMenuItem mniHelp;
@@ -758,6 +748,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JMenu mnuInventory;
     private javax.swing.JTable tabList;
     private javax.swing.JTable tbInventory;
+    private javax.swing.JScrollPane tblInventory;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtFinalPrice;
     private javax.swing.JTextField txtFullValue;
