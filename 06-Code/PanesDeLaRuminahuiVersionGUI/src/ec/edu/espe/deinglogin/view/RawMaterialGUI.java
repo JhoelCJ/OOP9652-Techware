@@ -7,6 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -35,11 +36,9 @@ public class RawMaterialGUI extends javax.swing.JFrame {
         model.addColumn("Cantidad");
         model.addColumn("Precio");
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("rawMaterial");
-
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
+            
             FindIterable<Document> iterable = collection.find();
             for (Document document : iterable) {
                 int id = document.getInteger("Id");
@@ -49,7 +48,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
 
                 model.addRow(new Object[]{id, nombre, cantidad, precio});
             }
-        }
+        
 
         tbRawMaterial.setModel(model);
 
@@ -219,20 +218,16 @@ public class RawMaterialGUI extends javax.swing.JFrame {
 
                 int id = (int) tbRawMaterial.getValueAt(selectedRow, 0);
 
-                String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-                try (MongoClient mongoClient = MongoClients.create(uri)) {
-                    MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-                    MongoCollection<Document> collection = database.getCollection("rawMaterial");
-
+               MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
+               MongoCollection<Document> collection = mongoDataConnect.getCollection();
+               
                     collection.deleteOne(Filters.eq("Id", id));
 
                     loadRawMaterialData();
 
                     JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
-                } catch (MongoException e) {
-                    JOptionPane.showMessageDialog(this, " Error al eliminar el dato ", " Error ", JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
+                
+                    //Here a catch
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

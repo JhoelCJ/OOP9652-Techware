@@ -35,7 +35,7 @@ public class MongoConnect {
 
             int sizeSaleList = saleList.size();
 
-            // Create a list to store the indices of rows to be removed
+            
             List<Integer> rowsToRemove = new ArrayList<>();
 
             for (int i = 0; i < sizeSaleList; i++) {
@@ -52,7 +52,7 @@ public class MongoConnect {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 }
 
-                // Add the index of the row to be removed to the list
+                
                 rowsToRemove.add(i);
             }
 
