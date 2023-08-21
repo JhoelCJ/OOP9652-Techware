@@ -8,7 +8,7 @@ public class WholemealBread implements Bread{
 
     @Override
     public void baked() {
-        System.out.println("A Wholemeal Bread was Baked");
+        System.out.println("Un pan integral fue horneado");
     }
     
 }

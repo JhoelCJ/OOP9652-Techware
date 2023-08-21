@@ -8,7 +8,7 @@ public class WormBread implements Bread{
 
     @Override
     public void baked() {
-        System.out.println("A Worm Bread was baked");
+        System.out.println("Un pan gusano fue horneado");
     }
 
 }
