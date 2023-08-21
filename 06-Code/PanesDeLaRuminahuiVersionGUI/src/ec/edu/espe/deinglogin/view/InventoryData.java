@@ -222,6 +222,7 @@ public class InventoryData extends javax.swing.JFrame {
             String name = txtName.getText();
             int amount = Integer.parseInt(txtAmount.getText());
             float price = Float.parseFloat(txtPrice.getText());
+            
             MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
             MongoCollection<Document> collection = mongoDataConnect.getCollection();
 

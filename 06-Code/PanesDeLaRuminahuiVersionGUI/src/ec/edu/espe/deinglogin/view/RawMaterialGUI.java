@@ -1,11 +1,7 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
@@ -226,8 +222,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
                     loadRawMaterialData();
 
                     JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
-                
-                    //Here a catch
+
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

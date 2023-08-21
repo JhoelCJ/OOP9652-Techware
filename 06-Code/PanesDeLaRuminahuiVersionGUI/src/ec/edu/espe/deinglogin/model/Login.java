@@ -1,6 +1,5 @@
 package ec.edu.espe.deinglogin.model;
 
-//import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;

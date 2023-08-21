@@ -4,7 +4,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import ec.edu.espe.deinglogin.controller.Printer;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
-import java.awt.print.PrinterException;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -177,15 +176,7 @@ public class ExpensesGUI extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     private void printTable(JTable table) {
-        /*try {
-            boolean complete = table.print();
-            if (complete) {
-                System.out.println("Ist Print");
-            }
-        } catch (PrinterException pe) {
-            System.err.println("Error al imprimir la tabla: " + pe.getMessage());
-        }*/
-        
+
         Printer printer = Printer.getInstance();
 
         JTable myTable = new JTable();

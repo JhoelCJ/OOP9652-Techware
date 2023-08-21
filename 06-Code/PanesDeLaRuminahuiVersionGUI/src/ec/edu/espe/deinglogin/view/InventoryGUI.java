@@ -216,7 +216,6 @@ public class InventoryGUI extends javax.swing.JFrame {
                 loadInventoryData();
 
                 JOptionPane.showMessageDialog(this, "Dato eliminado correctamente");
-                //Implementar un try cath para error de no borrado (jhoel mas te vale no aproevecharte para un commit)
             }
         }
     }

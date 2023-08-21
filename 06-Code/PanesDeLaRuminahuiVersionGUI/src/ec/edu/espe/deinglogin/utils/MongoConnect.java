@@ -1,10 +1,6 @@
 package ec.edu.espe.deinglogin.utils;
 
-import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import javax.swing.JOptionPane;
 import org.bson.Document;
@@ -28,74 +24,66 @@ public class MongoConnect {
     public void inventoryConnect(ArrayList<Sale> saleList, DefaultTableModel model, javax.swing.JTable tabList) {
 
         Sale sale;
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("inventory");
 
-            int sizeSaleList = saleList.size();
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("inventory");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
+        
+        int sizeSaleList = saleList.size();
 
-            List<Integer> rowsToRemove = new ArrayList<>();
+        List<Integer> rowsToRemove = new ArrayList<>();
 
-            for (int i = 0; i < sizeSaleList; i++) {
-                sale = saleList.get(i);
-                Bson usernameFilter = Filters.eq("Id", sale.getId());
-                Document productDocument = collection.find(usernameFilter).first();
+        for (int i = 0; i < sizeSaleList; i++) {
+            sale = saleList.get(i);
+            Bson usernameFilter = Filters.eq("Id", sale.getId());
+            Document productDocument = collection.find(usernameFilter).first();
 
-                if (productDocument != null) {
-                    int amount = productDocument.getInteger("Ammount");
-                    amount = amount - sale.getAmount();
-                    Bson update = new Document("$set", new Document("Ammount", amount));
-                    collection.updateOne(usernameFilter, update);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Producto no encontrado");
-                }
-
-                rowsToRemove.add(i);
+            if (productDocument != null) {
+                int amount = productDocument.getInteger("Ammount");
+                amount = amount - sale.getAmount();
+                Bson update = new Document("$set", new Document("Ammount", amount));
+                collection.updateOne(usernameFilter, update);
+            } else {
+                JOptionPane.showMessageDialog(null, "Producto no encontrado");
             }
 
-            for (int i = rowsToRemove.size() - 1; i >= 0; i--) {
-                int rowIndex = rowsToRemove.get(i);
-                if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
-                    model.removeRow(rowIndex);
-                }
-            }
-
-            tabList.setModel(model);
-
-        } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
-            e.printStackTrace();
+            rowsToRemove.add(i);
         }
+
+        for (int i = rowsToRemove.size() - 1; i >= 0; i--) {
+            int rowIndex = rowsToRemove.get(i);
+            if (rowIndex >= 0 && rowIndex < model.getRowCount()) {
+                model.removeRow(rowIndex);
+            }
+        }
+
+        tabList.setModel(model);
+
     }
 
     public void incomeConnect(ArrayList<Sale> saleList, float finalPrice) {
 
         Sale sale;
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("income");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("income");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            int id;
-            String name;
-            int amount;
-            float price;
+        int id;
+        String name;
+        int amount;
+        float price;
 
-            for (int i = 0; i < saleList.size(); i++) {
+        for (int i = 0; i < saleList.size(); i++) {
 
-                sale = saleList.get(i);
+            sale = saleList.get(i);
 
-                id = sale.getId();
-                name = sale.getNameProduct();
-                amount = sale.getAmount();
-                price = sale.getTotalPrice();
+            id = sale.getId();
+            name = sale.getNameProduct();
+            amount = sale.getAmount();
+            price = sale.getTotalPrice();
 
-                Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
+            Document doc1 = new Document("Id", id).append("Name", name).append("Ammount", amount).append("Price", price).append("Final Price", finalPrice);
 
-                collection.insertOne(doc1);
-            }
+            collection.insertOne(doc1);
         }
 
     }
@@ -104,46 +92,40 @@ public class MongoConnect {
 
         boolean txtDelete = true;
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try ( MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("login");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            String cifrada = Encrypted.encryptPassword(password);
+        String cifrada = Encrypted.encryptPassword(password);
 
-            Bson usernameFilter = Filters.eq("User", username);
-            Document userDocument = collection.find(usernameFilter).first();
+        Bson usernameFilter = Filters.eq("User", username);
+        Document userDocument = collection.find(usernameFilter).first();
 
-            if (userDocument != null) {
-                String storedPassword = userDocument.getString("Pasword");
-                if (storedPassword.equals(cifrada)) {
+        if (userDocument != null) {
+            String storedPassword = userDocument.getString("Pasword");
+            if (storedPassword.equals(cifrada)) {
 
-                    Date fechaActual = new Date();
+                Date fechaActual = new Date();
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    String fechaTexto = sdf.format(fechaActual);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String fechaTexto = sdf.format(fechaActual);
 
-                    userDocument.append("Fecha de entrada:  ", fechaTexto);
+                userDocument.append("Fecha de entrada:  ", fechaTexto);
 
-                    collection.replaceOne(usernameFilter, userDocument);
-                    MainPage mainPage = new MainPage();
-                    mainPage.setVisible(true);
-                    LoginGUI loginGUI = new LoginGUI();
-                    loginGUI.setVisible(false);
+                collection.replaceOne(usernameFilter, userDocument);
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+                LoginGUI loginGUI = new LoginGUI();
+                loginGUI.setVisible(false);
 
-                    txtDelete = false;
+                txtDelete = false;
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña/Usuario incorrecta ");
-
-                }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario/Contraseña no encontrado ");
+                JOptionPane.showMessageDialog(null, "Contraseña/Usuario incorrecta ");
 
             }
-        } catch (MongoException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos ");
-            e.printStackTrace();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña no encontrado ");
+
         }
         return txtDelete;
     }

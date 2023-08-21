@@ -1,12 +1,10 @@
 package ec.edu.espe.deinglogin.view;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.deinglogin.controller.Encrypted;
 import ec.edu.espe.deinglogin.utils.MongoConnect;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
+import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
@@ -191,20 +189,18 @@ public class LoginGUI extends javax.swing.JFrame {
 
     public void createDocument() {
 
-        String uri = "mongodb+srv://jcalderon:jcalderon@cluster0.94svwj5.mongodb.net/?retryWrites=true&w=majority";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("PanesDeLaRuminahui");
-            MongoCollection<Document> collection = database.getCollection("login");
+        MongoDataConnect mongoDataConnect = new MongoDataConnect("login");
+        MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-            String user = txtUser.getText();
-            String pasword = txtPassword.getText();
+        String user = txtUser.getText();
+        String pasword = txtPassword.getText();
 
-            String encrypted = Encrypted.encryptPassword(pasword);
+        String encrypted = Encrypted.encryptPassword(pasword);
 
-            Document doc1 = new Document("User", user).append("Pasword",encrypted);
+        Document doc1 = new Document("User", user).append("Pasword", encrypted);
 
-            collection.insertOne(doc1);
-        }
+        collection.insertOne(doc1);
+
     }
 
     private void emptyFiled() {
@@ -325,16 +321,24 @@ public class LoginGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
