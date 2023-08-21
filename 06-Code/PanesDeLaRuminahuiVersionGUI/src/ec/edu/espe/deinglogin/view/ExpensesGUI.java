@@ -178,11 +178,7 @@ public class ExpensesGUI extends javax.swing.JFrame {
     private void printTable(JTable table) {
 
         Printer printer = Printer.getInstance();
-
-        JTable myTable = new JTable();
-
-        printer.printTable(myTable);
-        
+        printer.printTable(table);
     }
     private void btnPritActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPritActionPerformed
         printTable(tbExpensive);

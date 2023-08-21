@@ -116,7 +116,9 @@ public class FrmBread extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        System.exit(0);
+        MainPage mainPage = new MainPage();
+        mainPage.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnPanGusanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPanGusanoActionPerformed

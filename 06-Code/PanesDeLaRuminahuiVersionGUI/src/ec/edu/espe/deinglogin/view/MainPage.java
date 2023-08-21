@@ -99,6 +99,7 @@ public class MainPage extends javax.swing.JFrame {
         itmAddRawMaterial = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        itmFrmBread = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -365,6 +366,14 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
         mnuInventory.add(jMenuItem5);
+
+        itmFrmBread.setText("Hornear");
+        itmFrmBread.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmFrmBreadActionPerformed(evt);
+            }
+        });
+        mnuInventory.add(itmFrmBread);
 
         jMenuBar1.add(mnuInventory);
 
@@ -654,6 +663,12 @@ public class MainPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFullValueActionPerformed
 
+    private void itmFrmBreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmFrmBreadActionPerformed
+        FrmBread frmBread = new FrmBread();
+        frmBread.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_itmFrmBreadActionPerformed
+
     private void addProductToList() {
         float finalPrice = Float.parseFloat(txtFinalPrice.getText());
         model.addRow(new Object[]{sale.getId(), sale.getNameProduct(), sale.getAmount(), sale.getUnitPrice(), sale.getTotalPrice()});
@@ -725,6 +740,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton btnFinishSale;
     private javax.swing.JButton btnNewSale;
     private javax.swing.JMenuItem itmAddRawMaterial;
+    private javax.swing.JMenuItem itmFrmBread;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
