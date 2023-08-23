@@ -34,21 +34,21 @@ public class RawMaterialGUI extends javax.swing.JFrame {
 
         MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
         MongoCollection<Document> collection = mongoDataConnect.getCollection();
-            
-            FindIterable<Document> iterable = collection.find();
-            for (Document document : iterable) {
-                int id = document.getInteger("Id");
-                String nombre = document.getString("Name");
-                int cantidad = document.getInteger("Ammount");
-                float precio = document.getDouble("Price").floatValue();
 
-                model.addRow(new Object[]{id, nombre, cantidad, precio});
-            }
-        
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) {
+            int id = document.getInteger("Id");
+            String nombre = document.getString("Name");
+            int cantidad = document.getInteger("Ammount");
+            float precio = document.getDouble("Price").floatValue();
+
+            model.addRow(new Object[]{id, nombre, cantidad, precio});
+        }
 
         tbRawMaterial.setModel(model);
 
         tbRawMaterial.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
             public void valueChanged(ListSelectionEvent event) {
                 if (!event.getValueIsAdjusting()) {
                     int selectedRow = tbRawMaterial.getSelectedRow();
@@ -207,6 +207,7 @@ public class RawMaterialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
         int selectedRow = tbRawMaterial.getSelectedRow();
         if (selectedRow != -1) {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar este dato?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -214,14 +215,14 @@ public class RawMaterialGUI extends javax.swing.JFrame {
 
                 int id = (int) tbRawMaterial.getValueAt(selectedRow, 0);
 
-               MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
-               MongoCollection<Document> collection = mongoDataConnect.getCollection();
-               
-                    collection.deleteOne(Filters.eq("Id", id));
+                MongoDataConnect mongoDataConnect = new MongoDataConnect("rawMaterial");
+                MongoCollection<Document> collection = mongoDataConnect.getCollection();
 
-                    loadRawMaterialData();
+                collection.deleteOne(Filters.eq("Id", id));
 
-                    JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
+                loadRawMaterialData();
+
+                JOptionPane.showMessageDialog(this, " Dato eliminado correctamente ");
 
             }
         }
