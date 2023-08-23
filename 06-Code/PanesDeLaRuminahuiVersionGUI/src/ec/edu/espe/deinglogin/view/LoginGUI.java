@@ -2,7 +2,7 @@ package ec.edu.espe.deinglogin.view;
 
 import com.mongodb.client.MongoCollection;
 import ec.edu.espe.deinglogin.controller.Encrypted;
-import ec.edu.espe.deinglogin.utils.MongoConnect;
+import ec.edu.espe.deinglogin.utils.Manager;
 import ec.edu.espe.deinglogin.model.UserAndPassword;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import ec.edu.espe.deinglogin.utils.ValidationUtil;
@@ -286,7 +286,7 @@ public class LoginGUI extends javax.swing.JFrame {
             return;
         }
 
-        MongoConnect mongoConnect = new MongoConnect();
+        Manager mongoConnect = new Manager();
 
         if (mongoConnect.loginConnect(username, password)) {
             txtUser.setText("");

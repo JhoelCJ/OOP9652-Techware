@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-import ec.edu.espe.deinglogin.utils.MongoConnect;
+import ec.edu.espe.deinglogin.utils.Manager;
 import ec.edu.espe.deinglogin.utils.MongoDataConnect;
 import javax.swing.JOptionPane;
 import org.bson.Document;
@@ -598,7 +598,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void finishSale() throws HeadlessException {
 
-        MongoConnect mongoConnect = new MongoConnect();
+        Manager mongoConnect = new Manager();
         mongoConnect.inventoryConnect(saleList, model, tabList);
 
     }
@@ -607,7 +607,7 @@ public class MainPage extends javax.swing.JFrame {
 
         float finalPrice = Float.parseFloat(txtFinalPrice.getText());
 
-        MongoConnect mongoConnect = new MongoConnect();
+        Manager mongoConnect = new Manager();
         mongoConnect.incomeConnect(saleList, finalPrice);
     }
 

@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Jilmar Calderon, Techware, DCCO-ESPE
  */
-public class MongoConnect {
+public class Manager {
 
     public void inventoryConnect(ArrayList<Sale> saleList, DefaultTableModel model, javax.swing.JTable tabList) {
 
