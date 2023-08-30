@@ -31,6 +31,7 @@ public class MainPage extends javax.swing.JFrame {
     Product product;
     ArrayList<Sale> saleList = new ArrayList<>();
     Sale sale;
+    float iva = 0.12F;
 
     public MainPage() {
         initComponents();
@@ -86,6 +87,8 @@ public class MainPage extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInventory = new javax.swing.JScrollPane();
         tbInventory = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        txtIVA = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnFinishSale = new javax.swing.JButton();
@@ -202,6 +205,8 @@ public class MainPage extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(tblInventory);
 
+        jLabel7.setText("IVA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -214,21 +219,28 @@ public class MainPage extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFullValue, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtFullValue, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addComponent(txtUnitValue, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(77, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(bntNewProduct)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddProduct)
-                        .addGap(116, 116, 116))))
+                        .addGap(116, 116, 116))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(179, 179, 179))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,16 +258,20 @@ public class MainPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUnitValue, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFullValue, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtIVA)
+                    .addComponent(txtFullValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddProduct)
                     .addComponent(bntNewProduct))
-                .addGap(63, 63, 63))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
@@ -514,6 +530,7 @@ public class MainPage extends javax.swing.JFrame {
         int id = 0;
         int amount = 0;
         float totalPrice = 0;
+        float priceIVA = 0;
 
         if (validationUtil.validateInt(txtId.getText())) {
             btnAddProduct.requestFocus();
@@ -526,6 +543,7 @@ public class MainPage extends javax.swing.JFrame {
                 amount = Integer.parseInt(txtAmount.getText());
                 txtFullValue.setText(String.valueOf(product.getBudgetProduct() * amount));
                 totalPrice = product.getBudgetProduct() * amount;
+                priceIVA = totalPrice * iva + totalPrice;
 
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para la Cantidad");
@@ -551,6 +569,10 @@ public class MainPage extends javax.swing.JFrame {
 
     private void txtAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyPressed
         ValidationUtil validationUtil = new ValidationUtil();
+        
+        int amount = 0;
+        float totalPrice = 0;
+        float priceIVA = 0;
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
@@ -560,6 +582,10 @@ public class MainPage extends javax.swing.JFrame {
                 validateProduct(id);
                 txtAmount.requestFocus();
                 txtUnitValue.setText(String.valueOf(product.getBudgetProduct()));
+                txtIVA.setText(String.valueOf(iva*100));
+                amount = Integer.parseInt(txtAmount.getText());
+                totalPrice = product.getBudgetProduct() * amount;
+                priceIVA = totalPrice * iva + totalPrice;
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para el Id");
                 txtId.setText("");
@@ -567,7 +593,7 @@ public class MainPage extends javax.swing.JFrame {
             }
             if (validationUtil.validateInt(txtAmount.getText())) {
 
-                int amount = Integer.parseInt(txtAmount.getText());
+                amount = Integer.parseInt(txtAmount.getText());
                 txtFullValue.setText(String.valueOf(product.getBudgetProduct() * amount));
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese un un numero positivo para la Cantidad");
@@ -747,6 +773,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -768,6 +795,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtFinalPrice;
     private javax.swing.JTextField txtFullValue;
+    private javax.swing.JTextField txtIVA;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtUnitValue;
     // End of variables declaration//GEN-END:variables

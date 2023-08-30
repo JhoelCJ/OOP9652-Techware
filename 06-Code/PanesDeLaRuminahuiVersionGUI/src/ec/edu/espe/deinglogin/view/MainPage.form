@@ -181,8 +181,11 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtFullValue" min="-2" pref="274" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="txtFullValue" min="-2" pref="274" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="txtIVA" min="-2" pref="175" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtUnitValue" alignment="0" min="-2" pref="274" max="-2" attributes="0"/>
                               <Component id="jScrollPane3" alignment="0" min="-2" pref="469" max="-2" attributes="0"/>
@@ -190,7 +193,7 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtId" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
@@ -198,6 +201,12 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnAddProduct" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -219,9 +228,15 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtUnitValue" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFullValue" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtIVA" max="32767" attributes="0"/>
+                      <Component id="txtFullValue" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="257" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -229,7 +244,7 @@
                       <Component id="btnAddProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bntNewProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -388,6 +403,13 @@
             </Container>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="IVA"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtIVA">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
