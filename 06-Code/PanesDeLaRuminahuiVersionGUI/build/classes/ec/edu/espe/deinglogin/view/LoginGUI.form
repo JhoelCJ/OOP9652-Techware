@@ -62,8 +62,8 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtPassword" pref="168" max="32767" attributes="0"/>
                       <Component id="txtUser" max="32767" attributes="0"/>
-                      <Component id="txtPassword" min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
