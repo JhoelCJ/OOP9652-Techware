@@ -112,10 +112,6 @@ public class Manager {
                 userDocument.append("Fecha de entrada:  ", fechaTexto);
 
                 collection.replaceOne(usernameFilter, userDocument);
-                MainPage mainPage = new MainPage();
-                mainPage.setVisible(true);
-                LoginGUI loginGUI = new LoginGUI();
-                loginGUI.setVisible(false);
 
                 txtDelete = false;
 

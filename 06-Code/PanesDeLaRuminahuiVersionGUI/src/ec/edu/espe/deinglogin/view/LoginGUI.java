@@ -210,6 +210,37 @@ public class LoginGUI extends javax.swing.JFrame {
 
     }
 
+    private String showUserTypeDialog() {
+        String[] options = {"Administrador", "Usuario"};
+        int choice = JOptionPane.showOptionDialog(
+                this,
+                "Seleccione el tipo de usuario:",
+                "Tipo de Usuario",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+
+        if (choice == JOptionPane.CLOSED_OPTION) {
+            return null;
+        } else {
+            String selectedOption = options[choice];
+            if (selectedOption.equals("Usuario")) {
+                ExpensesGUIForUser expensesGUIForUser = new ExpensesGUIForUser();
+                expensesGUIForUser.setVisible(true);
+                this.setVisible(false);
+            }
+            if (selectedOption.equals("Administrador")) {
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+                this.setVisible(false);
+            }
+            return selectedOption;
+        }
+    }
+
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
 
     }//GEN-LAST:event_txtUserActionPerformed
@@ -276,7 +307,8 @@ public class LoginGUI extends javax.swing.JFrame {
             enterAction();
         }
     }//GEN-LAST:event_btnEnterKeyPressed
-
+/*Hacer la validacion para que al ingresar Contraseña-Usuario incorrecto no salga 
+    el mensaje de: seleccionar el tipo de usuario*/
     private void enterAction() {
         String username = txtUser.getText();
         String password = txtPassword.getText();
@@ -285,12 +317,15 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese usuario/contraseña");
             return;
         }
-//Probando Cambios XD
+
         Manager mongoConnect = new Manager();
 
         if (mongoConnect.loginConnect(username, password)) {
             txtUser.setText("");
             txtPassword.setText("");
+        }
+        String userType = showUserTypeDialog();
+        if (userType != null) {
         }
     }
 
