@@ -42,6 +42,8 @@ public class MainPage extends javax.swing.JFrame {
         loadInventoryGUI();
     }
 
+    
+    
     public void loadInventoryGUI() {
 
         DefaultTableModel model = new DefaultTableModel();
@@ -570,7 +572,7 @@ public class MainPage extends javax.swing.JFrame {
 
     private void txtAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyPressed
         ValidationUtil validationUtil = new ValidationUtil();
-        
+
         int amount = 0;
         float totalPrice = 0;
         float priceIVA = 0;
@@ -583,7 +585,7 @@ public class MainPage extends javax.swing.JFrame {
                 validateProduct(id);
                 txtAmount.requestFocus();
                 txtUnitValue.setText(String.valueOf(product.getBudgetProduct()));
-                txtIVA.setText(String.valueOf(iva*100));
+                txtIVA.setText(String.valueOf(iva * 100));
                 amount = Integer.parseInt(txtAmount.getText());
                 totalPrice = product.getBudgetProduct() * amount;
                 priceIVA = totalPrice * iva + totalPrice;
