@@ -285,7 +285,7 @@ public class LoginGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese usuario/contraseña");
             return;
         }
-
+//Probando Cambios XD
         Manager mongoConnect = new Manager();
 
         if (mongoConnect.loginConnect(username, password)) {
